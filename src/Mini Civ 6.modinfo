@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod id="92ea96c4-bbdd-4926-af62-a688aa5b9e1a" version="0">
+    <Properties>
+        <Name>Mini Civ 6</Name>
+        <Teaser>TODO</Teaser>
+        <Description>TODO</Description>
+        <Authors>bmaupin</Authors>
+        <!-- Compatible with the latest build of the game -->
+        <CompatibleVersions>2.0</CompatibleVersions>
+    </Properties>
+    <ActionCriteria>
+    </ActionCriteria>
+    <FrontEndActions>
+    </FrontEndActions>
+    <InGameActions>
+    </InGameActions>
+    <Files>
+    </Files>
+</Mod>
