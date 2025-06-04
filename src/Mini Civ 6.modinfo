@@ -9,11 +9,34 @@
         <CompatibleVersions>2.0</CompatibleVersions>
     </Properties>
     <ActionCriteria>
+        <Criteria id="No_Religion">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>GAME_NO_RELIGION</ConfigurationId>
+                <Value>1</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
     </ActionCriteria>
     <FrontEndActions>
+        <UpdateDatabase id="MiniCivVISettings">
+            <File>Data/MiniCivVI_ConfigData.xml</File>
+        </UpdateDatabase>
+        <!-- <UpdateText id="MiniCivVISettingsText">
+            <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
+        </UpdateText> -->
     </FrontEndActions>
     <InGameActions>
+        <!-- TODO: Use existing criteria for included mods/scenarios which rely on religion to prevent religion from being disabled when they're in use:
+             - Gifts of the Nile
+             - Path to Nirvana
+             - Hallowed Ground -->
+        <UpdateDatabase id="MiniCivVINoReligion">
+            <Criteria>No_Religion</Criteria>
+            <File>Data/MiniCivVI_RemoveReligion.xml</File>
+        </UpdateDatabase>
     </InGameActions>
     <Files>
+        <File>Data/MiniCivVI_ConfigData.xml</File>
+        <File>Data/MiniCivVI_RemoveReligion.xml</File>
     </Files>
 </Mod>
