@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GameData>
+    <EnglishText>
+        <Row Tag="LOC_GAME_NO_RELIGION">
+            <Text>No Religion</Text>
+        </Row>
+        <Row Tag="LOC_GAME_NO_RELIGION_DESCRIPTION">
+            <Text>Enabling this option removes religion, faith, pantheons and all related items from the game.</Text>
+        </Row>
+    </EnglishText>
+</GameData>

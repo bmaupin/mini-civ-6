@@ -21,9 +21,9 @@
         <UpdateDatabase id="MiniCivVISettings">
             <File>Data/MiniCivVI_ConfigData.xml</File>
         </UpdateDatabase>
-        <!-- <UpdateText id="MiniCivVISettingsText">
+        <UpdateText id="MiniCivVISettingsText">
             <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
-        </UpdateText> -->
+        </UpdateText>
     </FrontEndActions>
     <InGameActions>
         <!-- TODO: Use existing criteria for included mods/scenarios which rely on religion to prevent religion from being disabled when they're in use:
@@ -42,5 +42,6 @@
     <Files>
         <File>Data/MiniCivVI_ConfigData.xml</File>
         <File>Data/MiniCivVI_RemoveReligion.xml</File>
+        <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
     </Files>
 </Mod>
