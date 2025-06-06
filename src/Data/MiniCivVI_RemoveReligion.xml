@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameInfo>
 	<!-- Remove religion. Much of this is from alexanderscenario_removedata.xml -->
-	<Adjacency_YieldChanges>
-		<Delete YieldType="YIELD_FAITH" />
-		<Delete AdjacentDistrict="DISTRICT_HOLY_SITE" />
-	</Adjacency_YieldChanges>
-	<FavoredReligions>
-		<Delete />
-	</FavoredReligions>
 	<Types>
 		<!-- Delete the actual religions themselves -->
 		<Delete Kind="KIND_RELIGION" />
@@ -28,19 +21,18 @@
 		<Delete Type="IMPROVEMENT_MONASTERY" />
 		<Delete Type="POLICY_RELIGIOUS_ORDERS" />
 		<Delete Type="POLICY_WARS_OF_RELIGION" />
-		<Delete Type="PROJECT_ENHANCE_DISTRICT_HOLY_SITE" />
-		<Delete Type="PROMOTION_CLASS_MONK" />
-		<Delete Type="QUEST_CONVERT_CAPITAL_TO_RELIGION" />
 		<Delete Type="SCORING_RELIGION" />
 		<Delete Type="UNIT_GREAT_PROPHET" />
 		<Delete Type="VICTORY_RELIGIOUS" />
 	</Types>
-
+	<Adjacency_YieldChanges>
+		<Delete YieldType="YIELD_FAITH" />
+	</Adjacency_YieldChanges>
 	<BuildingModifiers>
-		<Delete BuildingType="BUILDING_ORACLE" ModifierId="ORACLE_GREATPROPHETPOINTS" />
+		<Delete ModifierId="ORACLE_GREATPROPHETPOINTS" />
 	</BuildingModifiers>
 	<Building_YieldChanges>
-		<Delete BuildingType="BUILDING_ORACLE" YieldType="YIELD_FAITH" />
+		<Delete YieldType="YIELD_FAITH" />
 	</Building_YieldChanges>
 	<CivilopediaSectionExcludes>
 		<Row SectionId="RELIGIONS" />
@@ -55,7 +47,7 @@
 		<Delete AgendaType="TRAIT_AGENDA_PREFER_FAITH" />
 	</RandomAgendas>
 	<Resource_YieldChanges>
-		<Delete ResourceType="RESOURCE_DYES" YieldType="YIELD_FAITH" />
+		<Delete YieldType="YIELD_FAITH" />
 	</Resource_YieldChanges>
 	<ScoringCategories>
 		<Delete CategoryType="CATEGORY_RELIGION" />
