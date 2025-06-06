@@ -1,27 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameInfo>
 	<!-- Remove religion. Much of this is from alexanderscenario_removedata.xml -->
+	<Adjacency_YieldChanges>
+		<Delete YieldType="YIELD_FAITH" />
+		<Delete AdjacentDistrict="DISTRICT_HOLY_SITE" />
+	</Adjacency_YieldChanges>
+	<FavoredReligions>
+		<Delete />
+	</FavoredReligions>
 	<Types>
 		<!-- Delete the actual religions themselves -->
 		<Delete Kind="KIND_RELIGION" />
-
-		<Delete Type="BUILDING_CATHEDRAL" />
-		<Delete Type="BUILDING_DAR_E_MEHR" />
-		<Delete Type="BUILDING_GURDWARA" />
-		<Delete Type="BUILDING_HAGIA_SOPHIA" />
-		<Delete Type="BUILDING_MAHABODHI_TEMPLE" />
-		<Delete Type="BUILDING_MEETING_HOUSE" />
-		<Delete Type="BUILDING_MONT_ST_MICHEL" />
-		<Delete Type="BUILDING_MOSQUE" />
-		<Delete Type="BUILDING_PAGODA" />
-		<Delete Type="BUILDING_POTALA_PALACE" />
-		<Delete Type="BUILDING_SHRINE" />
-		<Delete Type="BUILDING_STAVE_CHURCH" />
-		<Delete Type="BUILDING_STONEHENGE" />
-		<Delete Type="BUILDING_STUPA" />
-		<Delete Type="BUILDING_SYNAGOGUE" />
-		<Delete Type="BUILDING_TEMPLE" />
-		<Delete Type="BUILDING_WAT" />
 		<Delete Type="CAPABILITY_CITY_HUD_AMENITIES_RELIGION" />
 		<Delete Type="CAPABILITY_FAITH" />
 		<Delete Type="CAPABILITY_FOUND_PANTHEONS" />
@@ -43,20 +32,10 @@
 		<Delete Type="PROMOTION_CLASS_MONK" />
 		<Delete Type="QUEST_CONVERT_CAPITAL_TO_RELIGION" />
 		<Delete Type="SCORING_RELIGION" />
-		<Delete Type="UNIT_APOSTLE" />
 		<Delete Type="UNIT_GREAT_PROPHET" />
-		<Delete Type="UNIT_GURU" />
-		<Delete Type="UNIT_INQUISITOR" />
-		<Delete Type="UNIT_MISSIONARY" />
-		<Delete Type="UNIT_WARRIOR_MONK" />
 		<Delete Type="VICTORY_RELIGIOUS" />
 	</Types>
-	<Adjacency_YieldChanges>
-		<Delete ID="Pairidaeza_HolySiteAdjacency" />
-		<Delete ID="Kurgan_Faith" />
-		<Delete ID="ColossalHead_FaithForest" />
-		<Delete ID="ColossalHead_FaithJungle" />
-	</Adjacency_YieldChanges>
+
 	<BuildingModifiers>
 		<Delete BuildingType="BUILDING_ORACLE" ModifierId="ORACLE_GREATPROPHETPOINTS" />
 	</BuildingModifiers>
