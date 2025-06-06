@@ -31,6 +31,10 @@
              - Path to Nirvana
              - Hallowed Ground -->
         <UpdateDatabase id="MiniCivVINoReligion">
+            <!-- This is needed so that this file will be loaded after DLC, otherwise DLC that make changes to religion will break after religion has been removed -->
+            <Properties>
+                <LoadOrder>1000000</LoadOrder>
+            </Properties>
             <Criteria>No_Religion</Criteria>
             <File>Data/MiniCivVI_RemoveReligion.xml</File>
         </UpdateDatabase>
