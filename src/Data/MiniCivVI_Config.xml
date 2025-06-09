@@ -8,7 +8,10 @@
         </Update>
     </MapSizes>
     <Parameters>
-        <Row ParameterId="MiniCivVI_NoReligion" Name="LOC_GAME_NO_RELIGION" Description="LOC_GAME_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="GAME_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9201" />
+        <!-- Only show this option if the standard ruleset or one of the expansions is in use, e.g. don't show it for special game modes -->
+        <Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="MiniCivVI_NoReligion" Name="LOC_GAME_NO_RELIGION" Description="LOC_GAME_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="GAME_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
+        <Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="MiniCivVI_NoReligion" Name="LOC_GAME_NO_RELIGION" Description="LOC_GAME_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="GAME_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
+        <Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="MiniCivVI_NoReligion" Name="LOC_GAME_NO_RELIGION" Description="LOC_GAME_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="GAME_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
     </Parameters>
     <!-- <Parameters>
 		<Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="GameMode_Heroes" Name="LOC_GAMEMODE_HEROES_NAME" Description="LOC_GAMEMODE_HEROES_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="GAMEMODE_HEROES" NameArrayConfigurationId="GAMEMODES_ENABLED_NAMES" GroupId="GameModes" SortIndex="100"/>
