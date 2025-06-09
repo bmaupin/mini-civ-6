@@ -19,7 +19,7 @@
     </ActionCriteria>
     <FrontEndActions>
         <UpdateDatabase id="MiniCivVISettings">
-            <File>Data/MiniCivVI_ConfigData.xml</File>
+            <File>Data/MiniCivVI_Config.xml</File>
         </UpdateDatabase>
         <UpdateText id="MiniCivVISettingsText">
             <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
@@ -43,7 +43,7 @@
         </UpdateDatabase>
     </InGameActions>
     <Files>
-        <File>Data/MiniCivVI_ConfigData.xml</File>
+        <File>Data/MiniCivVI_Config.xml</File>
         <File>Data/MiniCivVI_RemoveReligion.xml</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
         <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
