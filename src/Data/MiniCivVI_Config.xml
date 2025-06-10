@@ -13,6 +13,11 @@
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="MiniCivVI_NoReligion" Name="LOC_GAME_NO_RELIGION" Description="LOC_GAME_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="GAME_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="MiniCivVI_NoReligion" Name="LOC_GAME_NO_RELIGION" Description="LOC_GAME_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="GAME_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
     </Parameters>
+    <ConfigurationUpdates>
+        <!-- If no religion is checked, automatically uncheck religious victory -->
+        <Row SourceGroup="Game" SourceId="GAME_NO_RELIGION" SourceValue="0" TargetGroup="Game" TargetId="VICTORY_RELIGIOUS" TargetValue="1" Hash="0" />
+        <Row SourceGroup="Game" SourceId="GAME_NO_RELIGION" SourceValue="1" TargetGroup="Game" TargetId="VICTORY_RELIGIOUS" TargetValue="0" Hash="0" />
+    </ConfigurationUpdates>
     <!-- <Parameters>
 		<Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="GameMode_Heroes" Name="LOC_GAMEMODE_HEROES_NAME" Description="LOC_GAMEMODE_HEROES_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="GAMEMODE_HEROES" NameArrayConfigurationId="GAMEMODES_ENABLED_NAMES" GroupId="GameModes" SortIndex="100"/>
 		<Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="GameMode_Heroes" Name="LOC_GAMEMODE_HEROES_NAME" Description="LOC_GAMEMODE_HEROES_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="GAMEMODE_HEROES" NameArrayConfigurationId="GAMEMODES_ENABLED_NAMES" GroupId="GameModes" SortIndex="100"/>
