@@ -18,15 +18,12 @@
         <Row SourceGroup="Game" SourceId="MC6_NO_RELIGION" SourceValue="0" TargetGroup="Game" TargetId="VICTORY_RELIGIOUS" TargetValue="1" Hash="0" />
         <Row SourceGroup="Game" SourceId="MC6_NO_RELIGION" SourceValue="1" TargetGroup="Game" TargetId="VICTORY_RELIGIOUS" TargetValue="0" Hash="0" />
     </ConfigurationUpdates>
-    <!-- <Parameters>
-		<Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="GameMode_Heroes" Name="LOC_GAMEMODE_HEROES_NAME" Description="LOC_GAMEMODE_HEROES_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="GAMEMODE_HEROES" NameArrayConfigurationId="GAMEMODES_ENABLED_NAMES" GroupId="GameModes" SortIndex="100"/>
-		<Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="GameMode_Heroes" Name="LOC_GAMEMODE_HEROES_NAME" Description="LOC_GAMEMODE_HEROES_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="GAMEMODE_HEROES" NameArrayConfigurationId="GAMEMODES_ENABLED_NAMES" GroupId="GameModes" SortIndex="100"/>
-		<Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="GameMode_Heroes" Name="LOC_GAMEMODE_HEROES_NAME" Description="LOC_GAMEMODE_HEROES_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="GAMEMODE_HEROES" NameArrayConfigurationId="GAMEMODES_ENABLED_NAMES" GroupId="GameModes" SortIndex="100"/>
-	</Parameters>
-	<ParameterCriteria>
-		<Row ParameterId="GameMode_Heroes" ConfigurationGroup="Game" ConfigurationId="GAMEMODE_RANDOM" Operator="NotEquals" ConfigurationValue="1"/>
-	</ParameterCriteria>
-	<ParameterDependencies>
-		<Row ParameterID="GameMode_Heroes" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1"/>
-	</ParameterDependencies> -->
+    <ParameterCriteria>
+        <!-- If no religion is checked, disable religious victory -->
+        <Row ParameterId="VICTORY_RELIGIOUS" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" Operator="NotEquals" ConfigurationValue="1" />
+    </ParameterCriteria>
+    <ParameterDependencies>
+        <!-- Don't show these options in world builder -->
+        <Row ParameterID="MiniCivVI_NoReligion" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
+    </ParameterDependencies>
 </GameInfo>
