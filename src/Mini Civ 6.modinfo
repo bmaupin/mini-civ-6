@@ -12,7 +12,7 @@
         <Criteria id="No_Religion">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
-                <ConfigurationId>GAME_NO_RELIGION</ConfigurationId>
+                <ConfigurationId>MC6_NO_RELIGION</ConfigurationId>
                 <Value>1</Value>
             </ConfigurationValueMatches>
         </Criteria>
