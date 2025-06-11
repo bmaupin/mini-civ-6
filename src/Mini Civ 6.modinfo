@@ -20,19 +20,16 @@
     <FrontEndActions>
         <UpdateDatabase id="MiniCivVISettings">
             <File>Data/MiniCivVI_Config.xml</File>
+            <File>Data/MiniCivVI_GameSpeedConfigHack.sql</File>
         </UpdateDatabase>
         <UpdateText id="MiniCivVISettingsText">
             <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
         </UpdateText>
     </FrontEndActions>
     <InGameActions>
-        <UpdateDatabase id="MiniCivVISmallerMaps">
-            <File>Data/MiniCivVI_SmallerMaps.sql</File>
+        <UpdateDatabase id="MiniCivVIGameSpeedDataHack">
+            <File>Data/MiniCivVI_GameSpeedDataHack.sql</File>
         </UpdateDatabase>
-        <!-- TODO: Use existing criteria for included mods/scenarios which rely on religion to prevent religion from being disabled when they're in use:
-             - Gifts of the Nile
-             - Path to Nirvana
-             - Hallowed Ground -->
         <UpdateDatabase id="MiniCivVINoReligion">
             <!-- This is needed so that this file will be loaded after DLC, otherwise DLC that make changes to religion will break after religion has been removed -->
             <Properties>
@@ -41,9 +38,19 @@
             <Criteria>No_Religion</Criteria>
             <File>Data/MiniCivVI_RemoveReligion.xml</File>
         </UpdateDatabase>
+        <UpdateDatabase id="MiniCivVISmallerMaps">
+            <File>Data/MiniCivVI_SmallerMaps.sql</File>
+        </UpdateDatabase>
+        <!-- This doesn't seem to work 🤷‍♂️ -->
+        <UpdateIcons id="MiniCivVIGameSpeedIconsHack">
+            <File>Data/MiniCivVI_GameSpeedIconsHack.sql</File>
+        </UpdateIcons>
     </InGameActions>
     <Files>
         <File>Data/MiniCivVI_Config.xml</File>
+        <File>Data/MiniCivVI_GameSpeedConfigHack.sql</File>
+        <File>Data/MiniCivVI_GameSpeedDataHack.sql</File>
+        <File>Data/MiniCivVI_GameSpeedIconsHack.sql</File>
         <File>Data/MiniCivVI_RemoveReligion.xml</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
         <File>Text/en_US/MiniCivVI_ConfigText.xml</File>

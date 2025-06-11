@@ -1,0 +1,3 @@
+INSERT OR REPLACE INTO IconDefinitions (Name, Atlas, 'Index')
+SELECT 'ICON_GAMESPEED_STANDARD_CUSTOM', Atlas, 'Index'
+FROM IconDefinitions WHERE Name = 'ICON_GAMESPEED_STANDARD';
