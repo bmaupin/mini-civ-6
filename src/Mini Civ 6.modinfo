@@ -9,7 +9,7 @@
         <CompatibleVersions>2.0</CompatibleVersions>
     </Properties>
     <ActionCriteria>
-        <Criteria id="No_Religion">
+        <Criteria id="MiniCivVI_No_Religion">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
                 <ConfigurationId>MC6_NO_RELIGION</ConfigurationId>
@@ -35,7 +35,7 @@
             <Properties>
                 <LoadOrder>1000000</LoadOrder>
             </Properties>
-            <Criteria>No_Religion</Criteria>
+            <Criteria>MiniCivVI_No_Religion</Criteria>
             <File>Data/MiniCivVI_RemoveReligion.xml</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVISmallerMaps">
