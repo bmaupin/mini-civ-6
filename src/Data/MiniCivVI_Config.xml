@@ -9,6 +9,9 @@
     </MapSizes>
     <Parameters>
         <!-- Only show this option if the standard ruleset or one of the expansions is in use, e.g. don't show it for special game modes -->
+        <Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="MiniCivVI_NoPolicies" Name="LOC_MC6_NO_POLICIES" Description="LOC_MC6_NO_POLICIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_POLICIES" GroupId="AdvancedOptions" SortIndex="9210" />
+        <Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="MiniCivVI_NoPolicies" Name="LOC_MC6_NO_POLICIES" Description="LOC_MC6_NO_POLICIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_POLICIES" GroupId="AdvancedOptions" SortIndex="9210" />
+        <Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="MiniCivVI_NoPolicies" Name="LOC_MC6_NO_POLICIES" Description="LOC_MC6_NO_POLICIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_POLICIES" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="MiniCivVI_NoReligion" Name="LOC_MC6_NO_RELIGION" Description="LOC_MC6_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="MiniCivVI_NoReligion" Name="LOC_MC6_NO_RELIGION" Description="LOC_MC6_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="MiniCivVI_NoReligion" Name="LOC_MC6_NO_RELIGION" Description="LOC_MC6_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
@@ -24,6 +27,7 @@
     </ParameterCriteria>
     <ParameterDependencies>
         <!-- Don't show these options in world builder -->
+        <Row ParameterID="MiniCivVI_NoPolicies" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVI_NoReligion" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
     </ParameterDependencies>
 </GameInfo>
