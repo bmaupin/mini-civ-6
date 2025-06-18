@@ -41,7 +41,6 @@
         <UpdateDatabase id="MiniCivVISmallerMaps">
             <File>Data/MiniCivVI_SmallerMaps.sql</File>
         </UpdateDatabase>
-        <!-- This doesn't seem to work 🤷‍♂️ -->
         <UpdateIcons id="MiniCivVIGameSpeedIconsHack">
             <File>Data/MiniCivVI_GameSpeedIconsHack.sql</File>
         </UpdateIcons>
