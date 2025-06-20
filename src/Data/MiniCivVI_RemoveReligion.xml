@@ -17,7 +17,6 @@
 		<Delete Type="CAPABILITY_LENS_RELIGION" />
 		<Delete Type="CAPABILITY_RELIGION" />
 		<Delete Type="CAPABILITY_RELIGION_VIEW" />
-		<Delete Type="CIVIC_DIVINE_RIGHT" />
 		<Delete Type="CIVIC_REFORMED_CHURCH" />
 		<Delete Type="CIVIC_THEOLOGY" />
 		<Delete Type="DIPLOACTION_DECLARE_HOLY_WAR" />
