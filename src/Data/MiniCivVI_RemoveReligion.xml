@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameInfo>
+	<Buildings>
+		<Delete PrereqDistrict="DISTRICT_HOLY_SITE" />
+	</Buildings>
+	<Projects>
+		<Delete PrereqDistrict="DISTRICT_HOLY_SITE" />
+	</Projects>
 	<!-- Remove religion. Much of this is from alexanderscenario_removedata.xml -->
 	<Types>
 		<!-- Delete the actual religions themselves -->
