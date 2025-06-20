@@ -3,6 +3,10 @@
 	<Buildings>
 		<Delete PrereqDistrict="DISTRICT_HOLY_SITE" />
 	</Buildings>
+	<Policies>
+		<Delete PrereqCivic="CIVIC_REFORMED_CHURCH" />
+		<Delete PrereqCivic="CIVIC_THEOLOGY" />
+	</Policies>
 	<Projects>
 		<Delete PrereqDistrict="DISTRICT_HOLY_SITE" />
 	</Projects>
@@ -24,8 +28,6 @@
 		<Delete Type="DISTRICT_LAVRA" />
 		<Delete Type="GOVERNMENT_THEOCRACY" />
 		<Delete Type="IMPROVEMENT_MONASTERY" />
-		<Delete Type="POLICY_RELIGIOUS_ORDERS" />
-		<Delete Type="POLICY_WARS_OF_RELIGION" />
 		<Delete Type="SCORING_RELIGION" />
 		<Delete Type="UNIT_GREAT_PROPHET" />
 		<Delete Type="VICTORY_RELIGIOUS" />
