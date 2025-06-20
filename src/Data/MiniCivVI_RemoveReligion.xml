@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameInfo>
-	<Buildings>
-		<Delete PrereqDistrict="DISTRICT_HOLY_SITE" />
-	</Buildings>
-	<Policies>
-		<Delete PrereqCivic="CIVIC_REFORMED_CHURCH" />
-		<Delete PrereqCivic="CIVIC_THEOLOGY" />
-	</Policies>
-	<Projects>
-		<Delete PrereqDistrict="DISTRICT_HOLY_SITE" />
-	</Projects>
-	<!-- Remove religion. Much of this is from alexanderscenario_removedata.xml -->
-	<Types>
-		<!-- Delete the actual religions themselves -->
-		<Delete Kind="KIND_RELIGION" />
-		<Delete Type="CAPABILITY_CITY_HUD_AMENITIES_RELIGION" />
-		<Delete Type="CAPABILITY_FAITH" />
-		<Delete Type="CAPABILITY_FOUND_PANTHEONS" />
-		<Delete Type="CAPABILITY_FOUND_RELIGIONS" />
-		<Delete Type="CAPABILITY_LENS_RELIGION" />
-		<Delete Type="CAPABILITY_RELIGION" />
-		<Delete Type="CAPABILITY_RELIGION_VIEW" />
-		<Delete Type="CIVIC_REFORMED_CHURCH" />
-		<Delete Type="CIVIC_THEOLOGY" />
-		<Delete Type="DIPLOACTION_DECLARE_HOLY_WAR" />
-		<Delete Type="DISTRICT_HOLY_SITE" />
-		<Delete Type="DISTRICT_LAVRA" />
-		<Delete Type="GOVERNMENT_THEOCRACY" />
-		<Delete Type="IMPROVEMENT_MONASTERY" />
-		<Delete Type="SCORING_RELIGION" />
-		<Delete Type="UNIT_GREAT_PROPHET" />
-		<Delete Type="VICTORY_RELIGIOUS" />
-	</Types>
-	<Adjacency_YieldChanges>
-		<Delete YieldType="YIELD_FAITH" />
-	</Adjacency_YieldChanges>
-	<BuildingModifiers>
-		<Delete ModifierId="ORACLE_GREATPROPHETPOINTS" />
-	</BuildingModifiers>
-	<Building_YieldChanges>
-		<Delete YieldType="YIELD_FAITH" />
-	</Building_YieldChanges>
-	<CivilopediaSectionExcludes>
-		<Row SectionId="RELIGIONS" />
-	</CivilopediaSectionExcludes>
-	<ExcludedAdjacencies>
-		<Delete YieldChangeId="District_Faith" />
-	</ExcludedAdjacencies>
-	<GovernmentModifiers>
-		<Delete GovernmentType="GOVERNMENT_THEOCRACY" ModifierId="THEOCRACY_RELIGIOUS" />
-	</GovernmentModifiers>
-	<RandomAgendas>
-		<Delete AgendaType="TRAIT_AGENDA_PREFER_FAITH" />
-	</RandomAgendas>
-	<Resource_YieldChanges>
-		<Delete YieldType="YIELD_FAITH" />
-	</Resource_YieldChanges>
-	<ScoringCategories>
-		<Delete CategoryType="CATEGORY_RELIGION" />
-	</ScoringCategories>
-	<ScoringLineItems>
-		<Delete LineItemType="LINE_ITEM_RELIGION" />
-	</ScoringLineItems>
+    <Buildings>
+        <Delete PrereqDistrict="DISTRICT_HOLY_SITE" />
+    </Buildings>
+    <Policies>
+        <Delete PrereqCivic="CIVIC_REFORMED_CHURCH" />
+        <Delete PrereqCivic="CIVIC_THEOLOGY" />
+    </Policies>
+    <Projects>
+        <Delete PrereqDistrict="DISTRICT_HOLY_SITE" />
+    </Projects>
+    <!-- Remove religion. Much of this is from alexanderscenario_removedata.xml -->
+    <Types>
+        <!-- Delete the actual religions themselves -->
+        <Delete Kind="KIND_RELIGION" />
+        <Delete Type="CAPABILITY_CITY_HUD_AMENITIES_RELIGION" />
+        <Delete Type="CAPABILITY_FAITH" />
+        <Delete Type="CAPABILITY_FOUND_PANTHEONS" />
+        <Delete Type="CAPABILITY_FOUND_RELIGIONS" />
+        <Delete Type="CAPABILITY_LENS_RELIGION" />
+        <Delete Type="CAPABILITY_RELIGION" />
+        <Delete Type="CAPABILITY_RELIGION_VIEW" />
+        <Delete Type="CIVIC_REFORMED_CHURCH" />
+        <Delete Type="CIVIC_THEOLOGY" />
+        <Delete Type="DIPLOACTION_DECLARE_HOLY_WAR" />
+        <Delete Type="DISTRICT_HOLY_SITE" />
+        <Delete Type="DISTRICT_LAVRA" />
+        <Delete Type="GOVERNMENT_THEOCRACY" />
+        <Delete Type="IMPROVEMENT_MONASTERY" />
+        <Delete Type="SCORING_RELIGION" />
+        <Delete Type="UNIT_GREAT_PROPHET" />
+        <Delete Type="VICTORY_RELIGIOUS" />
+    </Types>
+    <Adjacency_YieldChanges>
+        <Delete YieldType="YIELD_FAITH" />
+    </Adjacency_YieldChanges>
+    <BuildingModifiers>
+        <Delete ModifierId="ORACLE_GREATPROPHETPOINTS" />
+    </BuildingModifiers>
+    <Building_YieldChanges>
+        <Delete YieldType="YIELD_FAITH" />
+    </Building_YieldChanges>
+    <CivilopediaSectionExcludes>
+        <Row SectionId="RELIGIONS" />
+    </CivilopediaSectionExcludes>
+    <ExcludedAdjacencies>
+        <Delete YieldChangeId="District_Faith" />
+    </ExcludedAdjacencies>
+    <GovernmentModifiers>
+        <Delete GovernmentType="GOVERNMENT_THEOCRACY" ModifierId="THEOCRACY_RELIGIOUS" />
+    </GovernmentModifiers>
+    <RandomAgendas>
+        <Delete AgendaType="TRAIT_AGENDA_PREFER_FAITH" />
+    </RandomAgendas>
+    <Resource_YieldChanges>
+        <Delete YieldType="YIELD_FAITH" />
+    </Resource_YieldChanges>
+    <ScoringCategories>
+        <Delete CategoryType="CATEGORY_RELIGION" />
+    </ScoringCategories>
+    <ScoringLineItems>
+        <Delete LineItemType="LINE_ITEM_RELIGION" />
+    </ScoringLineItems>
 </GameInfo>
