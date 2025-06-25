@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <GameData>
     <EnglishText>
+        <Row Tag="LOC_MC6_NO_POLICIES">
+            <Text>No Policies</Text>
+        </Row>
+        <Row Tag="LOC_MC6_NO_POLICIES_DESCRIPTION">
+            <Text>Enabling this option removes all policy cards from the game.</Text>
+        </Row>
         <Row Tag="LOC_MC6_NO_RELIGION">
             <Text>No Religion</Text>
         </Row>

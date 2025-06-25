@@ -42,7 +42,7 @@
                 <LoadOrder>1000000</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_Policies</Criteria>
-            <File>Data/MiniCivVI_RemovePolicyCards.xml</File>
+            <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoReligion">
             <!-- This is needed so that this file will be loaded after DLC, otherwise DLC that make changes to religion will break after religion has been removed -->
@@ -64,7 +64,7 @@
         <File>Data/MiniCivVI_GameSpeedConfigHack.sql</File>
         <File>Data/MiniCivVI_GameSpeedDataHack.sql</File>
         <File>Data/MiniCivVI_GameSpeedIconsHack.sql</File>
-        <File>Data/MiniCivVI_RemovePolicyCards.xml</File>
+        <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
         <File>Data/MiniCivVI_RemoveReligion.xml</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
         <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
