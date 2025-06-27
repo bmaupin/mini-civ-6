@@ -34,6 +34,13 @@
         </UpdateText>
     </FrontEndActions>
     <InGameActions>
+        <UpdateDatabase id="MiniCivVICleanup">
+            <!-- Load this after everything else -->
+            <Properties>
+                <LoadOrder>1000001</LoadOrder>
+            </Properties>
+            <File>Data/MiniCivVI_Cleanup.sql</File>
+        </UpdateDatabase>
         <UpdateDatabase id="MiniCivVIGameSpeedDataHack">
             <File>Data/MiniCivVI_GameSpeedDataHack.sql</File>
         </UpdateDatabase>
@@ -60,6 +67,7 @@
         </UpdateIcons>
     </InGameActions>
     <Files>
+        <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
         <File>Data/MiniCivVI_GameSpeedConfigHack.sql</File>
         <File>Data/MiniCivVI_GameSpeedDataHack.sql</File>
