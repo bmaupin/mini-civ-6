@@ -9,6 +9,10 @@
         <CompatibleVersions>2.0</CompatibleVersions>
     </Properties>
     <ActionCriteria>
+        <!-- This criteria only matches on standard games (with or without expansions), not scenarios, etc. -->
+        <Criteria id="MiniCivVI_Standard_Ruleset">
+            <RuleSetInUse>RULESET_STANDARD,RULESET_EXPANSION_1,RULESET_EXPANSION_2</RuleSetInUse>
+        </Criteria>
         <Criteria id="MiniCivVI_No_Policies">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
@@ -39,6 +43,7 @@
             <Properties>
                 <LoadOrder>1000001</LoadOrder>
             </Properties>
+            <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
             <File>Data/MiniCivVI_Cleanup.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVIGameSpeedDataHack">
