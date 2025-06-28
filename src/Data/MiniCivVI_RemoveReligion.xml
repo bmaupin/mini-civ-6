@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameInfo>
     <Buildings>
+        <!-- Removes religious wonders -->
+        <Delete AdvisorType="ADVISOR_RELIGIOUS" />
+        <!-- Removes religious buildings -->
         <Delete PrereqDistrict="DISTRICT_HOLY_SITE" />
     </Buildings>
     <Policies>
