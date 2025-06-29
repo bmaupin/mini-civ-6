@@ -49,6 +49,13 @@
         <UpdateDatabase id="MiniCivVIGameSpeedDataHack">
             <File>Data/MiniCivVI_GameSpeedDataHack.sql</File>
         </UpdateDatabase>
+        <UpdateDatabase id="MiniCivVIMiscChanges">
+            <Properties>
+                <LoadOrder>1000000</LoadOrder>
+            </Properties>
+            <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
+            <File>Data/MiniCivVI_BuilderChanges.xml</File>
+        </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoPolicies">
             <Properties>
                 <LoadOrder>1000000</LoadOrder>
@@ -72,6 +79,7 @@
         </UpdateIcons>
     </InGameActions>
     <Files>
+        <File>Data/MiniCivVI_BuilderChanges.xml</File>
         <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
         <File>Data/MiniCivVI_GameSpeedConfigHack.sql</File>
