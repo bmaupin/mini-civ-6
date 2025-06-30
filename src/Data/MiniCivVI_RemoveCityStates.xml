@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameInfo>
+    <Types>
+        <!-- City HUD -->
+        <Delete Type="CAPABILITY_CITY_HUD_AMENITIES_CITY_STATES" />
+        <!-- Can the user open city states panel -->
+        <Delete Type="CAPABILITY_CITY_STATES_VIEW" />
+        <!-- Do envoys show up on the Top Panel -->
+        <Delete Type="CAPABILITY_TOP_PANEL_ENVOYS" />
+        <Delete Type="DIPLOACTION_GRANT_INFLUENCE_TOKEN" />
+    </Types>
+    <Modifiers>
+        <Delete ModifierId="CIVIC_AWARD_ONE_INFLUENCE_TOKEN" />
+        <Delete ModifierId="CIVIC_AWARD_TWO_INFLUENCE_TOKENS" />
+        <Delete ModifierId="CIVIC_AWARD_THREE_INFLUENCE_TOKENS" />
+    </Modifiers>
+    <RandomAgendas>
+        <Delete AgendaType="TRAIT_AGENDA_CITY_STATE_ALLY" />
+        <Delete AgendaType="TRAIT_AGENDA_PREFER_CITY_STATE_PROTECTOR" />
+    </RandomAgendas>
+</GameInfo>

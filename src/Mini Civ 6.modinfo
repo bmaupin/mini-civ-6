@@ -13,6 +13,18 @@
         <Criteria id="MiniCivVI_Standard_Ruleset">
             <RuleSetInUse>RULESET_STANDARD,RULESET_EXPANSION_1,RULESET_EXPANSION_2</RuleSetInUse>
         </Criteria>
+        <Criteria id="MiniCivVI_No_City_States">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>CITY_STATE_COUNT</ConfigurationId>
+                <Value>0</Value>
+            </ConfigurationValueMatches>
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>GAMEMODE_BARBARIAN_CLANS</ConfigurationId>
+                <Value>0</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
         <Criteria id="MiniCivVI_No_Policies">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
@@ -56,6 +68,13 @@
             <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
             <File>Data/MiniCivVI_BuilderChanges.xml</File>
         </UpdateDatabase>
+        <UpdateDatabase id="MiniCivVINoCityStates">
+            <Properties>
+                <LoadOrder>1000000</LoadOrder>
+            </Properties>
+            <Criteria>MiniCivVI_No_City_States</Criteria>
+            <File>Data/MiniCivVI_RemoveCityStates.xml</File>
+        </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoPolicies">
             <Properties>
                 <LoadOrder>1000000</LoadOrder>
@@ -85,6 +104,7 @@
         <File>Data/MiniCivVI_GameSpeedConfigHack.sql</File>
         <File>Data/MiniCivVI_GameSpeedDataHack.sql</File>
         <File>Data/MiniCivVI_GameSpeedIconsHack.sql</File>
+        <File>Data/MiniCivVI_RemoveCityStates.xml</File>
         <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
         <File>Data/MiniCivVI_RemoveReligion.xml</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
