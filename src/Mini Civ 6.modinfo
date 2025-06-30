@@ -25,6 +25,13 @@
                 <Value>0</Value>
             </ConfigurationValueMatches>
         </Criteria>
+        <Criteria id="MiniCivVI_No_Great_People">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>MC6_NO_GREAT_PEOPLE</ConfigurationId>
+                <Value>1</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
         <Criteria id="MiniCivVI_No_Policies">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
@@ -75,6 +82,13 @@
             <Criteria>MiniCivVI_No_City_States</Criteria>
             <File>Data/MiniCivVI_RemoveCityStates.xml</File>
         </UpdateDatabase>
+        <UpdateDatabase id="MiniCivVINoGreatPeople">
+            <Properties>
+                <LoadOrder>1000000</LoadOrder>
+            </Properties>
+            <Criteria>MiniCivVI_No_Great_People</Criteria>
+            <File>Data/MiniCivVI_RemoveGreatPeople.xml</File>
+        </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoPolicies">
             <Properties>
                 <LoadOrder>1000000</LoadOrder>
@@ -105,6 +119,7 @@
         <File>Data/MiniCivVI_GameSpeedDataHack.sql</File>
         <File>Data/MiniCivVI_GameSpeedIconsHack.sql</File>
         <File>Data/MiniCivVI_RemoveCityStates.xml</File>
+        <File>Data/MiniCivVI_RemoveGreatPeople.xml</File>
         <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
         <File>Data/MiniCivVI_RemoveReligion.xml</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
