@@ -9,6 +9,9 @@
         <Delete Type="CAPABILITY_TOP_PANEL_ENVOYS" />
         <Delete Type="DIPLOACTION_GRANT_INFLUENCE_TOKEN" />
     </Types>
+    <CivilopediaSectionExcludes>
+        <Row SectionId="CITYSTATES" />
+    </CivilopediaSectionExcludes>
     <Modifiers>
         <Delete ModifierId="CIVIC_AWARD_ONE_INFLUENCE_TOKEN" />
         <Delete ModifierId="CIVIC_AWARD_TWO_INFLUENCE_TOKENS" />
