@@ -57,6 +57,14 @@
         </UpdateText>
     </FrontEndActions>
     <InGameActions>
+        <ReplaceUIScript id="MiniCivVIDisableBoostPopups">
+            <Properties>
+                <Context>InGame</Context>
+                <LoadOrder>1000000</LoadOrder>
+                <LuaContext>BoostUnlockedPopup</LuaContext>
+                <LuaReplace>Data/BoostUnlockedPopup_Disabled.lua</LuaReplace>
+            </Properties>
+        </ReplaceUIScript>
         <UpdateDatabase id="MiniCivVICleanup">
             <!-- Load this after everything else -->
             <Properties>
@@ -112,6 +120,7 @@
         </UpdateIcons>
     </InGameActions>
     <Files>
+        <File>Data/BoostUnlockedPopup_Disabled.lua</File>
         <File>Data/MiniCivVI_BuilderChanges.xml</File>
         <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
