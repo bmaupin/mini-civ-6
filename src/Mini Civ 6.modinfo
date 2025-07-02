@@ -62,7 +62,7 @@
                 <Context>InGame</Context>
                 <LoadOrder>1000000</LoadOrder>
                 <LuaContext>BoostUnlockedPopup</LuaContext>
-                <LuaReplace>Data/BoostUnlockedPopup_Disabled.lua</LuaReplace>
+                <LuaReplace>UI/Replacements/BoostUnlockedPopup_Disabled.lua</LuaReplace>
             </Properties>
         </ReplaceUIScript>
         <UpdateDatabase id="MiniCivVICleanup">
@@ -120,7 +120,6 @@
         </UpdateIcons>
     </InGameActions>
     <Files>
-        <File>Data/BoostUnlockedPopup_Disabled.lua</File>
         <File>Data/MiniCivVI_BuilderChanges.xml</File>
         <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
@@ -133,5 +132,6 @@
         <File>Data/MiniCivVI_RemoveReligion.xml</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
         <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
+        <File>UI/Replacements/BoostUnlockedPopup_Disabled.lua</File>
     </Files>
 </Mod>
