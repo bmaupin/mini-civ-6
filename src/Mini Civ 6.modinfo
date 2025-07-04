@@ -65,7 +65,16 @@
                 <LuaReplace>UI/Replacements/BoostUnlockedPopup_Disabled.lua</LuaReplace>
             </Properties>
         </ReplaceUIScript>
-        <ReplaceUIScript id="MiniCivVIDisableChoosePolicyButton">
+        <ReplaceUIScript id="MiniCivVIDisableGovernmentPolicyButton">
+            <Properties>
+                <Context>InGame</Context>
+                <LoadOrder>1000000</LoadOrder>
+                <LuaContext>GovernmentScreen</LuaContext>
+                <LuaReplace>UI/Replacements/GovernmentScreen_MiniCivVI.lua</LuaReplace>
+            </Properties>
+            <Criteria>MiniCivVI_No_Policies</Criteria>
+        </ReplaceUIScript>
+        <ReplaceUIScript id="MiniCivVIDisablePopupPolicyButton">
             <Properties>
                 <Context>InGame</Context>
                 <LoadOrder>1000000</LoadOrder>
@@ -142,6 +151,7 @@
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
         <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
         <File>UI/Replacements/BoostUnlockedPopup_Disabled.lua</File>
+        <File>UI/Replacements/GovernmentScreen_MiniCivVI.lua</File>
         <File>UI/Replacements/TechCivicCompletedPopup_MiniCivVI.lua</File>
     </Files>
 </Mod>
