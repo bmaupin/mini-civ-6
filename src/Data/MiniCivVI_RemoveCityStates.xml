@@ -12,6 +12,16 @@
     <CivilopediaSectionExcludes>
         <Row SectionId="CITYSTATES" />
     </CivilopediaSectionExcludes>
+    <Governments>
+        <Update>
+            <Set>
+                <!-- How many points per turn toward earning an envoy -->
+                <InfluencePointsPerTurn>0</InfluencePointsPerTurn>
+                <!-- How many envoys granted once the number of points accumulated equals InfluencePointsThreshold -->
+                <InfluenceTokensPerThreshold>0</InfluenceTokensPerThreshold>
+            </Set>
+        </Update>
+    </Governments>
     <Modifiers>
         <Delete ModifierId="CIVIC_AWARD_ONE_INFLUENCE_TOKEN" />
         <Delete ModifierId="CIVIC_AWARD_TWO_INFLUENCE_TOKENS" />
