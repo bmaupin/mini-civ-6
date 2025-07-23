@@ -1,3 +1,44 @@
+-- If the Jong is the only unlock for the mercenaries civic, set its prerequisite to match
+-- the unit it replaces (frigate) so the mercenaries civic can be deleted, otherwise it
+-- will show up for all civs except Indonesia as having no unlocks.
+WITH Unlocks AS (
+  SELECT UnitType AS UnlockType FROM Units WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT BuildingType FROM Buildings WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT DistrictType FROM Districts WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT GovernmentType FROM Governments WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT ImprovementType FROM Improvements WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT ImprovementType FROM Improvement_BonusYieldChanges WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT ImprovementType FROM Improvement_Tourism WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT ImprovementType FROM Improvement_ValidFeatures WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT ImprovementType FROM Improvement_ValidTerrains WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT PolicyType FROM Policies WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT ProjectType FROM Projects WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT ResourceType FROM Resources WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT CommandType FROM UnitCommands WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT OperationType FROM UnitOperations WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+  UNION ALL
+  SELECT ID FROM Adjacency_YieldChanges WHERE PrereqCivic = 'CIVIC_MERCENARIES'
+)
+UPDATE Units
+SET PrereqCivic = NULL,
+    PrereqTech = 'TECH_SQUARE_RIGGING'
+WHERE UnitType = 'UNIT_INDONESIAN_JONG'
+  AND (SELECT COUNT(*) FROM Unlocks) = 1
+  AND (SELECT UnlockType FROM Unlocks LIMIT 1) = 'UNIT_INDONESIAN_JONG';
+
 -- Delete civics that no longer grant any unlocks due to the unlocks having been deleted,
 -- for example policies, governments (religious, military, etc), units, etc.
 DELETE FROM Civics WHERE
