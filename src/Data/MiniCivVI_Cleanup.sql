@@ -39,6 +39,44 @@ WHERE UnitType = 'UNIT_INDONESIAN_JONG'
   AND (SELECT COUNT(*) FROM Unlocks) = 1
   AND (SELECT UnlockType FROM Unlocks LIMIT 1) = 'UNIT_INDONESIAN_JONG';
 
+-- Do something similar for craftsmanship, except in this case it unlocks improvements
+-- and one of the improvements is only installed with Rise and Fall.
+WITH Unlocks AS (
+  SELECT ImprovementType AS UnlockType FROM Improvements WHERE PrereqCivic = 'CIVIC_CRAFTSMANSHIP'
+  UNION ALL
+  SELECT ImprovementType FROM Improvement_BonusYieldChanges WHERE PrereqCivic = 'CIVIC_CRAFTSMANSHIP'
+  UNION ALL
+  SELECT ImprovementType FROM Improvement_Tourism WHERE PrereqCivic = 'CIVIC_CRAFTSMANSHIP'
+  UNION ALL
+  SELECT ImprovementType FROM Improvement_ValidFeatures WHERE PrereqCivic = 'CIVIC_CRAFTSMANSHIP'
+  UNION ALL
+  SELECT ImprovementType FROM Improvement_ValidTerrains WHERE PrereqCivic = 'CIVIC_CRAFTSMANSHIP'
+  UNION ALL
+  SELECT PolicyType FROM Policies WHERE PrereqCivic = 'CIVIC_CRAFTSMANSHIP'
+  UNION ALL
+  SELECT ProjectType FROM Projects WHERE PrereqCivic = 'CIVIC_CRAFTSMANSHIP'
+  UNION ALL
+  SELECT ResourceType FROM Resources WHERE PrereqCivic = 'CIVIC_CRAFTSMANSHIP'
+  UNION ALL
+  SELECT CommandType FROM UnitCommands WHERE PrereqCivic = 'CIVIC_CRAFTSMANSHIP'
+  UNION ALL
+  SELECT OperationType FROM UnitOperations WHERE PrereqCivic = 'CIVIC_CRAFTSMANSHIP'
+  UNION ALL
+  SELECT ID FROM Adjacency_YieldChanges WHERE PrereqCivic = 'CIVIC_CRAFTSMANSHIP'
+)
+UPDATE Improvements
+SET PrereqCivic = NULL,
+    PrereqTech = 'TECH_MASONRY'
+WHERE ImprovementType IN ('IMPROVEMENT_SPHINX', 'IMPROVEMENT_CHEMAMULL')
+  AND (
+    SELECT COUNT(*) FROM Unlocks
+  ) = (
+    SELECT COUNT(*) FROM Unlocks WHERE UnlockType IN ('IMPROVEMENT_SPHINX', 'IMPROVEMENT_CHEMAMULL')
+  )
+  AND EXISTS (
+    SELECT 1 FROM Unlocks WHERE UnlockType = 'IMPROVEMENT_SPHINX'
+  );
+
 -- Delete civics that no longer grant any unlocks due to the unlocks having been deleted,
 -- for example policies, governments (religious, military, etc), units, etc.
 DELETE FROM Civics WHERE
@@ -80,6 +118,20 @@ DELETE FROM Civics WHERE
     UNION
     SELECT PrereqCivic FROM UnitOperations WHERE PrereqCivic IS NOT NULL
   );
+
+-- If craftsmanship got deleted, military tradition's prerequisite gets deleted. Add a new
+-- one so military tradition doesn't get orphaned
+INSERT INTO CivicPrereqs (Civic, PrereqCivic)
+SELECT 'CIVIC_MILITARY_TRADITION', 'CIVIC_CODE_OF_LAWS'
+WHERE NOT EXISTS (
+  SELECT 1 FROM CivicPrereqs WHERE Civic = 'CIVIC_MILITARY_TRADITION'
+);
+
+INSERT INTO CivicPrereqs (Civic, PrereqCivic)
+SELECT 'CIVIC_NATURAL_HISTORY', 'CIVIC_MERCANTILISM'
+WHERE NOT EXISTS (
+  SELECT 1 FROM CivicPrereqs WHERE Civic = 'CIVIC_COLONIALISM'
+);
 
 DELETE FROM Technologies WHERE
   -- This excludes TECH_FUTURE_TECH, which is special
