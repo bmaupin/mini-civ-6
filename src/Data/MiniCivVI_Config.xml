@@ -9,6 +9,9 @@
     </MapSizes>
     <Parameters>
         <!-- Only show this option if the standard ruleset or one of the expansions is in use, e.g. don't show it for special game modes -->
+        <Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="MiniCivVI_AlwaysPeace" Name="LOC_MC6_ALWAYS_PEACE" Description="LOC_MC6_ALWAYS_PEACE_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_ALWAYS_PEACE" GroupId="AdvancedOptions" SortIndex="9210" />
+        <Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="MiniCivVI_AlwaysPeace" Name="LOC_MC6_ALWAYS_PEACE" Description="LOC_MC6_ALWAYS_PEACE_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_ALWAYS_PEACE" GroupId="AdvancedOptions" SortIndex="9210" />
+        <Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="MiniCivVI_AlwaysPeace" Name="LOC_MC6_ALWAYS_PEACE" Description="LOC_MC6_ALWAYS_PEACE_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_ALWAYS_PEACE" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="MiniCivVI_NoAmenities" Name="LOC_MC6_NO_AMENITIES" Description="LOC_MC6_NO_AMENITIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_AMENITIES" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="MiniCivVI_NoAmenities" Name="LOC_MC6_NO_AMENITIES" Description="LOC_MC6_NO_AMENITIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_AMENITIES" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="MiniCivVI_NoAmenities" Name="LOC_MC6_NO_AMENITIES" Description="LOC_MC6_NO_AMENITIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_AMENITIES" GroupId="AdvancedOptions" SortIndex="9210" />
@@ -23,16 +26,20 @@
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="MiniCivVI_NoReligion" Name="LOC_MC6_NO_RELIGION" Description="LOC_MC6_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
     </Parameters>
     <ConfigurationUpdates>
+        <Row SourceGroup="Game" SourceId="MC6_ALWAYS_PEACE" SourceValue="0" TargetGroup="Game" TargetId="VICTORY_CONQUEST" TargetValue="1" Hash="0" />
+        <Row SourceGroup="Game" SourceId="MC6_ALWAYS_PEACE" SourceValue="1" TargetGroup="Game" TargetId="VICTORY_CONQUEST" TargetValue="0" Hash="0" />
         <!-- If no religion is checked, automatically uncheck religious victory -->
         <Row SourceGroup="Game" SourceId="MC6_NO_RELIGION" SourceValue="0" TargetGroup="Game" TargetId="VICTORY_RELIGIOUS" TargetValue="1" Hash="0" />
         <Row SourceGroup="Game" SourceId="MC6_NO_RELIGION" SourceValue="1" TargetGroup="Game" TargetId="VICTORY_RELIGIOUS" TargetValue="0" Hash="0" />
     </ConfigurationUpdates>
     <ParameterCriteria>
+        <Row ParameterId="VICTORY_CONQUEST" ConfigurationGroup="Game" ConfigurationId="MC6_ALWAYS_PEACE" Operator="NotEquals" ConfigurationValue="1" />
         <!-- If no religion is checked, disable religious victory -->
         <Row ParameterId="VICTORY_RELIGIOUS" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" Operator="NotEquals" ConfigurationValue="1" />
     </ParameterCriteria>
     <ParameterDependencies>
         <!-- Don't show these options in world builder -->
+        <Row ParameterID="MiniCivVI_AlwaysPeace" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVI_NoAmenities" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVI_NoGreatPeople" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVI_NoPolicies" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />

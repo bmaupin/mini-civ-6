@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameInfo>
+    <!-- TODO: This removes the diplomatic actions but doesn't prevent attacking other units ... -->
+    <DiplomaticActions>
+        <Delete DiplomaticActionType="DIPLOACTION_DECLARE_SURPRISE_WAR" />
+        <Delete DiplomaticActionType="DIPLOACTION_DECLARE_WAR_MINOR_CIV" />
+        <Delete UIGroup="FORMALWAR" />
+    </DiplomaticActions>
+    <!-- <DiplomaticStates>
+        <Delete StateType="DIPLO_STATE_WAR" />
+        <Delete StateType="DIPLO_STATE_WAR_WITH_MINOR" />
+        <Delete StateType="DIPLO_STATE_WAR_WITH_MAJOR" />
+        <Delete StateType="DIPLO_STATE_MINOR_MINOR_WAR" />
+    </DiplomaticStates> -->
+    <!-- <DiplomaticTriggers>
+        <Delete TriggerType="GO_TO_WAR" />
+    </DiplomaticTriggers>
+    <DiplomacySelections>
+        <Delete />
+    </DiplomacySelections> -->
+    <!-- What leaders say when war is declared -->
+    <!-- <DiplomacyStatements>
+        <Delete Type="DECLARE_SURPRISE_WAR" />
+    </DiplomacyStatements> -->
+    <!-- <Types>
+        <Delete Kind="KIND_WAR" />
+    </Types> -->
+</GameInfo>

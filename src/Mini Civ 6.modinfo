@@ -13,6 +13,13 @@
         <Criteria id="MiniCivVI_Standard_Ruleset">
             <RuleSetInUse>RULESET_STANDARD,RULESET_EXPANSION_1,RULESET_EXPANSION_2</RuleSetInUse>
         </Criteria>
+        <Criteria id="MiniCivVI_Always_Peace">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>MC6_ALWAYS_PEACE</ConfigurationId>
+                <Value>1</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
         <Criteria id="MiniCivVI_No_Amenities">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
@@ -90,6 +97,14 @@
             </Properties>
             <Criteria>MiniCivVI_No_Policies</Criteria>
         </ReplaceUIScript>
+        <UpdateDatabase id="MiniCivVIAlwaysPeace">
+            <!-- This is needed so that this file will be loaded after DLC, otherwise DLC that make changes to religion will break after religion has been removed -->
+            <Properties>
+                <LoadOrder>1000000</LoadOrder>
+            </Properties>
+            <Criteria>MiniCivVI_Always_Peace</Criteria>
+            <File>Data/MiniCivVI_AlwaysPeace.xml</File>
+        </UpdateDatabase>
         <UpdateDatabase id="MiniCivVICleanup">
             <!-- Load this after everything else -->
             <Properties>
@@ -152,6 +167,7 @@
         </UpdateIcons>
     </InGameActions>
     <Files>
+        <File>Data/MiniCivVI_AlwaysPeace.xml</File>
         <File>Data/MiniCivVI_BuilderChanges.xml</File>
         <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
