@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameInfo>
+    <!-- TODO: Don't even show city states? -->
+    <!-- <MapSizes>
+        <Update>
+            <Set>
+                <DefaultCityStates>0</DefaultCityStates>
+            </Set>
+        </Update>
+    </MapSizes> -->
+    <RuleSets>
+        <Row>
+            <RuleSetType>RULESET_MC6_CIVREV</RuleSetType>
+            <Name>LOC_MC6_CIVREV_RULESET_TITLE</Name>
+            <Description>LOC_MC6_CIVREV_RULESET_DESCRIPTION</Description>
+        </Row>
+    </RuleSets>
+    <!-- <RulesetSupportedValues>
+        <Row Ruleset="RULESET_MC6_CIVREV" Domain="StandardEras" Value="ERA_ANCIENT" />
+        <Row Ruleset="RULESET_MC6_CIVREV" Domain="StandardTurnLimits" Value="TURNLIMIT_CUSTOM" />
+    </RulesetSupportedValues> -->
+    <!-- Disable random leader pool players which are inaccessible -->
+    <!-- <RulesetUnsupportedValues>
+        <Row Ruleset="RULESET_MC6_CIVREV" Domain="Players:StandardPlayers" Value="RANDOM_POOL1" />
+        <Row Ruleset="RULESET_MC6_CIVREV" Domain="Players:StandardPlayers" Value="RANDOM_POOL2" />
+    </RulesetUnsupportedValues> -->
+    <!-- <Victories>
+        <Row Domain="AncientRivalsScenario_Victories" VictoryType="VICTORY_ANCIENTRIVALS" Name="LOC_ANCIENT_RIVALS_VICTORY_TITLE" Description="LOC_ANCIENT_RIVALS_VICTORY_DESC" />
+    </Victories> -->
+    <Parameters>
+        <Row Key1="Ruleset" Key2="RULESET_MC6_CIVREV" ParameterId="MiniCivVI_NoAmenities" Name="LOC_MC6_NO_AMENITIES" Description="LOC_MC6_NO_AMENITIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_AMENITIES" GroupId="AdvancedOptions" SortIndex="9210" />
+        <Row Key1="Ruleset" Key2="RULESET_MC6_CIVREV" ParameterId="MiniCivVI_NoGreatPeople" Name="LOC_MC6_NO_GREAT_PEOPLE" Description="LOC_MC6_NO_GREAT_PEOPLE_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_GREAT_PEOPLE" GroupId="AdvancedOptions" SortIndex="9210" />
+        <Row Key1="Ruleset" Key2="RULESET_MC6_CIVREV" ParameterId="MiniCivVI_NoPolicies" Name="LOC_MC6_NO_POLICIES" Description="LOC_MC6_NO_POLICIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_POLICIES" GroupId="AdvancedOptions" SortIndex="9210" />
+        <Row Key1="Ruleset" Key2="RULESET_MC6_CIVREV" ParameterId="MiniCivVI_NoReligion" Name="LOC_MC6_NO_RELIGION" Description="LOC_MC6_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
+    </Parameters>
+    <ParameterCriteria>
+        <!-- If no religion is checked, disable religious victory -->
+        <Row ParameterId="VICTORY_RELIGIOUS" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" Operator="NotEquals" ConfigurationValue="1" />
+    </ParameterCriteria>
+</GameInfo>

@@ -69,6 +69,9 @@
         <UpdateText id="MiniCivVISettingsText">
             <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
         </UpdateText>
+        <UpdateDatabase id="MiniCivVICivRevSettings">
+            <File>Data/MiniCivVI_CivRev_Config.xml</File>
+        </UpdateDatabase>
     </FrontEndActions>
     <InGameActions>
         <ReplaceUIScript id="MiniCivVIDisableBoostPopups">
@@ -169,6 +172,7 @@
     <Files>
         <File>Data/MiniCivVI_AlwaysPeace.xml</File>
         <File>Data/MiniCivVI_BuilderChanges.xml</File>
+        <File>Data/MiniCivVI_CivRev_Config.xml</File>
         <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
         <File>Data/MiniCivVI_GameSpeedConfigHack.sql</File>
