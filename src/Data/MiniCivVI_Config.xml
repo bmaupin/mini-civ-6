@@ -31,6 +31,10 @@
         <!-- If no religion is checked, automatically uncheck religious victory -->
         <Row SourceGroup="Game" SourceId="MC6_NO_RELIGION" SourceValue="0" TargetGroup="Game" TargetId="VICTORY_RELIGIOUS" TargetValue="1" Hash="0" />
         <Row SourceGroup="Game" SourceId="MC6_NO_RELIGION" SourceValue="1" TargetGroup="Game" TargetId="VICTORY_RELIGIOUS" TargetValue="0" Hash="0" />
+        <!-- Default to 0 but allow it to be changed -->
+        <Row SourceGroup="Game" SourceId="RULESET" SourceValue="RULESET_STANDARD" TargetGroup="Game" TargetId="CITY_STATE_COUNT" TargetValue="0" Hash="0" />
+        <Row SourceGroup="Game" SourceId="RULESET" SourceValue="RULESET_EXPANSION_1" TargetGroup="Game" TargetId="CITY_STATE_COUNT" TargetValue="0" Hash="0" />
+        <Row SourceGroup="Game" SourceId="RULESET" SourceValue="RULESET_EXPANSION_2" TargetGroup="Game" TargetId="CITY_STATE_COUNT" TargetValue="0" Hash="0" />
     </ConfigurationUpdates>
     <ParameterCriteria>
         <Row ParameterId="VICTORY_CONQUEST" ConfigurationGroup="Game" ConfigurationId="MC6_ALWAYS_PEACE" Operator="NotEquals" ConfigurationValue="1" />
