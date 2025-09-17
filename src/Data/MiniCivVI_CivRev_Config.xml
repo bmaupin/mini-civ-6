@@ -14,13 +14,12 @@
     <ConfigurationUpdates>
         <!-- Override default parameter values -->
         <Row SourceGroup="Game" SourceId="RULESET" SourceValue="RULESET_MC6_CIVREV" TargetGroup="Game" TargetId="CITY_STATE_COUNT" TargetValue="0" Hash="0" Static="1" />
+        <Row SourceGroup="Game" SourceId="RULESET" SourceValue="RULESET_MC6_CIVREV" TargetGroup="Game" TargetId="MC6_NO_RELIGION" TargetValue="1" Hash="0" Static="1" />
         <Row SourceGroup="Game" SourceId="RULESET" SourceValue="RULESET_MC6_CIVREV" TargetGroup="Game" TargetId="VICTORY_RELIGIOUS" TargetValue="0" Hash="0" Static="1" />
     </ConfigurationUpdates>
     <ParameterDependencies>
         <!-- These parameters are hidden altogether -->
         <Row ParameterId="CityStateCount" ConfigurationGroup="Game" ConfigurationId="RULESET" Operator="NotEquals" ConfigurationValue="RULESET_MC6_CIVREV" />
-        <!-- TODO: this breaks the removal of religion; how can we hide it and still disable religion? -->
-        <!-- <Row ParameterId="MiniCivVI_NoReligion" ConfigurationGroup="Game" ConfigurationId="RULESET" Operator="NotEquals" ConfigurationValue="RULESET_MC6_CIVREV" /> -->
         <Row ParameterId="VICTORY_RELIGIOUS" ConfigurationGroup="Game" ConfigurationId="RULESET" Operator="NotEquals" ConfigurationValue="RULESET_MC6_CIVREV" />
     </ParameterDependencies>
     <Parameters>
@@ -28,13 +27,9 @@
         <Row Key1="Ruleset" Key2="RULESET_MC6_CIVREV" ParameterId="MiniCivVI_NoAmenities" Name="LOC_MC6_NO_AMENITIES" Description="LOC_MC6_NO_AMENITIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_AMENITIES" GroupId="AdvancedOptions" SortIndex="9210" />
         <!-- TODO: CivRev has great people, just very different -->
         <Row Key1="Ruleset" Key2="RULESET_MC6_CIVREV" ParameterId="MiniCivVI_NoGreatPeople" Name="LOC_MC6_NO_GREAT_PEOPLE" Description="LOC_MC6_NO_GREAT_PEOPLE_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_GREAT_PEOPLE" GroupId="AdvancedOptions" SortIndex="9210" />
-        <!-- TODO: Should we even show this as an option? We'll probably remove the whole civics tree altogether ... -->
+        <!-- TODO: Should we even show this as an option? Remove if we remove the whole civics tree altogether ... -->
         <Row Key1="Ruleset" Key2="RULESET_MC6_CIVREV" ParameterId="MiniCivVI_NoPolicies" Name="LOC_MC6_NO_POLICIES" Description="LOC_MC6_NO_POLICIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_POLICIES" GroupId="AdvancedOptions" SortIndex="9210" />
-        <Row Key1="Ruleset" Key2="RULESET_MC6_CIVREV" ParameterId="MiniCivVI_NoReligion" Name="LOC_MC6_NO_RELIGION" Description="LOC_MC6_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
     </Parameters>
     <ParameterCriteria>
-        <!-- TODO: Remove this altogether? No religion in CivRev -->
-        <!-- If no religion is checked, disable religious victory -->
-        <Row ParameterId="VICTORY_RELIGIOUS" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" Operator="NotEquals" ConfigurationValue="1" />
     </ParameterCriteria>
 </GameInfo>
