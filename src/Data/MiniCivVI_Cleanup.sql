@@ -123,7 +123,10 @@ DELETE FROM Civics WHERE
 -- one so military tradition doesn't get orphaned
 INSERT INTO CivicPrereqs (Civic, PrereqCivic)
 SELECT 'CIVIC_MILITARY_TRADITION', 'CIVIC_CODE_OF_LAWS'
-WHERE NOT EXISTS (
+WHERE EXISTS (
+  SELECT 1 FROM Civics WHERE CivicType = 'CIVIC_MILITARY_TRADITION'
+)
+AND NOT EXISTS (
   SELECT 1 FROM CivicPrereqs WHERE Civic = 'CIVIC_MILITARY_TRADITION'
 );
 

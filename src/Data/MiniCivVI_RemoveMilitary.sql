@@ -5,6 +5,8 @@ DELETE FROM Types WHERE Type = 'CAPABILITY_GOVERNMENT_SCREEN_MILITARY_FILTER';
 DELETE FROM Types WHERE Type = 'CAPABILITY_MILITARY';
 
 DELETE FROM Types WHERE Type = 'GOVERNMENT_OLIGARCHY';
+DELETE FROM Types WHERE Type = 'GREAT_PERSON_CLASS_ADMIRAL';
+DELETE FROM Types WHERE Type = 'GREAT_PERSON_CLASS_GENERAL';
 -- This should delete all military policies
 DELETE FROM Types WHERE Type = 'SLOT_MILITARY';
 DELETE FROM Types WHERE Type = 'UNIT_GREAT_ADMIRAL';
@@ -23,6 +25,8 @@ DELETE FROM Units WHERE AdvisorType = 'ADVISOR_CONQUEST';
 
 UPDATE Units SET Combat = 0 WHERE UnitType = 'UNIT_SCOUT';
 
+DELETE FROM Government_SlotCounts WHERE GovernmentSlotType = 'SLOT_MILITARY';
+
 -- These can only be built by the military engineer, but they only serve military purposes
 -- so by deleting them we may be able to delete more technologies
 -- Airstrip
@@ -32,7 +36,27 @@ DELETE FROM Improvements WHERE WeaponSlots > 0;
 -- Forts
 DELETE FROM Improvements WHERE DefenseModifier > 0 AND PlunderType= 'NO_PLUNDER';
 
+-- NOTE: This works but is not reflected in the UI of the civics tree
+DELETE FROM CivicModifiers WHERE ModifierId = 'CIVIC_GRANT_COMBAT_ADJACENCY_BONUS';
+
 DELETE FROM Policies WHERE GovernmentSlotType = 'SLOT_MILITARY';
+
+-- Remove policies that give great general/admiral points
+-- Get all ModifierIds from ModifierArguments where Value = 'GREAT_PERSON_CLASS_GENERAL'
+WITH MilitaryModifierIds AS (
+    SELECT ModifierId
+    FROM ModifierArguments
+    WHERE Value = 'GREAT_PERSON_CLASS_GENERAL' OR Value = 'GREAT_PERSON_CLASS_ADMIRAL'
+),
+-- Get PolicyTypes from PolicyModifiers where ModifierId is in the previous query
+MilitaryPolicyTypes AS (
+    SELECT PolicyType
+    FROM PolicyModifiers
+    WHERE ModifierId IN (SELECT ModifierId FROM MilitaryModifierIds)
+)
+-- Delete all policies from Policies where PolicyType matches the previous query
+DELETE FROM Policies
+WHERE PolicyType IN (SELECT PolicyType FROM MilitaryPolicyTypes);
 
 DELETE FROM RandomAgendas WHERE AgendaType = 'AGENDA_AIRPOWER';
 DELETE FROM RandomAgendas WHERE AgendaType = 'AGENDA_CITY_STATE_PROTECTOR';
