@@ -4,6 +4,7 @@ DELETE FROM Types WHERE Type = 'CAPABILITY_CITY_HUD_AMENITIES_WAR_WEARINESS';
 DELETE FROM Types WHERE Type = 'CAPABILITY_GOVERNMENT_SCREEN_MILITARY_FILTER';
 DELETE FROM Types WHERE Type = 'CAPABILITY_MILITARY';
 
+-- This is the only government that appears to have purely military effects
 DELETE FROM Types WHERE Type = 'GOVERNMENT_OLIGARCHY';
 DELETE FROM Types WHERE Type = 'GREAT_PERSON_CLASS_ADMIRAL';
 DELETE FROM Types WHERE Type = 'GREAT_PERSON_CLASS_GENERAL';
@@ -25,6 +26,25 @@ DELETE FROM Units WHERE AdvisorType = 'ADVISOR_CONQUEST';
 
 UPDATE Units SET Combat = 0 WHERE UnitType = 'UNIT_SCOUT';
 
+-- For every military slot a government has, increment the number of wildcard slots by
+-- that amount. This is because the game lists governments in tiers ordered solely by
+-- number of slots. If we simply delete military slots, governments are no longer in the
+-- proper tier. It also makes the changes slightly more balanced.
+WITH MilitarySlots AS (
+    SELECT GovernmentType, NumSlots AS MilitaryNumSlots
+    FROM Government_SlotCounts
+    WHERE GovernmentSlotType = 'SLOT_MILITARY'
+)
+UPDATE Government_SlotCounts
+SET NumSlots = NumSlots + IFNULL((
+    SELECT MilitaryNumSlots
+    FROM MilitarySlots
+    WHERE MilitarySlots.GovernmentType = Government_SlotCounts.GovernmentType
+), 0)
+WHERE GovernmentSlotType = 'SLOT_WILDCARD';
+
+-- TODO: validate this
+-- UPDATE Government_SlotCounts SET NumSlots = 0 WHERE GovernmentSlotType = 'SLOT_MILITARY';
 DELETE FROM Government_SlotCounts WHERE GovernmentSlotType = 'SLOT_MILITARY';
 
 -- These can only be built by the military engineer, but they only serve military purposes
