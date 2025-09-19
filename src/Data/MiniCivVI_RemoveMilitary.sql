@@ -26,10 +26,11 @@ DELETE FROM Units WHERE AdvisorType = 'ADVISOR_CONQUEST';
 
 UPDATE Units SET Combat = 0 WHERE UnitType = 'UNIT_SCOUT';
 
--- For every military slot a government has, increment the number of wildcard slots by
--- that amount. This is because the game lists governments in tiers ordered solely by
--- number of slots. If we simply delete military slots, governments are no longer in the
--- proper tier. It also makes the changes slightly more balanced.
+-- For every military slot a government has, divide that by two and increment the number
+-- of wildcard slots bythat amount. This is because the game lists governments in tiers
+-- ordered solely by number of slots. If we simply delete military slots, governments are
+-- no longer in the proper tier. We divide by two because otherwise the governments with
+-- more military slots become better than those without.
 WITH MilitarySlots AS (
     SELECT GovernmentType, NumSlots AS MilitaryNumSlots
     FROM Government_SlotCounts
@@ -37,7 +38,7 @@ WITH MilitarySlots AS (
 )
 UPDATE Government_SlotCounts
 SET NumSlots = NumSlots + IFNULL((
-    SELECT MilitaryNumSlots
+    SELECT MilitaryNumSlots / 2
     FROM MilitarySlots
     WHERE MilitarySlots.GovernmentType = Government_SlotCounts.GovernmentType
 ), 0)
