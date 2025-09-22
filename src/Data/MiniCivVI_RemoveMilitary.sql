@@ -13,21 +13,30 @@ DELETE FROM Types WHERE Type = 'SLOT_MILITARY';
 DELETE FROM Types WHERE Type = 'UNIT_GREAT_ADMIRAL';
 DELETE FROM Types WHERE Type = 'UNIT_GREAT_GENERAL';
 
+DELETE FROM Agendas WHERE AgendaType IN (
+    'AGENDA_AIRPOWER',
+    'AGENDA_BARBARIAN_LOVER',
+    -- 'AGENDA_CITY_STATE_PROTECTOR'?
+    'AGENDA_CIVILIZED',
+    'AGENDA_DARWINIST',
+    'AGENDA_GREAT_WHITE_FLEET', -- Gathering Storm
+    'AGENDA_NUKE_LOVER',
+    'AGENDA_STANDING_ARMY'
+);
+
+DELETE FROM Buildings WHERE AdvisorType = 'ADVISOR_CONQUEST';
+
+-- NOTE: This works but is not reflected in the UI of the civics tree
+DELETE FROM CivicModifiers WHERE ModifierId = 'CIVIC_GRANT_COMBAT_ADJACENCY_BONUS';
+
 DELETE FROM DiplomaticActions WHERE DiplomaticActionType = 'DIPLOACTION_DECLARE_SURPRISE_WAR';
 DELETE FROM DiplomaticActions WHERE DiplomaticActionType = 'DIPLOACTION_DECLARE_WAR_MINOR_CIV';
 DELETE FROM DiplomaticActions WHERE UIGroup = 'FORMALWAR';
 
-DELETE FROM Buildings WHERE AdvisorType = 'ADVISOR_CONQUEST';
 DELETE FROM Districts WHERE AdvisorType = 'ADVISOR_CONQUEST';
--- This primarily disables nukes, among other things
-DELETE FROM Projects WHERE AdvisorType = 'ADVISOR_CONQUEST';
--- TODO: Should we exclude military engineer from deletion? It's the only unit that can build roads.
-DELETE FROM Units WHERE AdvisorType = 'ADVISOR_CONQUEST';
-
-UPDATE Units SET Combat = 0 WHERE UnitType = 'UNIT_SCOUT';
 
 -- For every military slot a government has, divide that by two and increment the number
--- of wildcard slots bythat amount. This is because the game lists governments in tiers
+-- of wildcard slots by that amount. This is because the game lists governments in tiers
 -- ordered solely by number of slots. If we simply delete military slots, governments are
 -- no longer in the proper tier. We divide by two because otherwise the governments with
 -- more military slots become better than those without.
@@ -57,9 +66,6 @@ DELETE FROM Improvements WHERE WeaponSlots > 0;
 -- Forts
 DELETE FROM Improvements WHERE DefenseModifier > 0 AND PlunderType= 'NO_PLUNDER';
 
--- NOTE: This works but is not reflected in the UI of the civics tree
-DELETE FROM CivicModifiers WHERE ModifierId = 'CIVIC_GRANT_COMBAT_ADJACENCY_BONUS';
-
 DELETE FROM Policies WHERE GovernmentSlotType = 'SLOT_MILITARY';
 
 -- Remove policies that give great general/admiral points
@@ -79,7 +85,9 @@ MilitaryPolicyTypes AS (
 DELETE FROM Policies
 WHERE PolicyType IN (SELECT PolicyType FROM MilitaryPolicyTypes);
 
-DELETE FROM RandomAgendas WHERE AgendaType = 'AGENDA_AIRPOWER';
-DELETE FROM RandomAgendas WHERE AgendaType = 'AGENDA_CITY_STATE_PROTECTOR';
-DELETE FROM RandomAgendas WHERE AgendaType = 'AGENDA_NUKE_LOVER';
-DELETE FROM RandomAgendas WHERE AgendaType = 'AGENDA_STANDING_ARMY';
+-- This primarily disables nukes, among other things
+DELETE FROM Projects WHERE AdvisorType = 'ADVISOR_CONQUEST';
+
+-- TODO: Should we exclude military engineer from deletion? It's the only unit that can build roads.
+DELETE FROM Units WHERE AdvisorType = 'ADVISOR_CONQUEST';
+UPDATE Units SET Combat = 0 WHERE UnitType = 'UNIT_SCOUT';
