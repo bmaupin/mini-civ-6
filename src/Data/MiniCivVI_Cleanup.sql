@@ -177,3 +177,88 @@ DELETE FROM Technologies WHERE
     UNION
     SELECT PrereqTech FROM UnitOperations WHERE PrereqTech IS NOT NULL
   );
+
+-- Add new prerequisites for technologies whose prerequisites got deleted
+INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
+SELECT 'TECH_STIRRUPS', 'TECH_APPRENTICESHIP'
+WHERE EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_STIRRUPS'
+)
+AND EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_APPRENTICESHIP'
+)
+AND NOT EXISTS (
+  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_STIRRUPS'
+);
+
+INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
+SELECT 'TECH_MILITARY_ENGINEERING', 'TECH_APPRENTICESHIP'
+WHERE EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_MILITARY_ENGINEERING'
+)
+AND EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_APPRENTICESHIP'
+)
+AND NOT EXISTS (
+  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_MILITARY_ENGINEERING'
+);
+
+INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
+SELECT 'TECH_CASTLES', 'TECH_APPRENTICESHIP'
+WHERE EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_CASTLES'
+)
+AND EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_APPRENTICESHIP'
+)
+AND NOT EXISTS (
+  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_CASTLES'
+);
+
+INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
+SELECT 'TECH_STEEL', 'TECH_ECONOMICS'
+WHERE EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_STEEL'
+)
+AND EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_ECONOMICS'
+)
+AND NOT EXISTS (
+  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_STEEL'
+);
+
+INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
+SELECT 'TECH_STEEL', 'TECH_ECONOMICS'
+WHERE EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_STEEL'
+)
+AND EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_ECONOMICS'
+)
+AND NOT EXISTS (
+  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_STEEL'
+);
+
+INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
+SELECT 'TECH_NUCLEAR_FUSION', 'TECH_SATELLITES'
+WHERE EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_NUCLEAR_FUSION'
+)
+AND EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_SATELLITES'
+)
+AND NOT EXISTS (
+  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_NUCLEAR_FUSION'
+);
+
+INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
+SELECT 'TECH_NANOTECHNOLOGY', 'TECH_SATELLITES'
+WHERE EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_NANOTECHNOLOGY'
+)
+AND EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_SATELLITES'
+)
+AND NOT EXISTS (
+  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_NANOTECHNOLOGY'
+);
