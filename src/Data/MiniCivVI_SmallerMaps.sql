@@ -1,3 +1,4 @@
+-- Scale down map sizes for faster gameplay
 UPDATE Maps
 SET
     GridWidth = CASE
@@ -12,4 +13,9 @@ SET
             THEN MAX(12, CAST(GridHeight * 0.4 AS INTEGER) - 1)
         ELSE MAX(12, CAST(GridHeight * 0.4 AS INTEGER))
     END
-WHERE MapSizeType IN ('MAPSIZE_DUEL', 'MAPSIZE_TINY', 'MAPSIZE_SMALL', 'MAPSIZE_STANDARD', 'MAPSIZE_LARGE', 'MAPSIZE_HUGE');
+
+-- Scale down natural wonders too. Technically this should be
+-- NumNaturalWonders * 0.4 * 0.4 (map size is width and height) but that seems too
+-- extreme. Adjust as needed.
+UPDATE Maps
+SET NumNaturalWonders = CAST((NumNaturalWonders * 0.4) + 0.5 AS INTEGER);
