@@ -136,6 +136,9 @@ WHERE NOT EXISTS (
   SELECT 1 FROM CivicPrereqs WHERE Civic = 'CIVIC_COLONIALISM'
 );
 
+CREATE TEMP TABLE IF NOT EXISTS OriginalTechPrereqs AS
+  SELECT Technology, PrereqTech FROM TechnologyPrereqs;
+
 DELETE FROM Technologies WHERE
   -- This excludes TECH_FUTURE_TECH, which is special
   Repeatable != 1 AND
@@ -177,6 +180,42 @@ DELETE FROM Technologies WHERE
     UNION
     SELECT PrereqTech FROM UnitOperations WHERE PrereqTech IS NOT NULL
   );
+
+-- Find technologies that lost their prerequisites and set their new prerequisite as
+-- the prerequisites of their old prerequisites as far back as needed
+WITH RECURSIVE ResolvedPrereqs AS (
+    -- Base case: Find technologies with missing prerequisites
+    SELECT DISTINCT
+        otp.Technology,
+        otp.PrereqTech
+    FROM OriginalTechPrereqs otp
+    WHERE otp.Technology IN (SELECT TechnologyType FROM Technologies)
+      AND otp.PrereqTech NOT IN (SELECT TechnologyType FROM Technologies)
+
+    UNION ALL
+
+    -- Recursive case: Traverse the chain of prerequisites
+    SELECT DISTINCT
+        rp.Technology,
+        otp.PrereqTech
+    FROM ResolvedPrereqs rp
+    JOIN OriginalTechPrereqs otp ON rp.PrereqTech = otp.Technology
+    WHERE rp.PrereqTech NOT IN (SELECT TechnologyType FROM Technologies)
+)
+INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
+SELECT DISTINCT
+    Technology,
+    PrereqTech
+FROM ResolvedPrereqs
+WHERE PrereqTech IN (SELECT TechnologyType FROM Technologies)
+AND NOT EXISTS (
+    SELECT 1
+    FROM TechnologyPrereqs tp
+    WHERE tp.Technology = ResolvedPrereqs.Technology
+      AND tp.PrereqTech = ResolvedPrereqs.PrereqTech
+);
+
+DROP TABLE IF EXISTS OriginalTechPrereqs;
 
 -- Add new prerequisites for technologies whose prerequisites got deleted
 INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
