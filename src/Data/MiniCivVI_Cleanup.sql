@@ -136,6 +136,8 @@ WHERE NOT EXISTS (
   SELECT 1 FROM CivicPrereqs WHERE Civic = 'CIVIC_COLONIALISM'
 );
 
+-- Store all tech prerequisites before deleting technologies. We will use this later to
+-- set new prerequisites.
 CREATE TEMP TABLE IF NOT EXISTS OriginalTechPrereqs AS
   SELECT Technology, PrereqTech FROM TechnologyPrereqs;
 
@@ -181,38 +183,52 @@ DELETE FROM Technologies WHERE
     SELECT PrereqTech FROM UnitOperations WHERE PrereqTech IS NOT NULL
   );
 
--- Find technologies that lost their prerequisites and set their new prerequisite as
--- the prerequisites of their old prerequisites as far back as needed
-WITH RECURSIVE ResolvedPrereqs AS (
-    -- Base case: Find technologies with missing prerequisites
-    SELECT DISTINCT
-        otp.Technology,
-        otp.PrereqTech
-    FROM OriginalTechPrereqs otp
-    WHERE otp.Technology IN (SELECT TechnologyType FROM Technologies)
-      AND otp.PrereqTech NOT IN (SELECT TechnologyType FROM Technologies)
+-- If a tech gets deleted by the previous query, prerequisites of that tech can end up as
+-- dead-ends.
+-- Identify all dead-end technoloogies
+WITH DeadEndTechnologies AS (
+  SELECT TechnologyType
+  FROM Technologies
+  WHERE TechnologyType NOT IN (
+    SELECT PrereqTech
+    FROM TechnologyPrereqs
+  )
+  AND TechnologyType IN (
+    SELECT PrereqTech
+    FROM OriginalTechPrereqs
+  )
+),
+ResolvedPrereqs AS (
+  -- Start by getting deleted technologies for which the dead-end technologies were a
+  -- prerequisite
+  SELECT otp.PrereqTech, otp.Technology
+  FROM OriginalTechPrereqs otp
+  WHERE otp.PrereqTech IN (SELECT TechnologyType FROM DeadEndTechnologies)
+    AND otp.Technology NOT IN (SELECT TechnologyType FROM Technologies)
 
-    UNION ALL
+  UNION ALL
 
-    -- Recursive case: Traverse the chain of prerequisites
-    SELECT DISTINCT
-        rp.Technology,
-        otp.PrereqTech
-    FROM ResolvedPrereqs rp
-    JOIN OriginalTechPrereqs otp ON rp.PrereqTech = otp.Technology
-    WHERE rp.PrereqTech NOT IN (SELECT TechnologyType FROM Technologies)
+  -- For each of those technologies, figure out what they were a prerequisite of. This
+  -- query will run recursively until we get to a technology that hasn't been deleted.
+  SELECT rp.PrereqTech, otp.Technology
+  FROM ResolvedPrereqs rp
+  JOIN OriginalTechPrereqs otp ON rp.Technology = otp.PrereqTech
+  WHERE otp.PrereqTech NOT IN (SELECT TechnologyType FROM Technologies)
 )
 INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
 SELECT DISTINCT
-    Technology,
-    PrereqTech
+  Technology,
+  PrereqTech
 FROM ResolvedPrereqs
+-- Sanity checks to make sure tech and prereq haven't been deleted
 WHERE PrereqTech IN (SELECT TechnologyType FROM Technologies)
+AND Technology IN (SELECT TechnologyType FROM Technologies)
+-- Sanity check to make sure we don't insert a duplicate prereq
 AND NOT EXISTS (
-    SELECT 1
-    FROM TechnologyPrereqs tp
-    WHERE tp.Technology = ResolvedPrereqs.Technology
-      AND tp.PrereqTech = ResolvedPrereqs.PrereqTech
+  SELECT 1
+  FROM TechnologyPrereqs tp
+  WHERE tp.Technology = ResolvedPrereqs.Technology
+    AND tp.PrereqTech = ResolvedPrereqs.PrereqTech
 );
 
 DROP TABLE IF EXISTS OriginalTechPrereqs;
