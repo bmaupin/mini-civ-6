@@ -12,7 +12,7 @@ SET
         WHEN CAST(GridHeight * 0.4 AS INTEGER) % 2 = 1
             THEN MAX(12, CAST(GridHeight * 0.4 AS INTEGER) - 1)
         ELSE MAX(12, CAST(GridHeight * 0.4 AS INTEGER))
-    END
+    END;
 
 -- Scale down natural wonders too. Technically this should be
 -- NumNaturalWonders * 0.4 * 0.4 (map size is width and height) but that seems too
