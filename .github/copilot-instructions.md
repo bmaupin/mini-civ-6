@@ -7,3 +7,5 @@ Here are some instructions:
 - Civ 6 uses the Havok Script Lua engine
   - In particular, Havok Script adds types to Lua which aren't compatible with the Lua language server used by the vscode extension, so please remove types from Lua code
 - Civ 6 uses SQLite
+- Prefer simpler, clearer solutions even if they're less concise
+  - The code should be prioritised for readability
