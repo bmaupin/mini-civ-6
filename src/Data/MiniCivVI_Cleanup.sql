@@ -183,58 +183,20 @@ DELETE FROM Technologies WHERE
     SELECT PrereqTech FROM UnitOperations WHERE PrereqTech IS NOT NULL
   );
 
--- If a tech gets deleted by the previous query, prerequisites of that tech can end up as
--- dead-ends.
--- Identify all dead-end technoloogies
-WITH DeadEndTechnologies AS (
-  SELECT TechnologyType
-  FROM Technologies
-  WHERE TechnologyType NOT IN (
-    SELECT PrereqTech
-    FROM TechnologyPrereqs
-  )
-  AND TechnologyType IN (
-    SELECT PrereqTech
-    FROM OriginalTechPrereqs
-  )
-),
-ResolvedPrereqs AS (
-  -- Start by getting deleted technologies for which the dead-end technologies were a
-  -- prerequisite
-  SELECT otp.PrereqTech, otp.Technology
-  FROM OriginalTechPrereqs otp
-  WHERE otp.PrereqTech IN (SELECT TechnologyType FROM DeadEndTechnologies)
-    AND otp.Technology NOT IN (SELECT TechnologyType FROM Technologies)
-
-  UNION ALL
-
-  -- For each of those technologies, figure out what they were a prerequisite of. This
-  -- query will run recursively until we get to a technology that hasn't been deleted.
-  SELECT rp.PrereqTech, otp.Technology
-  FROM ResolvedPrereqs rp
-  JOIN OriginalTechPrereqs otp ON rp.Technology = otp.PrereqTech
-  WHERE otp.PrereqTech NOT IN (SELECT TechnologyType FROM Technologies)
-    AND otp.Technology NOT IN (SELECT Technology FROM TechnologyPrereqs)
+WITH MissingPrereqs AS (
+  SELECT
+    Technology,
+    PrereqTech
+  FROM OriginalTechPrereqs
+  WHERE Technology IN (SELECT TechnologyType FROM Technologies)
+    AND PrereqTech NOT IN (SELECT TechnologyType FROM Technologies)
 )
-INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
-SELECT DISTINCT
+INSERT OR REPLACE INTO Technologies_XP2 (TechnologyType, HiddenUntilPrereqComplete, RandomPrereqs)
+SELECT
   Technology,
-  PrereqTech
-FROM
-(
-  SELECT *, MIN(Technology) FROM ResolvedPrereqs
-  -- Sanity checks to make sure tech and prereq haven't been deleted
-  WHERE PrereqTech IN (SELECT TechnologyType FROM Technologies)
-  AND Technology IN (SELECT TechnologyType FROM Technologies)
-  -- Sanity check to make sure we don't insert a duplicate prereq
-  AND NOT EXISTS (
-    SELECT 1
-    FROM TechnologyPrereqs tp
-    WHERE tp.Technology = ResolvedPrereqs.Technology
-      AND tp.PrereqTech = ResolvedPrereqs.PrereqTech
-  )
-  GROUP BY PrereqTech
-);
+  Technologies_XP2.HiddenUntilPrereqComplete,
+  1 AS RandomPrereqs FROM MissingPrereqs
+LEFT JOIN Technologies_XP2 ON Technologies_XP2.TechnologyType = MissingPrereqs.Technology;
 
 DROP TABLE IF EXISTS OriginalTechPrereqs;
 
