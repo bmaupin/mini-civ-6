@@ -190,6 +190,7 @@ WITH MissingPrereqs AS (
   FROM OriginalTechPrereqs
   WHERE Technology IN (SELECT TechnologyType FROM Technologies)
     AND PrereqTech NOT IN (SELECT TechnologyType FROM Technologies)
+    AND Technology NOT IN (SELECT Technology FROM TechnologyPrereqs)
 )
 INSERT OR REPLACE INTO Technologies_XP2 (TechnologyType, HiddenUntilPrereqComplete, RandomPrereqs)
 SELECT
