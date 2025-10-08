@@ -220,16 +220,20 @@ INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
 SELECT DISTINCT
   Technology,
   PrereqTech
-FROM ResolvedPrereqs
--- Sanity checks to make sure tech and prereq haven't been deleted
-WHERE PrereqTech IN (SELECT TechnologyType FROM Technologies)
-AND Technology IN (SELECT TechnologyType FROM Technologies)
--- Sanity check to make sure we don't insert a duplicate prereq
-AND NOT EXISTS (
-  SELECT 1
-  FROM TechnologyPrereqs tp
-  WHERE tp.Technology = ResolvedPrereqs.Technology
-    AND tp.PrereqTech = ResolvedPrereqs.PrereqTech
+FROM
+(
+  SELECT *, MIN(Technology) FROM ResolvedPrereqs
+  -- Sanity checks to make sure tech and prereq haven't been deleted
+  WHERE PrereqTech IN (SELECT TechnologyType FROM Technologies)
+  AND Technology IN (SELECT TechnologyType FROM Technologies)
+  -- Sanity check to make sure we don't insert a duplicate prereq
+  AND NOT EXISTS (
+    SELECT 1
+    FROM TechnologyPrereqs tp
+    WHERE tp.Technology = ResolvedPrereqs.Technology
+      AND tp.PrereqTech = ResolvedPrereqs.PrereqTech
+  )
+  GROUP BY PrereqTech
 );
 
 DROP TABLE IF EXISTS OriginalTechPrereqs;
