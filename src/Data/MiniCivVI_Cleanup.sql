@@ -313,7 +313,6 @@ ResolvedPrereqs AS (
   FROM ResolvedPrereqs rp
   JOIN OriginalTechPrereqs otp ON rp.Technology = otp.PrereqTech
   WHERE otp.PrereqTech NOT IN (SELECT TechnologyType FROM Technologies)
-    AND otp.Technology NOT IN (SELECT Technology FROM TechnologyPrereqs)
 )
 INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
 SELECT DISTINCT
