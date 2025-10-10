@@ -183,33 +183,21 @@ DELETE FROM Technologies WHERE
     SELECT PrereqTech FROM UnitOperations WHERE PrereqTech IS NOT NULL
   );
 
-WITH MissingPrereqs AS (
-  SELECT
-    Technology,
-    PrereqTech
-  FROM OriginalTechPrereqs
-  WHERE Technology IN (SELECT TechnologyType FROM Technologies)
-    AND PrereqTech NOT IN (SELECT TechnologyType FROM Technologies)
-    AND Technology NOT IN (SELECT Technology FROM TechnologyPrereqs)
-)
-INSERT OR REPLACE INTO Technologies_XP2 (TechnologyType, HiddenUntilPrereqComplete, RandomPrereqs)
-SELECT
-  Technology,
-  Technologies_XP2.HiddenUntilPrereqComplete,
-  1 AS RandomPrereqs FROM MissingPrereqs
-LEFT JOIN Technologies_XP2 ON Technologies_XP2.TechnologyType = MissingPrereqs.Technology;
-
-DROP TABLE IF EXISTS OriginalTechPrereqs;
-
--- Add new prerequisites for technologies whose prerequisites got deleted
+-- Add new prerequisites for orphaned techs (whose prerequisites got deleted)
+--
+-- For each orphaned tech, we manually add a prerequisite from the immediate previous era
+-- (ideally one that makes sense as best as possible) so that the prerequisite doesn't
+-- cross more than one era
 INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
 SELECT 'TECH_STIRRUPS', 'TECH_APPRENTICESHIP'
+-- Validate that both techs exist
 WHERE EXISTS (
   SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_STIRRUPS'
 )
 AND EXISTS (
   SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_APPRENTICESHIP'
 )
+-- Only do this if this tech has no prereqs
 AND NOT EXISTS (
   SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_STIRRUPS'
 );
@@ -285,3 +273,66 @@ AND EXISTS (
 AND NOT EXISTS (
   SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_NANOTECHNOLOGY'
 );
+
+-- Add new prereqs to fix dead-ends (techs that were a prereq for a deleted tech)
+--
+-- For orphaned techs, we manually added prereqs to make sure that they didn't cross more
+-- than one era. But for dead-end techs we can do this in a more automated fashion, by
+-- re-creating the tech dependencies minus the deleted techs. In many cases the prereqs
+-- will cross multiple eras but in this case it's not an issues as the techs with the new
+-- prereqs will always have at least one prereq that doesn't cross more than one era. This
+-- should also serve as a best effort to fix both orphaned and dead-end techs in case this
+-- mod is used with other mods that add new techs.
+--
+-- Identify all dead-end technoloogies
+WITH DeadEndTechnologies AS (
+  SELECT TechnologyType
+  FROM Technologies
+  WHERE TechnologyType NOT IN (
+    SELECT PrereqTech
+    FROM TechnologyPrereqs
+  )
+  AND TechnologyType IN (
+    SELECT PrereqTech
+    FROM OriginalTechPrereqs
+  )
+),
+ResolvedPrereqs AS (
+  -- Start by getting deleted technologies for which the dead-end technologies were a
+  -- prerequisite
+  SELECT otp.PrereqTech, otp.Technology
+  FROM OriginalTechPrereqs otp
+  WHERE otp.PrereqTech IN (SELECT TechnologyType FROM DeadEndTechnologies)
+    AND otp.Technology NOT IN (SELECT TechnologyType FROM Technologies)
+
+  UNION ALL
+
+  -- For each of those technologies, figure out what they were a prerequisite of. This
+  -- query will run recursively until we get to a technology that hasn't been deleted.
+  SELECT rp.PrereqTech, otp.Technology
+  FROM ResolvedPrereqs rp
+  JOIN OriginalTechPrereqs otp ON rp.Technology = otp.PrereqTech
+  WHERE otp.PrereqTech NOT IN (SELECT TechnologyType FROM Technologies)
+    AND otp.Technology NOT IN (SELECT Technology FROM TechnologyPrereqs)
+)
+INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
+SELECT DISTINCT
+  Technology,
+  PrereqTech
+FROM
+(
+  SELECT *, MIN(Technology) FROM ResolvedPrereqs
+  -- Sanity checks to make sure tech and prereq haven't been deleted
+  WHERE PrereqTech IN (SELECT TechnologyType FROM Technologies)
+  AND Technology IN (SELECT TechnologyType FROM Technologies)
+  -- Sanity check to make sure we don't insert a duplicate prereq
+  AND NOT EXISTS (
+    SELECT 1
+    FROM TechnologyPrereqs tp
+    WHERE tp.Technology = ResolvedPrereqs.Technology
+      AND tp.PrereqTech = ResolvedPrereqs.PrereqTech
+  )
+  GROUP BY PrereqTech
+);
+
+DROP TABLE IF EXISTS OriginalTechPrereqs;
