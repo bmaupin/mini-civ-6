@@ -189,13 +189,13 @@ DELETE FROM Technologies WHERE
 -- (ideally one that makes sense as best as possible) so that the prerequisite doesn't
 -- cross more than one era
 INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
-SELECT 'TECH_STIRRUPS', 'TECH_APPRENTICESHIP'
+SELECT 'TECH_STIRRUPS', 'TECH_IRON_WORKING'
 -- Validate that both techs exist
 WHERE EXISTS (
   SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_STIRRUPS'
 )
 AND EXISTS (
-  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_APPRENTICESHIP'
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_IRON_WORKING'
 )
 -- Only do this if this tech has no prereqs
 AND NOT EXISTS (
@@ -203,75 +203,39 @@ AND NOT EXISTS (
 );
 
 INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
-SELECT 'TECH_MILITARY_ENGINEERING', 'TECH_APPRENTICESHIP'
+SELECT 'TECH_MILITARY_ENGINEERING', 'TECH_ENGINEERING'
 WHERE EXISTS (
   SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_MILITARY_ENGINEERING'
 )
 AND EXISTS (
-  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_APPRENTICESHIP'
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_ENGINEERING'
 )
 AND NOT EXISTS (
   SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_MILITARY_ENGINEERING'
 );
 
 INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
-SELECT 'TECH_CASTLES', 'TECH_APPRENTICESHIP'
+SELECT 'TECH_CASTLES', 'TECH_ENGINEERING'
 WHERE EXISTS (
   SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_CASTLES'
 )
 AND EXISTS (
-  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_APPRENTICESHIP'
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_ENGINEERING'
 )
 AND NOT EXISTS (
   SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_CASTLES'
 );
 
 INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
-SELECT 'TECH_STEEL', 'TECH_ECONOMICS'
+SELECT 'TECH_STEEL', 'TECH_INDUSTRIALIZATION'
 WHERE EXISTS (
   SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_STEEL'
 )
 AND EXISTS (
-  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_ECONOMICS'
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_INDUSTRIALIZATION'
 )
 AND NOT EXISTS (
   SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_STEEL'
-);
-
-INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
-SELECT 'TECH_STEEL', 'TECH_ECONOMICS'
-WHERE EXISTS (
-  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_STEEL'
-)
-AND EXISTS (
-  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_ECONOMICS'
-)
-AND NOT EXISTS (
-  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_STEEL'
-);
-
-INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
-SELECT 'TECH_NUCLEAR_FUSION', 'TECH_SATELLITES'
-WHERE EXISTS (
-  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_NUCLEAR_FUSION'
-)
-AND EXISTS (
-  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_SATELLITES'
-)
-AND NOT EXISTS (
-  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_NUCLEAR_FUSION'
-);
-
-INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
-SELECT 'TECH_NANOTECHNOLOGY', 'TECH_SATELLITES'
-WHERE EXISTS (
-  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_NANOTECHNOLOGY'
-)
-AND EXISTS (
-  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_SATELLITES'
-)
-AND NOT EXISTS (
-  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_NANOTECHNOLOGY'
 );
 
 -- Add new prereqs to fix dead-ends (techs that were a prereq for a deleted tech)
