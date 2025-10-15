@@ -284,8 +284,33 @@ AND NOT EXISTS (
 -- should also serve as a best effort to fix both orphaned and dead-end techs in case this
 -- mod is used with other mods that add new techs.
 --
+-- Get total prerequisite count of all technologies
+WITH PrereqCounts AS (
+  WITH RECURSIVE AllPrereqs(Technology, PrereqTech) AS (
+    -- Base case: direct prerequisites
+    SELECT
+      Technology,
+      PrereqTech
+    FROM TechnologyPrereqs
+
+    UNION
+
+    -- Recursive step: find prerequisites of prerequisites
+    SELECT
+      tp.Technology,
+      p.PrereqTech
+    FROM TechnologyPrereqs AS tp
+    JOIN AllPrereqs AS p
+      ON tp.PrereqTech = p.Technology
+  ) SELECT
+    Technology,
+    COUNT(DISTINCT PrereqTech) AS TotalPrereqCount
+  FROM AllPrereqs
+  GROUP BY Technology
+  ORDER BY Technology
+),
 -- Identify all dead-end technoloogies
-WITH DeadEndTechnologies AS (
+DeadEndTechnologies AS (
   SELECT TechnologyType
   FROM Technologies
   WHERE TechnologyType NOT IN (
@@ -318,21 +343,33 @@ INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
 SELECT
   Technology,
   PrereqTech
-FROM ResolvedPrereqs
--- Sanity checks to make sure tech and prereq haven't been deleted
-WHERE PrereqTech IN (SELECT TechnologyType FROM Technologies)
-  AND Technology IN (SELECT TechnologyType FROM Technologies)
-  -- Sanity check to make sure we don't insert a duplicate prereq
-  -- NOTE: This isn't strictly necessary as the previous queries will filter out prereqs
-  --       that don't exist but it's left in as defensive programming
-  AND NOT EXISTS (
-    SELECT 1
-    FROM TechnologyPrereqs tp
-    WHERE tp.Technology = ResolvedPrereqs.Technology
-      AND tp.PrereqTech = ResolvedPrereqs.PrereqTech
-  )
--- This makes is so that only one prereq for each PrereqTech is returned, otherwise the
--- prereqs can be a bit aggressive
-GROUP BY PrereqTech;
+FROM (
+  SELECT
+    rp.Technology AS Technology,
+    rp.PrereqTech AS PrereqTech,
+    -- When setting the dead-end tech as a prereq for another tech, get the tech with the
+    -- minimum prereq count. So for example, if this was the prereqs:
+    -- tech1 < tech2 < tech3 < tech4
+    -- And tech2 gets deleted, then tech1 will be made a prereq of tech3, not tech4
+    MIN(TotalPrereqCount)
+  FROM ResolvedPrereqs rp
+  LEFT JOIN PrereqCounts pc
+    ON pc.Technology = rp.Technology
+  -- Sanity checks to make sure tech and prereq haven't been deleted
+  WHERE rp.PrereqTech IN (SELECT TechnologyType FROM Technologies)
+    AND rp.Technology IN (SELECT TechnologyType FROM Technologies)
+    -- Sanity check to make sure we don't insert a duplicate prereq
+    -- NOTE: This isn't strictly necessary as the previous queries will filter out prereqs
+    --       that don't exist but it's left in as defensive programming
+    AND NOT EXISTS (
+      SELECT 1
+      FROM TechnologyPrereqs tp
+      WHERE tp.Technology = rp.Technology
+        AND tp.PrereqTech = rp.PrereqTech
+    )
+  -- This makes is so that only one prereq for each PrereqTech is returned, otherwise the
+  -- prereqs can be a bit aggressive
+  GROUP BY PrereqTech
+);
 
 DROP TABLE IF EXISTS OriginalTechPrereqs;
