@@ -188,14 +188,16 @@ DELETE FROM Technologies WHERE
 -- For each orphaned tech, we manually add a prerequisite from the immediate previous era
 -- (ideally one that makes sense as best as possible) so that the prerequisite doesn't
 -- cross more than one era
+
+-- This prereq already exists in Gathering Storm
 INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
-SELECT 'TECH_STIRRUPS', 'TECH_IRON_WORKING'
+SELECT 'TECH_STIRRUPS', 'TECH_APPRENTICESHIP'
 -- Validate that both techs exist
 WHERE EXISTS (
   SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_STIRRUPS'
 )
 AND EXISTS (
-  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_IRON_WORKING'
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_APPRENTICESHIP'
 )
 -- Only do this if this tech has no prereqs
 AND NOT EXISTS (
@@ -236,6 +238,19 @@ AND EXISTS (
 )
 AND NOT EXISTS (
   SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_STEEL'
+);
+
+-- Gathering Storm
+INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
+SELECT 'TECH_REFINING', 'TECH_INDUSTRIALIZATION'
+WHERE EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_REFINING'
+)
+AND EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_INDUSTRIALIZATION'
+)
+AND NOT EXISTS (
+  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_REFINING'
 );
 
 -- Add new prereqs to fix dead-ends (techs that were a prereq for a deleted tech)
