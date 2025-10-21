@@ -4,6 +4,12 @@ DELETE FROM Types WHERE Type = 'CAPABILITY_CITY_HUD_AMENITIES_WAR_WEARINESS';
 DELETE FROM Types WHERE Type = 'CAPABILITY_GOVERNMENT_SCREEN_MILITARY_FILTER';
 DELETE FROM Types WHERE Type = 'CAPABILITY_MILITARY';
 
+-- Delete military pantheons; pantheons are just a specific class of beliefs
+DELETE FROM Types WHERE Type IN (
+  'BELIEF_GOD_OF_THE_FORGE',
+  'BELIEF_GOD_OF_WAR',
+  'BELIEF_INITIATION_RITES'
+);
 -- This is the only government that appears to have purely military effects
 DELETE FROM Types WHERE Type = 'GOVERNMENT_OLIGARCHY';
 DELETE FROM Types WHERE Type = 'GREAT_PERSON_CLASS_ADMIRAL';
