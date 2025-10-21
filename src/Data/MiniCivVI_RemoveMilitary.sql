@@ -4,6 +4,11 @@ DELETE FROM Types WHERE Type = 'CAPABILITY_CITY_HUD_AMENITIES_WAR_WEARINESS';
 DELETE FROM Types WHERE Type = 'CAPABILITY_GOVERNMENT_SCREEN_MILITARY_FILTER';
 DELETE FROM Types WHERE Type = 'CAPABILITY_MILITARY';
 
+-- Delete military beliefs
+DELETE FROM Types WHERE Type IN (
+  'BELIEF_DEFENDER_OF_FAITH',
+  'BELIEF_JUST_WAR'
+);
 -- Delete military pantheons; pantheons are just a specific class of beliefs
 DELETE FROM Types WHERE Type IN (
   'BELIEF_GOD_OF_THE_FORGE',
@@ -30,6 +35,7 @@ DELETE FROM Agendas WHERE AgendaType IN (
     'AGENDA_STANDING_ARMY'
 );
 
+-- This removes military buildings and wonders
 DELETE FROM Buildings WHERE AdvisorType = 'ADVISOR_CONQUEST';
 
 -- NOTE: This works but is not reflected in the UI of the civics tree
