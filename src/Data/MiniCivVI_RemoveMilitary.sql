@@ -80,6 +80,13 @@ DELETE FROM Improvements WHERE DefenseModifier > 0 AND PlunderType= 'NO_PLUNDER'
 
 DELETE FROM Policies WHERE GovernmentSlotType = 'SLOT_MILITARY';
 
+-- When all military units are deleted, the game crashes when ending the first turn. It's
+-- not clear why; maybe the game has hard-coded logic for unit movement that expects at
+-- least on unit? It only seems to happen in the ancient era, which is the only starting
+-- era with no units (after military units are deleted).
+INSERT INTO MajorStartingUnits (Era, Unit, NotStartTile)
+  VALUES ('ERA_ANCIENT', 'UNIT_SCOUT', 1);
+
 -- Remove policies that give great general/admiral points
 -- Get all ModifierIds from ModifierArguments where Value = 'GREAT_PERSON_CLASS_GENERAL'
 WITH MilitaryModifierIds AS (
