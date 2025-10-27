@@ -13,6 +13,12 @@
         <Row Tag="LOC_MC6_NO_GREAT_PEOPLE_DESCRIPTION">
             <Text>Enabling this option removes great people from the game.</Text>
         </Row>
+        <Row Tag="LOC_MC6_NO_MILITARY">
+            <Text>No Military</Text>
+        </Row>
+        <Row Tag="LOC_MC6_NO_MILITARY_DESCRIPTION">
+            <Text>Enabling this option removes military and all related items (units, buildings, techs, etc) from the game.</Text>
+        </Row>
         <Row Tag="LOC_MC6_NO_POLICIES">
             <Text>No Policies</Text>
         </Row>
