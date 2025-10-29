@@ -45,7 +45,12 @@ DELETE FROM DiplomaticActions WHERE DiplomaticActionType = 'DIPLOACTION_DECLARE_
 DELETE FROM DiplomaticActions WHERE DiplomaticActionType = 'DIPLOACTION_DECLARE_WAR_MINOR_CIV';
 DELETE FROM DiplomaticActions WHERE UIGroup = 'FORMALWAR';
 
-DELETE FROM Districts WHERE AdvisorType = 'ADVISOR_CONQUEST';
+-- Instead of deleting districts, disable them. This is because deleting the aerodrome
+-- district caused a bug in the spy "choose escape route" dialogue because it expects
+-- the aerodome district (among others) to exist.
+UPDATE Districts
+  SET MaxPerPlayer = 0
+  WHERE AdvisorType = 'ADVISOR_CONQUEST';
 
 -- For every military slot a government has, divide that by two and increment the number
 -- of wildcard slots by that amount. This is because the game lists governments in tiers
