@@ -1,14 +1,28 @@
-<!--
+# Mini Civ 6
+
+📌 [See my other Civ projects here](https://github.com/search?q=user%3Abmaupin+topic%3Acivilization&type=Repositories)
+
+This is a mod to Sid Meier's Civilization VI to allow much shorter games.
+
+## Installation
+
+Because the mod is [unfinished](#status), only [manual installation](#manual-installation) is possible at this time.
+
+## Status
+
+The mod works although development has been halted before all features were implemented.
+
+Civ 6 makes modding easier in many aspects, but the game itself is more complex in terms of the number of different systems and lacks a lot of built-in options that Civ 5 had to disable these systems such as religion, espionage, and even war. This makes modding more time-consuming and less enjoyable. Rather than spend more time on this, it seems there are games designed from the beginning to respect the player's time such as [Ozymandias](https://goblinzstudio.com/game/ozymandias/).
 
 ## Features
 
-#### Different default game options
+#### Very small maps
 
-TODO
+Map sizes have been reduced to 16% of their original size (40% of their height and 40% of their width). This alone has the biggest impact on the length of the game. In addition to games being shorter, the game as a whole runs faster as there is less to process (e.g. much less wait time between turns).
 
-#### Smaller map sizes
+#### Default game speed set to online
 
-TODO
+The default game speed has been set to online in order to speed up gameplay.
 
 #### Reduced barbarian difficulty
 
@@ -18,7 +32,7 @@ See [Credits](#credits) below for more information
 
 #### Changes to builders
 
-TODO
+Default charges for builders have been doubled (from 3 to 6) in order to speed up gameplay.
 
 #### City state features removed
 
@@ -50,9 +64,9 @@ See [Credits](#credits) below for more information
 1. Download the repository source file from [Releases](https://github.com/bmaupin/mini-civ-6/releases) and extract it
 1. Rename the `src` directory to `Mini Civ 6` and copy it to [your Mods directory](https://www.pcgamingwiki.com/wiki/Sid_Meier%27s_Civilization_VI#Configuration_file.28s.29_location):
 
-    - Linux: ~/.local/share/aspyr-media/Sid Meier's Civilization VI/Mods
-    - Mac: /Users/[user]/Library/Application Support/Sid Meier's Civilization VI/Mods
-    - Windows: Documents/My Games/Sid Meier's Civilization VI/Mods
+   - Linux: ~/.local/share/aspyr-media/Sid Meier's Civilization VI/Mods
+   - Mac: /Users/[user]/Library/Application Support/Sid Meier's Civilization VI/Mods
+   - Windows: Documents/My Games/Sid Meier's Civilization VI/Mods
 
 ## Wishlist
 
@@ -80,5 +94,3 @@ Functionality copied from [Disable Tech Boosted and Civic Boosted Popup Windows]
 #### Reduced barbarian difficulty
 
 Functionality copied from [https://steamcommunity.com/sharedfiles/filedetails/?id=2492747881](https://steamcommunity.com/sharedfiles/filedetails/?id=2492747881) mod by [Zegangani](https://steamcommunity.com/id/Zegangani216/myworkshopfiles/)
-
- -->
