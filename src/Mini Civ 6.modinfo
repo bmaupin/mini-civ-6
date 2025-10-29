@@ -56,7 +56,7 @@
     </ActionCriteria>
     <FrontEndActions>
         <UpdateDatabase id="MiniCivVISettings">
-            <File>Data/MiniCivVI_CivRev_Config.xml</File>
+            <!-- <File>Data/MiniCivVI_CivRev_Config.xml</File> -->
             <File>Data/MiniCivVI_Config.xml</File>
             <File>Data/MiniCivVI_GameSpeedConfigHack.sql</File>
         </UpdateDatabase>
@@ -162,7 +162,7 @@
     </InGameActions>
     <Files>
         <File>Data/MiniCivVI_BuilderChanges.xml</File>
-        <File>Data/MiniCivVI_CivRev_Config.xml</File>
+        <!-- <File>Data/MiniCivVI_CivRev_Config.xml</File> -->
         <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
         <File>Data/MiniCivVI_GameSpeedConfigHack.sql</File>
