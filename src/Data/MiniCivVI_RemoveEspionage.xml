@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO: This is untested -->
+<GameInfo>
+    <!-- Remove espionage. Much of this is from alexanderscenario_removedata.xml -->
+    <Types>
+        <Delete Type="CAPABILITY_ESPIONAGE" />
+        <Delete Type="CAPABILITY_ESPIONAGE_VIEW" />
+        <Delete Type="CAPABILITY_NEW_ESPIONAGE" />
+        <Delete Type="DIPLOACTION_KEEP_PROMISE_DONT_SPY" />
+        <Delete Type="POLICY_CRYPTOGRAPHY" />
+        <Delete Type="POLICY_MACHIAVELLIANISM" />
+        <Delete Type="POLICY_NUCLEAR_ESPIONAGE" />
+        <Delete Type="POLICY_POLICE_STATE" />
+        <Delete Type="UNIT_SPY" />
+    </Types>
+    <DiplomaticVisibilitySources>
+        <Delete VisibilitySourceType="SOURCE_SPY" />
+    </DiplomaticVisibilitySources>
+</GameInfo>

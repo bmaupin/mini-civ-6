@@ -54,6 +54,23 @@ See [Credits](#credits) below for more information
     - Mac: /Users/[user]/Library/Application Support/Sid Meier's Civilization VI/Mods
     - Windows: Documents/My Games/Sid Meier's Civilization VI/Mods
 
+## Wishlist
+
+- [ ] Additional game options
+  - [ ] No amenities?
+    - Untested, see [src/Data/MiniCivVI_RemoveAmenities.sql](src/Data/MiniCivVI_RemoveAmenities.sql)
+  - [ ] No espionage?
+    - Untested, see [src/Data/MiniCivVI_RemoveEspionage.xml](src/Data/MiniCivVI_RemoveEspionage.xml)
+  - [ ] Always peace?
+  - [ ] Remove districts?
+    - All buildings would be built in the city centre
+  - [ ] Auto-renew trade routes?
+  - [ ] Manual road building?
+    - à la CivRev, basically a build option for a road that connects cities
+    - Remove road building from trader unit?
+    - Reuse trader UI?
+- [ ] CivRev ruleset/scenario/game mode?
+
 ## Credits
 
 #### Civic/tech boosted popups disabled
