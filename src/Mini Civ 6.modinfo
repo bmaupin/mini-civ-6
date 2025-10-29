@@ -122,6 +122,7 @@
                 <LoadOrder>1000000</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
+            <File>Data/CVI_BarbDiff_LOW.SQL</File>
             <File>Data/MiniCivVI_BuilderChanges.xml</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoAmenities">
@@ -168,6 +169,7 @@
         </UpdateIcons>
     </InGameActions>
     <Files>
+        <File>Data/CVI_BarbDiff_LOW.SQL</File>
         <File>Data/MiniCivVI_BuilderChanges.xml</File>
         <!-- <File>Data/MiniCivVI_CivRev_Config.xml</File> -->
         <File>Data/MiniCivVI_Cleanup.sql</File>

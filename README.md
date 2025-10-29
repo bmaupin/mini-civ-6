@@ -12,7 +12,9 @@ TODO
 
 #### Reduced barbarian difficulty
 
-Barbarians in Civ 6 are notoriously more aggressive, and dealing with them takes up a lot more time in the early game. Their aggressiveness has been reduced for quicker gameplay.
+Barbarians in Civ 6 are notoriously more aggressive, and dealing with them takes up a lot more time in the early game. Their aggressiveness has been drastically reduced for quicker gameplay.
+
+See [Credits](#credits) below for more information
 
 #### Changes to builders
 
@@ -58,6 +60,8 @@ See [Credits](#credits) below for more information
 
 Functionality copied from [Disable Tech Boosted and Civic Boosted Popup Windows](https://steamcommunity.com/sharedfiles/filedetails/?id=1730111532) mod by [Zur13](https://steamcommunity.com/id/zur13/myworkshopfiles/)
 
-TODO: reduced barbarian difficulty
+#### Reduced barbarian difficulty
+
+Functionality copied from [https://steamcommunity.com/sharedfiles/filedetails/?id=2492747881](https://steamcommunity.com/sharedfiles/filedetails/?id=2492747881) mod by [Zegangani](https://steamcommunity.com/id/Zegangani216/myworkshopfiles/)
 
  -->
