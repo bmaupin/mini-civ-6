@@ -24,11 +24,18 @@ If city states are set to 0 and Barbarian Clans mode isn't checked, city state f
 
 #### New game options
 
+Some new game options have been added to better facilitate quicker games:
+
+👉 Note that there hasn't been much work to balance these
+
 - No Great People
+  - Removes great people from the game
+- No Military
+  - Removes military and all related items (units, buildings, techs, etc) from the game and also disables barbarians
 - No Policies
-  - TODO
+  - Removes policy cards completely from the game and modifies the Governments screen to not show the Policy tab
 - No Religion
-  - One less system to worry about
+  - Removes religion, faith, pantheons and all related items from the game
 
 #### Civic/tech boosted popups disabled
 

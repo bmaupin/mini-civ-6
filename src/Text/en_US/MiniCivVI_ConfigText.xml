@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <GameData>
     <EnglishText>
-        <Row Tag="LOC_MC6_ALWAYS_PEACE">
-            <Text>Always Peace</Text>
-        </Row>
-        <Row Tag="LOC_MC6_ALWAYS_PEACE_DESCRIPTION">
-            <Text>Enabling this option prevents wars from being declared.</Text>
-        </Row>
         <Row Tag="LOC_MC6_NO_GREAT_PEOPLE">
             <Text>No Great People</Text>
         </Row>

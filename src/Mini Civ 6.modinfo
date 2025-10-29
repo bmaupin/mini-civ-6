@@ -39,6 +39,13 @@
                 <Value>1</Value>
             </ConfigurationValueMatches>
         </Criteria>
+        <Criteria id="MiniCivVI_No_Military">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>MC6_NO_MILITARY</ConfigurationId>
+                <Value>1</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
         <Criteria id="MiniCivVI_No_Policies">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
@@ -91,13 +98,13 @@
             </Properties>
             <Criteria>MiniCivVI_No_Policies</Criteria>
         </ReplaceUIScript>
-        <UpdateDatabase id="MiniCivVIAlwaysPeace">
+        <UpdateDatabase id="MiniCivVINoMilitary">
             <!-- This is needed so that this file will be loaded after DLC, otherwise DLC that make changes to religion will break after religion has been removed -->
             <Properties>
                 <LoadOrder>1000000</LoadOrder>
             </Properties>
-            <Criteria>MiniCivVI_Always_Peace</Criteria>
-            <File>Data/MiniCivVI_AlwaysPeace.xml</File>
+            <Criteria>MiniCivVI_No_Military</Criteria>
+            <File>Data/MiniCivVI_RemoveMilitary.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVICleanup">
             <!-- Load this after everything else -->
@@ -171,6 +178,7 @@
         <File>Data/MiniCivVI_RemoveAmenities.sql</File>
         <File>Data/MiniCivVI_RemoveCityStates.xml</File>
         <File>Data/MiniCivVI_RemoveGreatPeople.xml</File>
+        <File>Data/MiniCivVI_RemoveMilitary.sql</File>
         <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
         <File>Data/MiniCivVI_RemoveReligion.xml</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
