@@ -1,0 +1,6 @@
+{
+  "Lua.diagnostics.globals": ["GameInfo", "UI", "Controls", "LuaEvents"],
+  "Lua.runtime.special": {
+    "include": "require"
+  }
+}

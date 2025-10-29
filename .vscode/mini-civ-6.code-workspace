@@ -1,0 +1,27 @@
+{
+  "folders": [
+    {
+      "name": "mini-civ-6",
+      "path": ".."
+    },
+    {
+      "name": "civ-modding-tools",
+      "path": "../../civ-modding-tools"
+    },
+    {
+      "name": "Sid Meier's Civilization VI",
+      "path": "../../../../../.local/share/Steam/steamapps/common/Sid Meier's Civilization VI"
+    },
+    {
+      "name": "Sid Meier's Civilization VI SDK",
+      "path": "../../../../../.local/share/Steam/steamapps/common/Sid Meier's Civilization VI SDK"
+    },
+    {
+      "name": "289070",
+      "path": "../../../../../.local/share/Steam/steamapps/workshop/content/289070"
+    }
+  ],
+  "settings": {
+    "xml.downloadExternalResources.enabled": true
+  }
+}

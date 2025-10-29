@@ -2,6 +2,9 @@
 UPDATE Maps
 SET
     GridWidth = CASE
+        -- NOTE: If an error is thrown referencing lua.log, it may be due to map size.
+        --       Duel map size was originally 16x10 but caused the error so it's been
+        --       gradually increased (16x12, 18x12)
         -- Calculate 40%, floor by casting to INT, then subtract 1 if odd
         -- Use MAX to set minimum map size; smaller sizes caused crashes
         WHEN CAST(GridWidth * 0.4 AS INTEGER) % 2 = 1
