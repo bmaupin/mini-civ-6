@@ -74,5 +74,6 @@ mod_directory="${user_directory}/Mods/${mod_name}"
 # Always clean up the mod directory first in case we delete files from the mod source
 rm -rf "${mod_directory}"
 cp -ar src "${mod_directory}"
+rm -rf "${mod_directory}/Archive"
 
 ls -l "${user_directory}/Mods"
