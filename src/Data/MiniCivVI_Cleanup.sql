@@ -1,6 +1,7 @@
--- If the Jong is the only unlock for the mercenaries civic, set its prerequisite to match
--- the unit it replaces (frigate) so the mercenaries civic can be deleted, otherwise it
--- will show up for all civs except Indonesia as having no unlocks.
+-- The mercenaries civic only unlocks policy cards and the unique Jong unit.
+-- If the Jong is the only unlock for the mercenaries civic, set its prerequisite to a
+-- different civic so the mercenaries civic can be deleted, otherwise it will show up for
+-- all civs except Indonesia as having no unlocks when policy cards are disabled.
 WITH Unlocks AS (
   SELECT UnitType AS UnlockType FROM Units WHERE PrereqCivic = 'CIVIC_MERCENARIES'
   UNION ALL
@@ -33,8 +34,7 @@ WITH Unlocks AS (
   SELECT ID FROM Adjacency_YieldChanges WHERE PrereqCivic = 'CIVIC_MERCENARIES'
 )
 UPDATE Units
-SET PrereqCivic = NULL,
-    PrereqTech = 'TECH_SQUARE_RIGGING'
+SET PrereqCivic = 'CIVIC_NAVAL_TRADITION'
 WHERE UnitType = 'UNIT_INDONESIAN_JONG'
   AND (SELECT COUNT(*) FROM Unlocks) = 1
   AND (SELECT UnlockType FROM Unlocks LIMIT 1) = 'UNIT_INDONESIAN_JONG';
@@ -132,7 +132,13 @@ AND NOT EXISTS (
 
 INSERT INTO CivicPrereqs (Civic, PrereqCivic)
 SELECT 'CIVIC_NATURAL_HISTORY', 'CIVIC_MERCANTILISM'
-WHERE NOT EXISTS (
+WHERE EXISTS (
+  SELECT 1 FROM Civics WHERE CivicType = 'CIVIC_NATURAL_HISTORY'
+)
+AND EXISTS (
+  SELECT 1 FROM Civics WHERE CivicType = 'CIVIC_MERCANTILISM'
+)
+AND NOT EXISTS (
   SELECT 1 FROM CivicPrereqs WHERE Civic = 'CIVIC_COLONIALISM'
 );
 

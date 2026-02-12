@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <GameData>
     <EnglishText>
+        <Row Tag="LOC_MC6_LAST_ERA_MEDIEVAL">
+            <Text>Medieval is the last era</Text>
+        </Row>
+        <Row Tag="LOC_MC6_LAST_ERA_MEDIEVAL_DESCRIPTION">
+            <Text>Enabling this option removes all eras after Medieval from the game.</Text>
+        </Row>
         <Row Tag="LOC_MC6_NO_GREAT_PEOPLE">
             <Text>No Great People</Text>
         </Row>

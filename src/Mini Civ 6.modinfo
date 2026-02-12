@@ -13,6 +13,13 @@
         <Criteria id="MiniCivVI_Standard_Ruleset">
             <RuleSetInUse>RULESET_STANDARD,RULESET_EXPANSION_1,RULESET_EXPANSION_2</RuleSetInUse>
         </Criteria>
+        <Criteria id="MiniCivVI_Last_Era_Medieval">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>MC6_LAST_ERA_MEDIEVAL</ConfigurationId>
+                <Value>1</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
         <Criteria id="MiniCivVI_No_City_States">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
@@ -90,8 +97,15 @@
             </Properties>
             <Criteria>MiniCivVI_No_Policies</Criteria>
         </ReplaceUIScript>
-        <UpdateDatabase id="MiniCivVINoMilitary">
+        <UpdateDatabase id="MiniCivVILastEraMedieval">
             <!-- This is needed so that this file will be loaded after DLC, otherwise DLC that make changes to religion will break after religion has been removed -->
+            <Properties>
+                <LoadOrder>1000000</LoadOrder>
+            </Properties>
+            <Criteria>MiniCivVI_Last_Era_Medieval</Criteria>
+            <File>Data/MiniCivVI_RemoveLaterEras.sql</File>
+        </UpdateDatabase>
+        <UpdateDatabase id="MiniCivVINoMilitary">
             <Properties>
                 <LoadOrder>1000000</LoadOrder>
             </Properties>
@@ -163,6 +177,7 @@
         <File>Data/MiniCivVI_GameSpeedIconsHack.sql</File>
         <File>Data/MiniCivVI_RemoveCityStates.xml</File>
         <File>Data/MiniCivVI_RemoveGreatPeople.xml</File>
+        <File>Data/MiniCivVI_RemoveLaterEras.sql</File>
         <File>Data/MiniCivVI_RemoveMilitary.sql</File>
         <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
         <File>Data/MiniCivVI_RemoveReligion.xml</File>
