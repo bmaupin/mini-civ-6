@@ -5,6 +5,12 @@
         <Delete AdvisorType="ADVISOR_RELIGIOUS" />
         <!-- Removes religious buildings -->
         <Delete PrereqDistrict="DISTRICT_HOLY_SITE" />
+        <!-- Replace Madrasa's prereq (theology) with that civic's prereq since theology
+             is deleted below -->
+        <Update>
+            <Where BuildingType="BUILDING_MADRASA" />
+            <Set PrereqCivic="CIVIC_DRAMA_POETRY" />
+        </Update>
     </Buildings>
     <Policies>
         <Delete PrereqCivic="CIVIC_REFORMED_CHURCH" />
