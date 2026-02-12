@@ -1,3 +1,93 @@
+DELETE FROM Adjacency_YieldChanges WHERE
+  PrereqCivic IN (
+    SELECT CivicType FROM Civics WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Buildings WHERE
+  PrereqCivic IN (
+    SELECT CivicType FROM Civics WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Districts WHERE
+  PrereqCivic IN (
+    SELECT CivicType FROM Civics WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Governments WHERE
+  PrereqCivic IN (
+    SELECT CivicType FROM Civics WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Improvements WHERE
+  PrereqCivic IN (
+    SELECT CivicType FROM Civics WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Policies WHERE
+  PrereqCivic IN (
+    SELECT CivicType FROM Civics WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Projects WHERE
+  PrereqCivic IN (
+    SELECT CivicType FROM Civics WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Resources WHERE
+  PrereqCivic IN (
+    SELECT CivicType FROM Civics WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Units WHERE
+  PrereqCivic IN (
+    SELECT CivicType FROM Civics WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
 DELETE FROM Civics WHERE
   -- This excludes CIVIC_FUTURE_CIVIC, which is special
   Repeatable != 1 AND
@@ -33,6 +123,87 @@ WHERE EXISTS (
 AND EXISTS (
   SELECT 1 FROM Civics WHERE CivicType = 'CIVIC_GUILDS'
 );
+
+
+DELETE FROM Adjacency_YieldChanges WHERE
+  PrereqTech IN (
+    SELECT TechnologyType FROM Technologies WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Buildings WHERE
+  PrereqTech IN (
+    SELECT TechnologyType FROM Technologies WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Districts WHERE
+  PrereqTech IN (
+    SELECT TechnologyType FROM Technologies WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Improvements WHERE
+  PrereqTech IN (
+    SELECT TechnologyType FROM Technologies WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Projects WHERE
+  PrereqTech IN (
+    SELECT TechnologyType FROM Technologies WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Resources WHERE
+  PrereqTech IN (
+    SELECT TechnologyType FROM Technologies WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Resource_Harvests WHERE
+  PrereqTech IN (
+    SELECT TechnologyType FROM Technologies WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
+
+DELETE FROM Units WHERE
+  PrereqTech IN (
+    SELECT TechnologyType FROM Technologies WHERE
+      EraType NOT IN (
+        'ERA_ANCIENT',
+        'ERA_CLASSICAL',
+        'ERA_MEDIEVAL'
+      )
+  );
 
 DELETE FROM Technologies WHERE
   -- This excludes TECH_FUTURE_TECH, which is special
