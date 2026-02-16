@@ -64,7 +64,7 @@
     <FrontEndActions>
         <UpdateDatabase id="MiniCivVISettings">
             <File>Data/MiniCivVI_Config.xml</File>
-            <File>Data/MiniCivVI_GameSpeedConfigHack.sql</File>
+            <File>Data/MiniCivVI_ConfigFrontendHacks.sql</File>
         </UpdateDatabase>
         <UpdateText id="MiniCivVISettingsText">
             <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
@@ -120,8 +120,8 @@
             <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
             <File>Data/MiniCivVI_Cleanup.sql</File>
         </UpdateDatabase>
-        <UpdateDatabase id="MiniCivVIGameSpeedDataHack">
-            <File>Data/MiniCivVI_GameSpeedDataHack.sql</File>
+        <UpdateDatabase id="MiniCivVIConfigDataHacks">
+            <File>Data/MiniCivVI_ConfigDataHacks.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVIMiscChanges">
             <Properties>
@@ -163,8 +163,8 @@
         <UpdateDatabase id="MiniCivVISmallerMaps">
             <File>Data/MiniCivVI_SmallerMaps.sql</File>
         </UpdateDatabase>
-        <UpdateIcons id="MiniCivVIGameSpeedIconsHack">
-            <File>Data/MiniCivVI_GameSpeedIconsHack.sql</File>
+        <UpdateIcons id="MiniCivVIConfigIconsHacks">
+            <File>Data/MiniCivVI_ConfigIconHacks.sql</File>
         </UpdateIcons>
     </InGameActions>
     <Files>
@@ -172,9 +172,9 @@
         <File>Data/MiniCivVI_BuilderChanges.xml</File>
         <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
-        <File>Data/MiniCivVI_GameSpeedConfigHack.sql</File>
-        <File>Data/MiniCivVI_GameSpeedDataHack.sql</File>
-        <File>Data/MiniCivVI_GameSpeedIconsHack.sql</File>
+        <File>Data/MiniCivVI_ConfigFrontendHacks.sql</File>
+        <File>Data/MiniCivVI_ConfigDataHacks.sql</File>
+        <File>Data/MiniCivVI_ConfigIconHacks.sql</File>
         <File>Data/MiniCivVI_RemoveCityStates.xml</File>
         <File>Data/MiniCivVI_RemoveGreatPeople.xml</File>
         <File>Data/MiniCivVI_RemoveLaterEras.sql</File>
