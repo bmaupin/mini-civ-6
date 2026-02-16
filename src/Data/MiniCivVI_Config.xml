@@ -24,6 +24,11 @@
         <Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="MiniCivVi_NoMilitary" Name="LOC_MC6_NO_MILITARY" Description="LOC_MC6_NO_MILITARY_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_NO_MILITARY" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="MiniCivVi_NoMilitary" Name="LOC_MC6_NO_MILITARY" Description="LOC_MC6_NO_MILITARY_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_NO_MILITARY" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="MiniCivVi_NoMilitary" Name="LOC_MC6_NO_MILITARY" Description="LOC_MC6_NO_MILITARY_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_NO_MILITARY" GroupId="AdvancedOptions" SortIndex="9210" />
+        <!-- Sets standard ruleset as default; seems to default to latest installed expansion -->
+        <Update>
+            <Where ParameterId="Ruleset" />
+            <Set DefaultValue="RULESET_STANDARD" />
+        </Update>
     </Parameters>
     <ConfigurationUpdates>
         <!-- If no religion is checked, automatically uncheck religious victory, and vice versa -->
