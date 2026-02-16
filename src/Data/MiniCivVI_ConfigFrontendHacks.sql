@@ -10,7 +10,7 @@ SET DefaultValue = 'GAMESPEED_ONLINE'
 WHERE ParameterId = 'GameSpeeds'
   AND SupportsSinglePlayer = 1;
 
--- Copy the standard game speed (from GameInfo database, not GameData)
+-- Copy the standard game speed (from Configuration database, not Gameplay)
 INSERT OR REPLACE INTO GameSpeeds (GameSpeedType, Name, Description, SortIndex)
 SELECT 'GAMESPEED_STANDARD_CUSTOM', Name, Description, SortIndex
 FROM GameSpeeds WHERE GameSpeedType = 'GAMESPEED_STANDARD';
@@ -19,3 +19,16 @@ FROM GameSpeeds WHERE GameSpeedType = 'GAMESPEED_STANDARD';
 UPDATE Queries
 SET SQL = 'SELECT Domain, Name, Description, GameSpeedType AS Value, SortIndex FROM GameSpeeds WHERE GameSpeedType != ''GAMESPEED_STANDARD'''
 WHERE QueryId = 'GameSpeeds';
+
+
+UPDATE Parameters
+SET DefaultValue = 'MAPSIZE_TINY'
+WHERE ParameterId = 'MapSize';
+
+INSERT OR REPLACE INTO MapSizes (MapSizeType, Name, Description, MinPlayers, MaxPlayers, DefaultPlayers, MinCityStates, MaxCityStates, DefaultCityStates, SortIndex)
+SELECT 'MAPSIZE_SMALL_CUSTOM', Name, Description, MinPlayers, MaxPlayers, DefaultPlayers, MinCityStates, MaxCityStates, DefaultCityStates, SortIndex
+FROM MapSizes WHERE MapSizeType = 'MAPSIZE_SMALL';
+
+UPDATE Queries
+SET SQL = 'SELECT Domain, Name, Description, MapSizeType AS Value, SortIndex FROM MapSizes WHERE MapSizeType != ''MAPSIZE_SMALL'''
+WHERE QueryId = 'MapSizes';
