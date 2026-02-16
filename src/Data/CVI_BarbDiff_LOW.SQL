@@ -27,6 +27,6 @@ UPDATE BarbarianTribes SET TurnsToWarriorSpawn = 13 WHERE TribeType LIKE "%NAVAL
 --UPDATE BarbarianTribes SET TurnsToWarriorSpawn = 30 WHERE TribeType LIKE "%CAVALRY%";
 UPDATE BarbarianTribes SET TurnsToWarriorSpawn = 17 WHERE TribeType LIKE "%MELEE%";
 
-UPDATE BarbarianAttackForces SET NumMeleeUnits = NumMeleeUnits-1 WHERE NOT NumMeleeUnits = 0 OR NOT NumMeleeUnits = 1;
-UPDATE BarbarianAttackForces SET NumRangeUnits = NumRangeUnits-1 WHERE NOT NumRangeUnits = 0 OR NOT NumRangeUnits = 1;
-UPDATE BarbarianAttackForces SET NumSiegeUnits = NumSiegeUnits-1 WHERE NOT NumSiegeUnits = 0 OR NOT NumSiegeUnits = 1;
+UPDATE BarbarianAttackForces SET NumMeleeUnits = NumMeleeUnits - 1 WHERE NumMeleeUnits > 1;
+UPDATE BarbarianAttackForces SET NumRangeUnits = NumRangeUnits - 1 WHERE NumRangeUnits > 1;
+UPDATE BarbarianAttackForces SET NumSiegeUnits = NumSiegeUnits - 1 WHERE NumSiegeUnits > 1;
