@@ -143,7 +143,7 @@
                 <LoadOrder>1000000</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_Great_People</Criteria>
-            <File>Data/MiniCivVI_RemoveGreatPeople.xml</File>
+            <File>Data/MiniCivVI_RemoveGreatPeople.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoPolicies">
             <Properties>
@@ -176,7 +176,7 @@
         <File>Data/MiniCivVI_ConfigDataHacks.sql</File>
         <File>Data/MiniCivVI_ConfigIconHacks.sql</File>
         <File>Data/MiniCivVI_RemoveCityStates.xml</File>
-        <File>Data/MiniCivVI_RemoveGreatPeople.xml</File>
+        <File>Data/MiniCivVI_RemoveGreatPeople.sql</File>
         <File>Data/MiniCivVI_RemoveLaterEras.sql</File>
         <File>Data/MiniCivVI_RemoveMilitary.sql</File>
         <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
