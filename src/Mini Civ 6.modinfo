@@ -61,6 +61,7 @@
             </ConfigurationValueMatches>
         </Criteria>
     </ActionCriteria>
+    <!-- This is where anything modifying data under Assets/Configuration/ goes -->
     <FrontEndActions>
         <UpdateDatabase id="MiniCivVISettings">
             <File>Data/MiniCivVI_Config.xml</File>
@@ -70,7 +71,11 @@
             <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
         </UpdateText>
     </FrontEndActions>
+    <!-- This is where anything modifying data under Assets/Gameplay/ goes -->
     <InGameActions>
+        <!-- <AddGameplayScripts id="MiniCivVIAutoplay">
+            <File>Scripts/Autoplay.lua</File>
+        </AddGameplayScripts> -->
         <ReplaceUIScript id="MiniCivVIDisableBoostPopups">
             <Properties>
                 <Context>InGame</Context>
@@ -182,6 +187,7 @@
         <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
         <File>Data/MiniCivVI_RemoveReligion.xml</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
+        <File>Scripts/Autoplay.lua</File>
         <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
         <File>UI/Replacements/BoostUnlockedPopup_Disabled.lua</File>
         <File>UI/Replacements/GovernmentScreen_MiniCivVI.lua</File>
