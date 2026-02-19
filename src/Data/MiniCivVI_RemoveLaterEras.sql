@@ -64,6 +64,14 @@ WHERE PrereqCivic IN (
   WHERE EraType IN (SELECT EraType FROM ErasToRemove)
 );
 
+-- Don't delete diplomatic actions obsoleted by civics that will be removed
+UPDATE DiplomaticActions
+SET InitiatorObsoleteCivic = NULL
+WHERE InitiatorObsoleteCivic IN (
+  SELECT CivicType FROM Civics
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
+
 DELETE FROM Civics
 -- This excludes CIVIC_FUTURE_CIVIC, which is special
 WHERE Repeatable != 1
