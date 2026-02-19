@@ -1,101 +1,73 @@
-DELETE FROM Adjacency_YieldChanges WHERE
-  PrereqCivic IN (
-    SELECT CivicType FROM Civics WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+CREATE TEMP TABLE ErasToRemove (
+  EraType TEXT PRIMARY KEY
+);
 
-DELETE FROM Buildings WHERE
-  PrereqCivic IN (
-    SELECT CivicType FROM Civics WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+INSERT INTO ErasToRemove (EraType) VALUES
+  ('ERA_RENAISSANCE'),
+  ('ERA_INDUSTRIAL'),
+  ('ERA_MODERN'),
+  ('ERA_ATOMIC'),
+  ('ERA_INFORMATION'),
+  ('ERA_FUTURE');
 
-DELETE FROM Districts WHERE
-  PrereqCivic IN (
-    SELECT CivicType FROM Civics WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Adjacency_YieldChanges
+WHERE PrereqCivic IN (
+  SELECT CivicType FROM Civics
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Governments WHERE
-  PrereqCivic IN (
-    SELECT CivicType FROM Civics WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Buildings
+WHERE PrereqCivic IN (
+  SELECT CivicType FROM Civics
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Improvements WHERE
-  PrereqCivic IN (
-    SELECT CivicType FROM Civics WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Districts
+WHERE PrereqCivic IN (
+  SELECT CivicType FROM Civics
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Policies WHERE
-  PrereqCivic IN (
-    SELECT CivicType FROM Civics WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Governments
+WHERE PrereqCivic IN (
+  SELECT CivicType FROM Civics
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Projects WHERE
-  PrereqCivic IN (
-    SELECT CivicType FROM Civics WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Improvements
+WHERE PrereqCivic IN (
+  SELECT CivicType FROM Civics
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Resources WHERE
-  PrereqCivic IN (
-    SELECT CivicType FROM Civics WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Policies
+WHERE PrereqCivic IN (
+  SELECT CivicType FROM Civics
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Units WHERE
-  PrereqCivic IN (
-    SELECT CivicType FROM Civics WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Projects
+WHERE PrereqCivic IN (
+  SELECT CivicType FROM Civics
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Civics WHERE
-  -- This excludes CIVIC_FUTURE_CIVIC, which is special
-  Repeatable != 1 AND
-  EraType NOT IN (
-    'ERA_ANCIENT',
-    'ERA_CLASSICAL',
-    'ERA_MEDIEVAL'
-  );
+DELETE FROM Resources
+WHERE PrereqCivic IN (
+  SELECT CivicType FROM Civics
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
+
+DELETE FROM Units
+WHERE PrereqCivic IN (
+  SELECT CivicType FROM Civics
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
+
+DELETE FROM Civics
+-- This excludes CIVIC_FUTURE_CIVIC, which is special
+WHERE Repeatable != 1
+  AND EraType IN (SELECT EraType FROM ErasToRemove);
 
 INSERT INTO CivicPrereqs (Civic, PrereqCivic)
 SELECT 'CIVIC_FUTURE_CIVIC', 'CIVIC_MEDIEVAL_FAIRES'
@@ -125,94 +97,58 @@ AND EXISTS (
 );
 
 
-DELETE FROM Adjacency_YieldChanges WHERE
-  PrereqTech IN (
-    SELECT TechnologyType FROM Technologies WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Adjacency_YieldChanges
+WHERE PrereqTech IN (
+  SELECT TechnologyType FROM Technologies
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Buildings WHERE
-  PrereqTech IN (
-    SELECT TechnologyType FROM Technologies WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Buildings
+WHERE PrereqTech IN (
+  SELECT TechnologyType FROM Technologies
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Districts WHERE
-  PrereqTech IN (
-    SELECT TechnologyType FROM Technologies WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Districts
+WHERE PrereqTech IN (
+  SELECT TechnologyType FROM Technologies
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Improvements WHERE
-  PrereqTech IN (
-    SELECT TechnologyType FROM Technologies WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Improvements
+WHERE PrereqTech IN (
+  SELECT TechnologyType FROM Technologies
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Projects WHERE
-  PrereqTech IN (
-    SELECT TechnologyType FROM Technologies WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Projects
+WHERE PrereqTech IN (
+  SELECT TechnologyType FROM Technologies
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Resources WHERE
-  PrereqTech IN (
-    SELECT TechnologyType FROM Technologies WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Resources
+WHERE PrereqTech IN (
+  SELECT TechnologyType FROM Technologies
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Resource_Harvests WHERE
-  PrereqTech IN (
-    SELECT TechnologyType FROM Technologies WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Resource_Harvests
+WHERE PrereqTech IN (
+  SELECT TechnologyType FROM Technologies
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Units WHERE
-  PrereqTech IN (
-    SELECT TechnologyType FROM Technologies WHERE
-      EraType NOT IN (
-        'ERA_ANCIENT',
-        'ERA_CLASSICAL',
-        'ERA_MEDIEVAL'
-      )
-  );
+DELETE FROM Units
+WHERE PrereqTech IN (
+  SELECT TechnologyType FROM Technologies
+  WHERE EraType IN (SELECT EraType FROM ErasToRemove)
+);
 
-DELETE FROM Technologies WHERE
-  -- This excludes TECH_FUTURE_TECH, which is special
-  Repeatable != 1 AND
-  EraType NOT IN (
-    'ERA_ANCIENT',
-    'ERA_CLASSICAL',
-    'ERA_MEDIEVAL'
-  );
+DELETE FROM Technologies
+-- This excludes TECH_FUTURE_TECH, which is special
+WHERE Repeatable != 1
+  AND EraType IN (SELECT EraType FROM ErasToRemove);
 
 INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
 SELECT 'TECH_FUTURE_TECH', 'TECH_EDUCATION'
