@@ -10,9 +10,12 @@ Because the mod is [unfinished](#status), only [manual installation](#manual-ins
 
 ## Status
 
-The mod works although development has been halted before all features were implemented.
+> [!TIP]
+> If you would like a Civ-like game that plays much more quickly, I recommend [Ozymandias](https://goblinzstudio.com/game/ozymandias/) instead.
 
-Civ 6 makes modding easier in many aspects, but the game itself is more complex in terms of the number of different systems and lacks a lot of built-in options that Civ 5 had to disable these systems such as religion, espionage, and even war. This makes modding more time-consuming and less enjoyable. Rather than spend more time on this, it seems there are games designed from the beginning to respect the player's time such as [Ozymandias](https://goblinzstudio.com/game/ozymandias/).
+The mod is playable but unfinished.
+
+Civ 6 adds a lot of complexity compared to other Civ titles, which makes it difficult and tedious to try to play quickly and leads to decision fatigue. Unfortunately removing or simplifying these systems mostly just made the game less interesting. Further reading: [Sid Meier’s Civilization VI: The Kotaku Re-Review](https://kotaku.com/civilization-civ-vi-6-review-2023-retrospective-pc-sid-1850242218).
 
 ## Features
 
@@ -61,29 +64,14 @@ See [Credits](#credits) below for more information
 
 ## Manual installation
 
-1. Download the repository source file from [Releases](https://github.com/bmaupin/mini-civ-6/releases) and extract it
-1. Rename the `src` directory to `Mini Civ 6` and copy it to [your Mods directory](https://www.pcgamingwiki.com/wiki/Sid_Meier%27s_Civilization_VI#Configuration_file.28s.29_location):
+<!-- 1. Download the repository source file from [Releases](https://github.com/bmaupin/mini-civ-6/releases) and extract it -->
 
+1. Download the repository
+   - In GitHub, click _Code_ > _Download ZIP_, or check out the repository using git
+1. Rename the `src` directory to `Mini Civ 6` and copy it to [your Mods directory](https://www.pcgamingwiki.com/wiki/Sid_Meier%27s_Civilization_VI#Configuration_file.28s.29_location):
    - Linux: ~/.local/share/aspyr-media/Sid Meier's Civilization VI/Mods
    - Mac: /Users/[user]/Library/Application Support/Sid Meier's Civilization VI/Mods
    - Windows: Documents/My Games/Sid Meier's Civilization VI/Mods
-
-## Wishlist
-
-- [ ] Additional game options
-  - [ ] No amenities?
-    - Untested, see [src/Data/MiniCivVI_RemoveAmenities.sql](src/Data/MiniCivVI_RemoveAmenities.sql)
-  - [ ] No espionage?
-    - Untested, see [src/Data/MiniCivVI_RemoveEspionage.xml](src/Data/MiniCivVI_RemoveEspionage.xml)
-  - [ ] Always peace?
-  - [ ] Remove districts?
-    - All buildings would be built in the city centre
-  - [ ] Auto-renew trade routes?
-  - [ ] Manual road building?
-    - à la CivRev, basically a build option for a road that connects cities
-    - Remove road building from trader unit?
-    - Reuse trader UI?
-- [ ] CivRev ruleset/scenario/game mode?
 
 ## Credits
 
