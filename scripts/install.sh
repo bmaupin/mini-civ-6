@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Exit right away if there are any errors (e.g. yq or another tool isn't installed)
+set -e
+
 # NOTE: This install script is only meant for local development. For all other purposes,
 #       see README.md for installation instructions.
 
@@ -57,12 +60,13 @@ echo "Installing mod: ${mod_name}"
 # Detect whether we're using native or Proton
 if [[ -f "/home/$USER/.steam/steam/steamapps/common/Sid Meier's Civilization VI/Civ6" ]]; then
     user_directory="/home/${USER}/.local/share/aspyr-media/Sid Meier's Civilization VI"
-fi
-
-if [[ -f "/home/$USER/.steam/steam/steamapps/common/Sid Meier's Civilization VI/Base/Binaries/Win64Steam/CivilizationVI.exe" ]]; then
-    echo "TODO: Implement Proton support for Civ VI"
+elif [[ -f "/home/$USER/.steam/steam/steamapps/common/Sid Meier's Civilization VI/Base/Binaries/Win64Steam/CivilizationVI.exe" ]]; then
+    echo "TODO: Implement Proton support for Civ 6"
     exit 1
     # user_directory="/home/${USER}/.steam/steam/steamapps/compatdata/289070/pfx/drive_c/users/steamuser/Documents/My Games/Sid Meier's Civilization VI"
+else
+    echo "Error: Civ 6 not found"
+    exit 1
 fi
 
 # Inject the current date into the mod description. This makes it easier to tell if the
