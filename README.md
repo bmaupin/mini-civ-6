@@ -33,10 +33,6 @@ Barbarians in Civ 6 are notoriously more aggressive, and dealing with them takes
 
 See [Credits](#credits) below for more information
 
-#### Changes to builders
-
-Default charges for builders have been doubled (from 3 to 6) in order to speed up gameplay.
-
 #### City state features removed
 
 If city states are set to 0 and Barbarian Clans mode isn't checked, city state features are removed from the game such as the ability to acquire envoys as well as UI elements referencing city states.

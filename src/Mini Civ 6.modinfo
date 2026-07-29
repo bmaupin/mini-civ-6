@@ -134,7 +134,6 @@
             </Properties>
             <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
             <File>Data/CVI_BarbDiff_LOW.SQL</File>
-            <File>Data/MiniCivVI_BuilderChanges.xml</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoCityStates">
             <Properties>
@@ -174,7 +173,6 @@
     </InGameActions>
     <Files>
         <File>Data/CVI_BarbDiff_LOW.SQL</File>
-        <File>Data/MiniCivVI_BuilderChanges.xml</File>
         <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
         <File>Data/MiniCivVI_ConfigFrontendHacks.sql</File>
