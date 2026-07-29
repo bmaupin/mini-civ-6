@@ -1,6 +1,15 @@
 {
-  "Lua.diagnostics.globals": ["GameInfo", "UI", "Controls", "LuaEvents"],
+  "Lua.diagnostics.globals": [
+    "Controls",
+    "GameInfo",
+    "ImprovementBuilder",
+    "LuaEvents",
+    "PlayerManager",
+    "UI"
+  ],
   "Lua.runtime.special": {
     "include": "require"
-  }
+  },
+  // Make it so that the Lua extension only diagnoses the currently open file instead of the entire workspace
+  "Lua.workspace.maxPreload": 0
 }
