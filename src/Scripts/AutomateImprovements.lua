@@ -1,7 +1,11 @@
 local NO_IMPROVEMENT = -1;
 local NO_TEAM = -1;
 
-local m_eFarmImprovement = GameInfo.Improvements["IMPROVEMENT_FARM"].Index;
+-- Collect all improvement types ahead of time
+local improvementIndexes = {}
+for improvement in GameInfo.Improvements() do
+    table.insert(improvementIndexes, improvement.Index)
+end
 
 function PlotHasImprovement(plot)
     if (plot:GetImprovementType() == NO_IMPROVEMENT) then
@@ -19,8 +23,13 @@ function AddImprovementsToCity(city, player)
     local cityPlots = city:GetOwnedPlots();
     for _, plot in ipairs(cityPlots) do
         if not PlotHasImprovement(plot) then
-            if (ImprovementBuilder.CanHaveImprovement(plot, m_eFarmImprovement, NO_TEAM)) then
-                ImprovementBuilder.SetImprovementType(plot, m_eFarmImprovement, plot:GetOwner());
+            -- iterate in reverse order
+            for i = #improvementIndexes, 1, -1 do
+                if (ImprovementBuilder.CanHaveImprovement(plot, improvementIndexes[i], NO_TEAM)) then
+                    print("**************************************** Adding improvement " .. tostring(GameInfo.Improvements[improvementIndexes[i]].Name) .. " to plot " .. tostring(plot:GetX()) .. "," .. tostring(plot:GetY()));
+                    ImprovementBuilder.SetImprovementType(plot, improvementIndexes[i], plot:GetOwner());
+                    break;
+                end
             end
         end
     end
