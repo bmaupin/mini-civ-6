@@ -2,9 +2,9 @@ local NO_IMPROVEMENT = -1;
 local NO_TEAM = -1;
 
 -- Collect all improvement types ahead of time
-local improvementIndexes = {}
+local improvementTypes = {}
 for improvement in GameInfo.Improvements() do
-    table.insert(improvementIndexes, improvement.Index)
+    table.insert(improvementTypes, improvement.ImprovementType)
 end
 
 function PlotHasImprovement(plot)
@@ -24,10 +24,24 @@ function AddImprovementsToCity(city, player)
     for _, plot in ipairs(cityPlots) do
         if not PlotHasImprovement(plot) then
             -- iterate in reverse order
-            for i = #improvementIndexes, 1, -1 do
-                if (ImprovementBuilder.CanHaveImprovement(plot, improvementIndexes[i], NO_TEAM)) then
-                    print("**************************************** Adding improvement " .. tostring(GameInfo.Improvements[improvementIndexes[i]].Name) .. " to plot " .. tostring(plot:GetX()) .. "," .. tostring(plot:GetY()));
-                    ImprovementBuilder.SetImprovementType(plot, improvementIndexes[i], plot:GetOwner());
+            for i = #improvementTypes, 1, -1 do
+                local improvementType = improvementTypes[i];
+                local prereqTech = GameInfo.Improvements[improvementType].PrereqTech
+
+                if (ImprovementBuilder.CanHaveImprovement(plot, GameInfo.Improvements[improvementType].Index, NO_TEAM) and
+                    (
+                        prereqTech == nil or player:GetTechs():HasTech(GameInfo.Technologies[prereqTech].Index)
+                    ) and
+                    (
+                        GameInfo.Improvements[improvementType].TraitType == nil
+                    ) and
+                    (
+                        GameInfo.Improvements[improvementType].Goody == nil or not GameInfo.Improvements[improvementType].Goody
+                    )
+                    ) then
+                        -- TODO: Add PrereqCivic
+                    print("**************************************** Adding improvement " .. tostring(improvementType) .. " to plot " .. tostring(plot:GetX()) .. "," .. tostring(plot:GetY()));
+                    ImprovementBuilder.SetImprovementType(plot, GameInfo.Improvements[improvementType].Index, plot:GetOwner());
                     break;
                 end
             end
