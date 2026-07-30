@@ -1,5 +1,9 @@
+local NO_IMPROVEMENT = -1;
+local NO_TEAM = -1;
+
+local m_eFarmImprovement = GameInfo.Improvements["IMPROVEMENT_FARM"].Index;
+
 function PlotHasImprovement(plot)
-    local NO_IMPROVEMENT = -1;
     if (plot:GetImprovementType() == NO_IMPROVEMENT) then
 		return false;
     else
@@ -7,32 +11,34 @@ function PlotHasImprovement(plot)
 	end
 end
 
-function AddImprovements()
-    print("**************************************** AddImprovements()");
-    -- Plot.GetImprovementType
-    -- ImprovementBuilder.CanHaveImprovement
-    -- ImprovementBuilder.SetImprovementType
+function AddImprovementsToCity(city, player)
+    if (player:IsBarbarian()) then
+        return;
+    end
 
-    local NO_TEAM = -1;
-
-    local m_eFarmImprovement = GameInfo.Improvements["IMPROVEMENT_FARM"].Index;
-
-    local players = PlayerManager.GetAliveMajors()
-    for _, player in ipairs(players) do
-        if player:IsHuman() then
-            local playerCities = player:GetCities();
-            for _, city in playerCities:Members() do
-                local cityPlots = city:GetOwnedPlots();
-                for _, plot in ipairs(cityPlots) do
-                    if not PlotHasImprovement(plot) then
-                        if (ImprovementBuilder.CanHaveImprovement(plot, m_eFarmImprovement, NO_TEAM)) then
-                            ImprovementBuilder.SetImprovementType(plot, m_eFarmImprovement, plot:GetOwner());
-                        end
-
-                    end
-                end
+    local cityPlots = city:GetOwnedPlots();
+    for _, plot in ipairs(cityPlots) do
+        if not PlotHasImprovement(plot) then
+            if (ImprovementBuilder.CanHaveImprovement(plot, m_eFarmImprovement, NO_TEAM)) then
+                ImprovementBuilder.SetImprovementType(plot, m_eFarmImprovement, plot:GetOwner());
             end
         end
     end
 end
+
+function AddImprovements()
+    local players = PlayerManager.GetAliveMajors()
+    for _, player in ipairs(players) do
+        local playerCities = player:GetCities();
+        for _, city in playerCities:Members() do
+            AddImprovementsToCity(city, player);
+        end
+    end
+end
 LuaEvents.NewGameInitialized.Add(AddImprovements);
+
+function OnCityBuilt(playerID, cityID, _cityX, _cityY)
+    local city = CityManager.GetCity(playerID, cityID);
+    AddImprovementsToCity(city, Players[playerID]);
+end
+GameEvents.CityBuilt.Add(OnCityBuilt);
