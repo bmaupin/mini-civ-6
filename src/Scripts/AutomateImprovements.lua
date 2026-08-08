@@ -3,9 +3,6 @@ local NO_TEAM = -1;
 
 local FEATURE_FOREST_INDEX = GameInfo.Features["FEATURE_FOREST"].Index;
 
-local IMPROVEMENT_FARM_INDEX = GameInfo.Improvements["IMPROVEMENT_FARM"].Index;
-local IMPROVEMENT_LUMBER_MILL_INDEX = GameInfo.Improvements["IMPROVEMENT_LUMBER_MILL"].Index;
-
 local TERRAIN_GRASS_INDEX = GameInfo.Terrains["TERRAIN_GRASS"].Index;
 local TERRAIN_PLAINS_INDEX = GameInfo.Terrains["TERRAIN_PLAINS"].Index;
 
@@ -17,6 +14,26 @@ function PlotHasImprovement(plot)
 	end
 end
 
+function CanImprovementBeAdded(plot, improvement, player)
+    if plot == nil or improvement == nil or player == nil then
+        return false;
+    end
+
+    -- None of the improvements we're concerned with have Goody, PrereqCivic, TraitType, etc.
+    local prereqTech = improvement.PrereqTech;
+
+    if (
+        ImprovementBuilder.CanHaveImprovement(plot, improvement.Index, player:GetTeam()) and
+        (
+            prereqTech == nil or player:GetTechs():HasTech(GameInfo.Technologies[prereqTech].Index)
+        )
+    ) then
+        return true;
+    end
+
+    return false;
+end
+
 function OnCityTileOwnershipChanged(ownerID, _cityID, plotX, plotY)
     local player = Players[ownerID];
     if (not player:IsAlive() or not player:IsMajor()) then
@@ -26,7 +43,6 @@ function OnCityTileOwnershipChanged(ownerID, _cityID, plotX, plotY)
     local plot = Map.GetPlot(plotX, plotY);
 
     if plot ~= nil and not PlotHasImprovement(plot) then
-        local improvementIndex = nil;
         local improvementType = nil;
 
         local featureType = plot:GetFeatureType();
@@ -40,23 +56,36 @@ function OnCityTileOwnershipChanged(ownerID, _cityID, plotX, plotY)
 
         if (terrainType == TERRAIN_GRASS_INDEX or
           terrainType == TERRAIN_PLAINS_INDEX) then
-            improvementIndex = IMPROVEMENT_FARM_INDEX;
             improvementType = "IMPROVEMENT_FARM";
         end
 
         if (featureType == FEATURE_FOREST_INDEX) then
-            improvementIndex = IMPROVEMENT_LUMBER_MILL_INDEX;
             improvementType = "IMPROVEMENT_LUMBER_MILL";
         end
 
-        print("**************************************** improvementIndex=" .. tostring(improvementIndex));
+        local improvement = GameInfo.Improvements[improvementType];
 
-        if (improvementIndex ~= nil and ImprovementBuilder.CanHaveImprovement(plot, improvementIndex, NO_TEAM)) then
-            print("**************************************** CanHaveImprovement=" .. tostring(ImprovementBuilder.CanHaveImprovement(plot, improvementIndex, NO_TEAM)));
-            print("**************************************** Adding improvement " .. tostring(improvementType) .. " to plot " .. tostring(plotX) .. "," .. tostring(plotY));
-            ImprovementBuilder.SetImprovementType(plot, improvementIndex, plot:GetOwner());
+        print("**************************************** improvementType=" .. tostring(improvementType));
+
+        if (CanImprovementBeAdded(plot, improvement, player)) then
+            print("**************************************** CanHaveImprovement=" .. tostring(ImprovementBuilder.CanHaveImprovement(plot, improvement.Index, NO_TEAM)));
+            print("**************************************** Adding improvement " .. tostring(improvement.ImprovementType) .. " to plot " .. tostring(plotX) .. "," .. tostring(plotY));
+            ImprovementBuilder.SetImprovementType(plot, improvement.Index, plot:GetOwner());
             return;
         end
     end
 end
 Events.CityTileOwnershipChanged.Add(OnCityTileOwnershipChanged);
+
+-- TODO: Add improvements when the game is first started? e.g. for scenarios
+-- function AddImprovements()
+--     print("**************************************** AddImprovements")
+--     local players = PlayerManager.GetAliveMajors()
+--     for _, player in ipairs(players) do
+--         local playerCities = player:GetCities();
+--         for _, city in playerCities:Members() do
+--             AddImprovementsToCity(city, player);
+--         end
+--     end
+-- end
+-- LuaEvents.NewGameInitialized.Add(AddImprovements);
