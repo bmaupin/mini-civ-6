@@ -1,10 +1,18 @@
 local NO_IMPROVEMENT = -1;
 local NO_TEAM = -1;
 
+local FEATURE_FLOODPLAINS_INDEX = GameInfo.Features["FEATURE_FLOODPLAINS"].Index;
 local FEATURE_FOREST_INDEX = GameInfo.Features["FEATURE_FOREST"].Index;
+-- TODO: Gathering Storm only
+-- local FEATURE_RAINFOREST_INDEX = GameInfo.Features["FEATURE_RAINFOREST"].Index;
 
+local TERRAIN_DESERT_HILLS_INDEX = GameInfo.Terrains["TERRAIN_DESERT_HILLS"].Index;
 local TERRAIN_GRASS_INDEX = GameInfo.Terrains["TERRAIN_GRASS"].Index;
+local TERRAIN_GRASS_HILLS_INDEX = GameInfo.Terrains["TERRAIN_GRASS_HILLS"].Index;
 local TERRAIN_PLAINS_INDEX = GameInfo.Terrains["TERRAIN_PLAINS"].Index;
+local TERRAIN_PLAINS_HILLS_INDEX = GameInfo.Terrains["TERRAIN_PLAINS_HILLS"].Index;
+local TERRAIN_SNOW_HILLS_INDEX = GameInfo.Terrains["TERRAIN_SNOW_HILLS"].Index;
+local TERRAIN_TUNDRA_HILLS_INDEX = GameInfo.Terrains["TERRAIN_TUNDRA_HILLS"].Index;
 
 function PlotHasImprovement(plot)
     if (plot:GetImprovementType() == NO_IMPROVEMENT) then
@@ -54,13 +62,22 @@ function OnCityTileOwnershipChanged(ownerID, _cityID, plotX, plotY)
         print("**************************************** TERRAIN_GRASS_INDEX=" .. tostring(TERRAIN_GRASS_INDEX));
         print("**************************************** TERRAIN_PLAINS_INDEX=" .. tostring(TERRAIN_PLAINS_INDEX));
 
-        if (terrainType == TERRAIN_GRASS_INDEX or
+        if (featureType == FEATURE_FOREST_INDEX) then
+          -- TODO: Gathering Storm only
+          -- featureType == FEATURE_RAINFOREST_INDEX) then
+            improvementType = "IMPROVEMENT_LUMBER_MILL";
+
+        elseif (terrainType == TERRAIN_DESERT_HILLS_INDEX or
+          terrainType == TERRAIN_GRASS_HILLS_INDEX or
+          terrainType == TERRAIN_PLAINS_HILLS_INDEX or
+          terrainType == TERRAIN_SNOW_HILLS_INDEX or
+          terrainType == TERRAIN_TUNDRA_HILLS_INDEX) then
+            improvementType = "IMPROVEMENT_MINE";
+
+        elseif (featureType == FEATURE_FLOODPLAINS_INDEX or
+          terrainType == TERRAIN_GRASS_INDEX or
           terrainType == TERRAIN_PLAINS_INDEX) then
             improvementType = "IMPROVEMENT_FARM";
-        end
-
-        if (featureType == FEATURE_FOREST_INDEX) then
-            improvementType = "IMPROVEMENT_LUMBER_MILL";
         end
 
         local improvement = GameInfo.Improvements[improvementType];
