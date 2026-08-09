@@ -1,4 +1,5 @@
 local NO_IMPROVEMENT = -1;
+local NO_RESOURCE = -1;
 local NO_TEAM = -1;
 
 local FEATURE_FLOODPLAINS_INDEX = GameInfo.Features["FEATURE_FLOODPLAINS"].Index;
@@ -52,37 +53,52 @@ function OnCityTileOwnershipChanged(ownerID, _cityID, plotX, plotY)
 
     if plot ~= nil and not PlotHasImprovement(plot) then
         local improvementType = nil;
+        local mustRemoveFeature = false;
 
-        local featureType = plot:GetFeatureType();
-        local terrainType = plot:GetTerrainType();
+        local featureIndex = plot:GetFeatureType();
+        local resourceIndex = plot:GetResourceType();
+        local terrainIndex = plot:GetTerrainType();
 
-        print("**************************************** featureType=" .. tostring(featureType));
-        print("**************************************** terrainType=" .. tostring(terrainType));
+        print("**************************************** featureType=" .. tostring(featureIndex));
+        print("**************************************** resourceType=" .. tostring(resourceIndex));
+        print("**************************************** terrainType=" .. tostring(terrainIndex));
         print("**************************************** FEATURE_FOREST_INDEX=" .. tostring(FEATURE_FOREST_INDEX));
         print("**************************************** TERRAIN_GRASS_INDEX=" .. tostring(TERRAIN_GRASS_INDEX));
         print("**************************************** TERRAIN_PLAINS_INDEX=" .. tostring(TERRAIN_PLAINS_INDEX));
 
-        if (featureType == FEATURE_FOREST_INDEX) then
+        if (resourceIndex ~= NO_RESOURCE) then
+            for row in GameInfo.Improvement_ValidResources() do
+                local resource = GameInfo.Resources[row.ResourceType];
+                if (resource.Index == resourceIndex) then
+                    -- TODO: What if a resource requires the terrain feature to be removed? (MustRemoveFeature)
+                    improvementType = row.ImprovementType;
+                    mustRemoveFeature = row.MustRemoveFeature;
+                    break;
+                end
+            end
+
+        elseif (featureIndex == FEATURE_FOREST_INDEX) then
           -- TODO: Gathering Storm only
           -- featureType == FEATURE_RAINFOREST_INDEX) then
             improvementType = "IMPROVEMENT_LUMBER_MILL";
 
-        elseif (terrainType == TERRAIN_DESERT_HILLS_INDEX or
-          terrainType == TERRAIN_GRASS_HILLS_INDEX or
-          terrainType == TERRAIN_PLAINS_HILLS_INDEX or
-          terrainType == TERRAIN_SNOW_HILLS_INDEX or
-          terrainType == TERRAIN_TUNDRA_HILLS_INDEX) then
+        elseif (terrainIndex == TERRAIN_DESERT_HILLS_INDEX or
+          terrainIndex == TERRAIN_GRASS_HILLS_INDEX or
+          terrainIndex == TERRAIN_PLAINS_HILLS_INDEX or
+          terrainIndex == TERRAIN_SNOW_HILLS_INDEX or
+          terrainIndex == TERRAIN_TUNDRA_HILLS_INDEX) then
             improvementType = "IMPROVEMENT_MINE";
 
-        elseif (featureType == FEATURE_FLOODPLAINS_INDEX or
-          terrainType == TERRAIN_GRASS_INDEX or
-          terrainType == TERRAIN_PLAINS_INDEX) then
+        elseif (featureIndex == FEATURE_FLOODPLAINS_INDEX or
+          terrainIndex == TERRAIN_GRASS_INDEX or
+          terrainIndex == TERRAIN_PLAINS_INDEX) then
             improvementType = "IMPROVEMENT_FARM";
         end
 
         local improvement = GameInfo.Improvements[improvementType];
 
         print("**************************************** improvementType=" .. tostring(improvementType));
+        print("**************************************** mustRemoveFeature=" .. tostring(mustRemoveFeature));
 
         if (CanImprovementBeAdded(plot, improvement, player)) then
             print("**************************************** CanHaveImprovement=" .. tostring(ImprovementBuilder.CanHaveImprovement(plot, improvement.Index, NO_TEAM)));
