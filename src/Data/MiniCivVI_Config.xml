@@ -18,9 +18,6 @@
         <Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="MiniCivVI_NoReligion" Name="LOC_MC6_NO_RELIGION" Description="LOC_MC6_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="MiniCivVI_NoReligion" Name="LOC_MC6_NO_RELIGION" Description="LOC_MC6_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="MiniCivVI_NoReligion" Name="LOC_MC6_NO_RELIGION" Description="LOC_MC6_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
-        <Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="MiniCivVI_LastEraMedieval" Name="LOC_MC6_LAST_ERA_MEDIEVAL" Description="LOC_MC6_LAST_ERA_MEDIEVAL_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_LAST_ERA_MEDIEVAL" GroupId="AdvancedOptions" SortIndex="9210" />
-        <Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="MiniCivVI_LastEraMedieval" Name="LOC_MC6_LAST_ERA_MEDIEVAL" Description="LOC_MC6_LAST_ERA_MEDIEVAL_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_LAST_ERA_MEDIEVAL" GroupId="AdvancedOptions" SortIndex="9210" />
-        <Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="MiniCivVI_LastEraMedieval" Name="LOC_MC6_LAST_ERA_MEDIEVAL" Description="LOC_MC6_LAST_ERA_MEDIEVAL_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_LAST_ERA_MEDIEVAL" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_STANDARD" ParameterId="MiniCivVi_NoMilitary" Name="LOC_MC6_NO_MILITARY" Description="LOC_MC6_NO_MILITARY_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_NO_MILITARY" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_1" ParameterId="MiniCivVi_NoMilitary" Name="LOC_MC6_NO_MILITARY" Description="LOC_MC6_NO_MILITARY_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_NO_MILITARY" GroupId="AdvancedOptions" SortIndex="9210" />
         <Row Key1="Ruleset" Key2="RULESET_EXPANSION_2" ParameterId="MiniCivVi_NoMilitary" Name="LOC_MC6_NO_MILITARY" Description="LOC_MC6_NO_MILITARY_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_NO_MILITARY" GroupId="AdvancedOptions" SortIndex="9210" />
@@ -50,7 +47,6 @@
     </ParameterCriteria>
     <ParameterDependencies>
         <!-- Don't show these options in world builder -->
-        <Row ParameterID="MiniCivVI_LastEraMedieval" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVI_NoGreatPeople" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVI_NoPolicies" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVi_NoMilitary" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
