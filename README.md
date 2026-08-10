@@ -21,7 +21,7 @@ Civ 6 adds a lot of complexity compared to other Civ titles, which makes it diff
 
 #### Very small maps
 
-Map sizes have been reduced to 16% of their original size (40% of their height and 40% of their width). This alone has the biggest impact on the length of the game. In addition to games being shorter, the game as a whole runs faster as there is less to process (e.g. much less wait time between turns).
+Map sizes have been significantly reduced ([20% of their original size](src/Data/MiniCivVI_SmallerMaps.sql)). This alone has the biggest impact on the length of the game. In addition to games being shorter, the game as a whole runs faster as there is less to process (e.g. much less wait time between turns).
 
 #### Default game speed set to online
 
