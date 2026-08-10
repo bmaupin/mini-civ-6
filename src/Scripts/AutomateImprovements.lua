@@ -43,14 +43,7 @@ function CanImprovementBeAdded(plot, improvement, player)
     return false;
 end
 
-function OnCityTileOwnershipChanged(ownerID, _cityID, plotX, plotY)
-    local player = Players[ownerID];
-    if (not player:IsAlive() or not player:IsMajor()) then
-        return;
-    end
-
-    local plot = Map.GetPlot(plotX, plotY);
-
+function AddImprovementsToPlot(plot, player)
     if plot ~= nil and not PlotHasImprovement(plot) then
         local improvementType = nil;
         local mustRemoveFeature = false;
@@ -59,12 +52,10 @@ function OnCityTileOwnershipChanged(ownerID, _cityID, plotX, plotY)
         local resourceIndex = plot:GetResourceType();
         local terrainIndex = plot:GetTerrainType();
 
+        print("**************************************** plot x,y=" .. tostring(plot:GetX()) .. "," .. tostring(plot:GetY()));
         print("**************************************** featureType=" .. tostring(featureIndex));
         print("**************************************** resourceType=" .. tostring(resourceIndex));
         print("**************************************** terrainType=" .. tostring(terrainIndex));
-        print("**************************************** FEATURE_FOREST_INDEX=" .. tostring(FEATURE_FOREST_INDEX));
-        print("**************************************** TERRAIN_GRASS_INDEX=" .. tostring(TERRAIN_GRASS_INDEX));
-        print("**************************************** TERRAIN_PLAINS_INDEX=" .. tostring(TERRAIN_PLAINS_INDEX));
 
         if (resourceIndex ~= NO_RESOURCE) then
             for row in GameInfo.Improvement_ValidResources() do
@@ -102,13 +93,44 @@ function OnCityTileOwnershipChanged(ownerID, _cityID, plotX, plotY)
 
         if (CanImprovementBeAdded(plot, improvement, player)) then
             print("**************************************** CanHaveImprovement=" .. tostring(ImprovementBuilder.CanHaveImprovement(plot, improvement.Index, NO_TEAM)));
-            print("**************************************** Adding improvement " .. tostring(improvement.ImprovementType) .. " to plot " .. tostring(plotX) .. "," .. tostring(plotY));
+            print("**************************************** Adding improvement " .. tostring(improvement.ImprovementType) .. " to plot " .. tostring(plot:GetX()) .. "," .. tostring(plot:GetY()));
             ImprovementBuilder.SetImprovementType(plot, improvement.Index, plot:GetOwner());
             return;
         end
     end
 end
+
+function OnCityTileOwnershipChanged(ownerID, _cityID, plotX, plotY)
+    local player = Players[ownerID];
+    if (not player:IsAlive() or not player:IsMajor()) then
+        return;
+    end
+
+    local plot = Map.GetPlot(plotX, plotY);
+    AddImprovementsToPlot(plot, player);
+end
 Events.CityTileOwnershipChanged.Add(OnCityTileOwnershipChanged);
+
+function AddImprovementsToCity(city, player)
+    local cityPlots = city:GetOwnedPlots();
+    print("**************************************** #cityPlots=" .. tostring(#cityPlots));
+    for _, plot in ipairs(cityPlots) do
+        AddImprovementsToPlot(plot, player);
+    end
+end
+
+function OnResearchCompleted(playerID, techID)
+    local player = Players[playerID];
+    if (not player:IsAlive() or not player:IsMajor()) then
+        return;
+    end
+
+    local playerCities = player:GetCities();
+    for _, city in playerCities:Members() do
+        AddImprovementsToCity(city, player);
+    end
+end
+Events.ResearchCompleted.Add(OnResearchCompleted);
 
 -- TODO: Add improvements when the game is first started? e.g. for scenarios
 -- function AddImprovements()
