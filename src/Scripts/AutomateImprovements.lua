@@ -111,15 +111,33 @@ function OnCityTileOwnershipChanged(ownerID, _cityID, plotX, plotY)
 end
 Events.CityTileOwnershipChanged.Add(OnCityTileOwnershipChanged);
 
-function AddImprovementsToCity(city, player)
-    local cityPlots = city:GetOwnedPlots();
-    print("**************************************** #cityPlots=" .. tostring(#cityPlots));
-    for _, plot in ipairs(cityPlots) do
-        AddImprovementsToPlot(plot, player);
-    end
+-- city:GetOwnedPlots() doesn't seem to return all of the tiles owned by a city, but this
+-- works. Source:
+-- https://forums.civfanatics.com/threads/improvement-owner-not-updating-with-plot-owner-lua.621776/
+--
+--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+--	GRAB TABLE OF ALL PLOTS OWNED AND WORKABLE BY A SPECIFIED CITY
+--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+--GlobalParameters.CITY_MAX_BUY_PLOT_RANGE is not used because the game ignores the setting as per civ5
+function GetCityPlots(pCity)
+	local iCityRadius = 3;
+	local tTempTable = {};
+	if pCity ~= nil then
+		local iCityOwner = pCity:GetOwner();
+		local iCityX, iCityY = pCity:GetX(), pCity:GetY();
+		for dx = (iCityRadius * -1), iCityRadius do
+			for dy = (iCityRadius * -1), iCityRadius do
+				local pPlotNearCity = Map.GetPlotXYWithRangeCheck(iCityX, iCityY, dx, dy, iCityRadius);
+				if pPlotNearCity and (pPlotNearCity:GetOwner() == iCityOwner) and (pCity == Cities.GetPlotPurchaseCity(pPlotNearCity:GetIndex())) then
+					table.insert(tTempTable, pPlotNearCity);
+				end
+			end
+		end
+	end
+	return tTempTable;
 end
 
-function OnResearchCompleted(playerID, techID)
+function OnResearchCompleted(playerID, _techID)
     local player = Players[playerID];
     if (not player:IsAlive() or not player:IsMajor()) then
         return;
@@ -127,7 +145,9 @@ function OnResearchCompleted(playerID, techID)
 
     local playerCities = player:GetCities();
     for _, city in playerCities:Members() do
-        AddImprovementsToCity(city, player);
+        for _, plot in pairs(GetCityPlots(city)) do
+            AddImprovementsToPlot(plot, player);
+        end
     end
 end
 Events.ResearchCompleted.Add(OnResearchCompleted);
