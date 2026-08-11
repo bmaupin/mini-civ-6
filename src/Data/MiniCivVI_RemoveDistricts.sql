@@ -96,6 +96,8 @@ UPDATE UnitOperations
 SET TargetDistrict = 'DISTRICT_CITY_CENTER'
 WHERE TargetDistrict IS NOT NULL;
 
-DELETE FROM Types
-WHERE Kind = 'KIND_DISTRICT'
-  AND Type != 'DISTRICT_CITY_CENTER';
+-- Deleting districts can cause crashes because some districts are referenced in Lua
+-- files, so disable them instead
+UPDATE Districts
+  SET MaxPerPlayer = 0
+  WHERE DistrictType != 'DISTRICT_CITY_CENTER';

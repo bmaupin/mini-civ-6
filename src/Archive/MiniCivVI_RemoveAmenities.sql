@@ -36,11 +36,16 @@ WHERE PrereqDistrict IN (
   'DISTRICT_WATER_STREET_CARNIVAL'
 );
 
--- Water park
-DELETE FROM Types WHERE Type = 'DISTRICT_WATER_ENTERTAINMENT_COMPLEX';
--- Copacabana
-DELETE FROM Types WHERE Type = 'DISTRICT_WATER_STREET_CARNIVAL';
-
+-- Deleting districts can cause crashes because some districts are referenced in Lua
+-- files, so disable them instead
+UPDATE Districts
+  SET MaxPerPlayer = 0
+  WHERE DistrictType IN (
+    -- Water park
+    'DISTRICT_WATER_ENTERTAINMENT_COMPLEX',
+    -- Copacabana
+    'DISTRICT_WATER_STREET_CARNIVAL'
+  );
 
 -- TODO:
 -- 1. [x] test that city amenity HUD is empty or removed (see screenshot)
