@@ -48,6 +48,9 @@ DELETE FROM DiplomaticActions WHERE UIGroup = 'FORMALWAR';
 -- the aerodome district (among others) to exist.
 UPDATE Districts
   SET MaxPerPlayer = 0
+    -- This makes it so the districts don't show up in the civics/tech tree
+    PrereqCivic = NULL,
+    PrereqTech = NULL
   WHERE AdvisorType = 'ADVISOR_CONQUEST';
 
 -- For every military slot a government has, divide that by two and increment the number

@@ -5,10 +5,6 @@ DELETE FROM Types WHERE Type = 'CIVIC_GAMES_RECREATION';
 -- made inaccessible when the Games and Recreation civic is deleted. However, if districts
 -- are deleted, district prerequisites get removed. So instead we should delete anything
 -- that has those districts as a prerequisite.
---
--- Water park and Copacabana are unlocked with the Natural History civic, which unlocks
--- other items so we may not want to remove that civic. Instead delete the districts and
--- anything which won't get deleted when they do.
 DELETE FROM Buildings
 WHERE PrereqDistrict IN (
   'DISTRICT_ENTERTAINMENT_COMPLEX',
@@ -36,10 +32,16 @@ WHERE PrereqDistrict IN (
   'DISTRICT_WATER_STREET_CARNIVAL'
 );
 
+-- Water park and Copacabana are unlocked with the Natural History civic, which unlocks
+-- other items so we may not want to remove that civic.
+--
 -- Deleting districts can cause crashes because some districts are referenced in Lua
 -- files, so disable them instead
 UPDATE Districts
-  SET MaxPerPlayer = 0
+  SET MaxPerPlayer = 0,
+    -- This makes it so the districts don't show up in the civics/tech tree
+    PrereqCivic = NULL,
+    PrereqTech = NULL
   WHERE DistrictType IN (
     -- Water park
     'DISTRICT_WATER_ENTERTAINMENT_COMPLEX',

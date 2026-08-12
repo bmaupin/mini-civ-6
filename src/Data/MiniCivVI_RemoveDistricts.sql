@@ -99,5 +99,8 @@ WHERE TargetDistrict IS NOT NULL;
 -- Deleting districts can cause crashes because some districts are referenced in Lua
 -- files, so disable them instead
 UPDATE Districts
-  SET MaxPerPlayer = 0
+  SET MaxPerPlayer = 0,
+    -- This makes it so the districts don't show up in the civics/tech tree
+    PrereqCivic = NULL,
+    PrereqTech = NULL
   WHERE DistrictType != 'DISTRICT_CITY_CENTER';
