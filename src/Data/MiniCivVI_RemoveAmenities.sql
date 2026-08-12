@@ -38,16 +38,16 @@ WHERE PrereqDistrict IN (
 -- Deleting districts can cause crashes because some districts are referenced in Lua
 -- files, so disable them instead
 UPDATE Districts
-  SET MaxPerPlayer = 0,
-    -- This makes it so the districts don't show up in the civics/tech tree
-    PrereqCivic = NULL,
-    PrereqTech = NULL
-  WHERE DistrictType IN (
-    -- Water park
-    'DISTRICT_WATER_ENTERTAINMENT_COMPLEX',
-    -- Copacabana
-    'DISTRICT_WATER_STREET_CARNIVAL'
-  );
+SET MaxPerPlayer = 0,
+  -- This makes it so the districts don't show up in the civics/tech tree
+  PrereqCivic = NULL,
+  PrereqTech = NULL
+WHERE DistrictType IN (
+  -- Water park
+  'DISTRICT_WATER_ENTERTAINMENT_COMPLEX',
+  -- Copacabana
+  'DISTRICT_WATER_STREET_CARNIVAL'
+);
 
 -- TODO:
 -- 1. [x] test that city amenity HUD is empty or removed (see screenshot)
