@@ -13,9 +13,7 @@ Because the mod is [unfinished](#status), only [manual installation](#manual-ins
 > [!TIP]
 > If you would like a Civ-like game that plays much more quickly, I recommend [Ozymandias](https://goblinzstudio.com/game/ozymandias/) instead.
 
-The mod is playable but unfinished.
-
-Civ 6 adds a lot of complexity compared to other Civ titles, which makes it difficult and tedious to try to play quickly and leads to decision fatigue. Unfortunately removing or simplifying these systems mostly just made the game less interesting. Further reading: [Sid Meier’s Civilization VI: The Kotaku Re-Review](https://kotaku.com/civilization-civ-vi-6-review-2023-retrospective-pc-sid-1850242218).
+Work in progress.
 
 ## Features
 
@@ -43,6 +41,8 @@ Some new game options have been added to better facilitate quicker games:
 
 👉 Note that there hasn't been much work to balance these
 
+- No Amenities
+  - Sets the required number of amenities to 0 for all cities
 - No Great People
   - Removes great people from the game
 - No Military

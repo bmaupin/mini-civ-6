@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <GameData>
     <EnglishText>
+        <Row Tag="LOC_MC6_NO_AMENITIES">
+            <Text>No Amenities</Text>
+        </Row>
+        <Row Tag="LOC_MC6_NO_AMENITIES_DESCRIPTION">
+            <Text>Enabling this option removes sets the required number of amenities to 0 for all cities.</Text>
+        </Row>
         <Row Tag="LOC_MC6_NO_GREAT_PEOPLE">
             <Text>No Great People</Text>
         </Row>

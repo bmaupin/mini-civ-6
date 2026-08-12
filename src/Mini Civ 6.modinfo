@@ -13,6 +13,13 @@
         <Criteria id="MiniCivVI_Standard_Ruleset">
             <RuleSetInUse>RULESET_STANDARD,RULESET_EXPANSION_1,RULESET_EXPANSION_2</RuleSetInUse>
         </Criteria>
+        <Criteria id="MiniCivVI_No_Amenities">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>MC6_NO_AMENITIES</ConfigurationId>
+                <Value>1</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
         <Criteria id="MiniCivVI_No_City_States">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
@@ -121,6 +128,13 @@
             <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
             <File>Data/CVI_BarbDiff_LOW.SQL</File>
         </UpdateDatabase>
+        <UpdateDatabase id="MiniCivVINoAmenities">
+            <Properties>
+                <LoadOrder>1000000</LoadOrder>
+            </Properties>
+            <Criteria>MiniCivVI_No_Amenities</Criteria>
+            <File>Data/MiniCivVI_RemoveAmenities.sql</File>
+        </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoCityStates">
             <Properties>
                 <LoadOrder>1000000</LoadOrder>
@@ -164,6 +178,7 @@
         <File>Data/MiniCivVI_ConfigFrontendHacks.sql</File>
         <File>Data/MiniCivVI_ConfigDataHacks.sql</File>
         <File>Data/MiniCivVI_ConfigIconHacks.sql</File>
+        <File>Data/MiniCivVI_RemoveAmenities.sql</File>
         <File>Data/MiniCivVI_RemoveCityStates.xml</File>
         <File>Data/MiniCivVI_RemoveGreatPeople.sql</File>
         <File>Data/MiniCivVI_RemoveMilitary.sql</File>
