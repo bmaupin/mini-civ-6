@@ -27,14 +27,14 @@ files_section_files=($(yq -p xml -oy '.Mod.Files.File | .[]? // .' "${mod_name}.
 
 for file in "${action_files[@]}"; do
     if [[ ! -f "$file" ]]; then
-        echo "Error: Missing file: $file"
+        echo -e "\e[31mError: Missing file: $file\e[0m"
         exit 1
     fi
 done
 
 for file in "${files_section_files[@]}"; do
     if [[ ! -f "$file" ]]; then
-        echo "Error: Missing file: $file"
+        echo -e "\e[31mError: Missing file: $file\e[0m"
         exit 1
     fi
 done
@@ -48,7 +48,7 @@ for file in "${action_files[@]}"; do
     fi
   done
   if [[ "$found" == false ]]; then
-    echo "Error: File '$file' from action_files is not listed in the <Files> section"
+    echo -e "\e[31mError: File '$file' from action_files is not listed in the <Files> section\e[0m"
     exit 1
   fi
 done
@@ -65,7 +65,7 @@ elif [[ -f "/home/$USER/.steam/steam/steamapps/common/Sid Meier's Civilization V
     exit 1
     # user_directory="/home/${USER}/.steam/steam/steamapps/compatdata/289070/pfx/drive_c/users/steamuser/Documents/My Games/Sid Meier's Civilization VI"
 else
-    echo "Error: Civ 6 not found"
+    echo -e "\e[31mError: Civ 6 not found\e[0m"
     exit 1
 fi
 
