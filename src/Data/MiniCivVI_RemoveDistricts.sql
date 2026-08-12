@@ -47,6 +47,11 @@ SET PrereqDistrict = 'DISTRICT_CITY_CENTER'
 WHERE PrereqDistrict IS NOT NULL
   AND PrereqDistrict NOT IN (SELECT DistrictType FROM DistrictsToKeep);
 
+UPDATE Buildings
+SET AdjacentDistrict = NULL
+WHERE AdjacentDistrict IS NOT NULL
+  AND AdjacentDistrict NOT IN (SELECT DistrictType FROM DistrictsToKeep);
+
 UPDATE Projects
 SET PrereqTech = (
   SELECT PrereqTech FROM Districts
