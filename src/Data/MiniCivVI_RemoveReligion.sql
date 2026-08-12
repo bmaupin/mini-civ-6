@@ -31,8 +31,6 @@ WHERE Kind = 'KIND_RELIGION'
   OR Type = 'CIVIC_REFORMED_CHURCH'
   OR Type = 'CIVIC_THEOLOGY'
   OR Type = 'DIPLOACTION_DECLARE_HOLY_WAR'
-  OR Type = 'DISTRICT_HOLY_SITE'
-  OR Type = 'DISTRICT_LAVRA'
   OR Type = 'GOVERNMENT_THEOCRACY'
   OR Type = 'IMPROVEMENT_MONASTERY'
   OR Type = 'SCORING_RELIGION'
@@ -69,3 +67,15 @@ WHERE CategoryType = 'CATEGORY_RELIGION';
 
 DELETE FROM ScoringLineItems
 WHERE LineItemType = 'LINE_ITEM_RELIGION';
+
+-- Deleting districts can cause crashes because some districts are referenced in Lua
+-- files, so disable them instead
+UPDATE Districts
+SET MaxPerPlayer = 0,
+  -- This makes it so the disabled districts don't show up in the civics/tech tree
+  PrereqCivic = NULL,
+  PrereqTech = NULL
+WHERE DistrictType IN (
+  'DISTRICT_HOLY_SITE',
+  'DISTRICT_LAVRA'
+);
