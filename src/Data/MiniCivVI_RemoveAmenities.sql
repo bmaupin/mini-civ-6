@@ -1,3 +1,11 @@
+-- Removing CAPABILITY_AMENITIES sets amenities the number of required amenities for a
+-- city to 0, which can be seen in the city UI. It will still show amenities from certain
+-- sources (e.g. "Amenities from Entertainment: 1") but the overall city amenities will be
+-- 0 ("0 Amenities of 0 Required") and the city status will be "Content."
+--
+-- NOTE: The amentities section will still show in the City Details panel. At the moment
+--       this is intentional since its out of the way and clearly shows in the UI that
+--       amenities are disabled.
 DELETE FROM Types WHERE Type = 'CAPABILITY_AMENITIES';
 DELETE FROM Types WHERE Type = 'CIVIC_GAMES_RECREATION';
 
@@ -48,12 +56,3 @@ WHERE DistrictType IN (
   -- Copacabana
   'DISTRICT_WATER_STREET_CARNIVAL'
 );
-
--- TODO:
--- 1. [x] test that city amenity HUD is empty or removed (see screenshot)
---    - Still showing up in UI: amenities from luxury resources, entertainment
--- 1. [x] does this disable entertainment complex district? no
--- 1. [x] does this disable games and recreation civic? no
--- 1. [ ] Hide amenities panel altogether? Should be easy
---    👉 Do this later; for now leave it as-is to see if amenities have an impact
---    - Override OnSelectHealthTab, call it then call Controls.PanelAmenities:SetHide(true) ??
