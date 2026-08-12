@@ -148,7 +148,7 @@
                 <LoadOrder>1000000</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_Religion</Criteria>
-            <File>Data/MiniCivVI_RemoveReligion.xml</File>
+            <File>Data/MiniCivVI_RemoveReligion.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVISmallerMaps">
             <File>Data/MiniCivVI_SmallerMaps.sql</File>
@@ -168,7 +168,7 @@
         <File>Data/MiniCivVI_RemoveGreatPeople.sql</File>
         <File>Data/MiniCivVI_RemoveMilitary.sql</File>
         <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
-        <File>Data/MiniCivVI_RemoveReligion.xml</File>
+        <File>Data/MiniCivVI_RemoveReligion.sql</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
         <File>Scripts/Autoplay.lua</File>
         <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
