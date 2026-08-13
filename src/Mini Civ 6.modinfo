@@ -60,6 +60,13 @@
                 <Value>1</Value>
             </ConfigurationValueMatches>
         </Criteria>
+        <Criteria id="MiniCivVI_Remove_Districts">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>MC6_REMOVE_DISTRICTS</ConfigurationId>
+                <Value>1</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
     </ActionCriteria>
     <!-- This is where anything modifying data under Assets/Configuration/ goes -->
     <FrontEndActions>
@@ -163,6 +170,14 @@
             </Properties>
             <Criteria>MiniCivVI_No_Religion</Criteria>
             <File>Data/MiniCivVI_RemoveReligion.sql</File>
+        </UpdateDatabase>
+        <UpdateDatabase id="MiniCivVIRemoveDistricts">
+            <Properties>
+                <!-- This needs to happen after other changes, otherwise it messes up other options that rely on district prerequisites for changing game data -->
+                <LoadOrder>1000001</LoadOrder>
+            </Properties>
+            <Criteria>MiniCivVI_Remove_Districts</Criteria>
+            <File>Data/MiniCivVI_RemoveDistricts.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVISmallerMaps">
             <File>Data/MiniCivVI_SmallerMaps.sql</File>

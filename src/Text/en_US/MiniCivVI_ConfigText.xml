@@ -31,5 +31,11 @@
         <Row Tag="LOC_MC6_NO_RELIGION_DESCRIPTION">
             <Text>Enabling this option removes religion, faith, pantheons and all related items from the game.</Text>
         </Row>
+        <Row Tag="LOC_MC6_REMOVE_DISTRICTS">
+            <Text>Remove Most Districts</Text>
+        </Row>
+        <Row Tag="LOC_MC6_REMOVE_DISTRICTS_DESCRIPTION">
+            <Text>Enabling this option removes most districts from the game. Buildings are instead built in the city centre.</Text>
+        </Row>
     </EnglishText>
 </GameData>
