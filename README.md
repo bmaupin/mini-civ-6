@@ -51,6 +51,8 @@ Some new game options have been added to better facilitate quicker games:
   - Removes policy cards completely from the game and modifies the Governments screen to not show the Policy tab
 - No Religion
   - Removes religion, faith, pantheons and all related items from the game
+- Remove Most Districts
+  - Removes most districts from the game. Buildings are instead built in the city centre.
 
 #### Civic/tech boosted popups disabled
 
