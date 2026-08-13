@@ -22,3 +22,8 @@ SET
 -- extreme. Adjust as needed.
 UPDATE Maps
 SET NumNaturalWonders = CAST((NumNaturalWonders * 0.45) + 0.5 AS INTEGER);
+
+-- Remove the warning from AI players that we settled too close
+DELETE FROM TraitModifiers
+  WHERE TraitType = 'TRAIT_LEADER_MAJOR_CIV'
+    AND ModifierId = 'STANDARD_DIPLOMACY_SETTLED_CITIES';

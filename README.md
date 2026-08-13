@@ -54,11 +54,10 @@ Some new game options have been added to better facilitate quicker games:
 - Remove Most Districts
   - Removes most districts from the game. Buildings are instead built in the city centre.
 
-#### Civic/tech boosted popups disabled
+#### Other small tweaks
 
-> Disables the Tech Boosted (Eureka) and Civic Boosted (Inspiration) popup windows which interrupts your gameplay. Tech boosted and Civic boosted notification still appear on notification panel and the popup can be displayed by clicking on notification.
-
-See [Credits](#credits) below for more information
+- Civic/tech boosted popups disabled
+- Removed AI warning for settling too close
 
 ## Manual installation
 
