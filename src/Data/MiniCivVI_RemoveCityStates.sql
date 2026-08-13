@@ -1,5 +1,6 @@
 DELETE FROM Types
 WHERE Type IN (
+  'BUILDING_APADANA',
   -- City HUD
   'CAPABILITY_CITY_HUD_AMENITIES_CITY_STATES',
   -- Can the user open city states panel
