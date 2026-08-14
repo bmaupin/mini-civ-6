@@ -1,19 +1,15 @@
+local NO_FEATURE = -1;
 local NO_IMPROVEMENT = -1;
 local NO_RESOURCE = -1;
-local NO_TEAM = -1;
+local NO_TERRAIN = -1;
 
-local FEATURE_FLOODPLAINS_INDEX = GameInfo.Features["FEATURE_FLOODPLAINS"].Index;
-local FEATURE_FOREST_INDEX = GameInfo.Features["FEATURE_FOREST"].Index;
--- TODO: Gathering Storm only
--- local FEATURE_RAINFOREST_INDEX = GameInfo.Features["FEATURE_RAINFOREST"].Index;
-
-local TERRAIN_DESERT_HILLS_INDEX = GameInfo.Terrains["TERRAIN_DESERT_HILLS"].Index;
-local TERRAIN_GRASS_INDEX = GameInfo.Terrains["TERRAIN_GRASS"].Index;
-local TERRAIN_GRASS_HILLS_INDEX = GameInfo.Terrains["TERRAIN_GRASS_HILLS"].Index;
-local TERRAIN_PLAINS_INDEX = GameInfo.Terrains["TERRAIN_PLAINS"].Index;
-local TERRAIN_PLAINS_HILLS_INDEX = GameInfo.Terrains["TERRAIN_PLAINS_HILLS"].Index;
-local TERRAIN_SNOW_HILLS_INDEX = GameInfo.Terrains["TERRAIN_SNOW_HILLS"].Index;
-local TERRAIN_TUNDRA_HILLS_INDEX = GameInfo.Terrains["TERRAIN_TUNDRA_HILLS"].Index;
+-- Aside from resource improvements (which are all automated), only automate these
+-- improvements for features and terrain
+local IMPROVEMENTS_TO_AUTOMATE = {
+    "IMPROVEMENT_LUMBER_MILL",
+    "IMPROVEMENT_MINE",
+    "IMPROVEMENT_FARM",
+};
 
 function PlotHasImprovement(plot)
     if (plot:GetImprovementType() == NO_IMPROVEMENT) then
@@ -31,6 +27,11 @@ function CanImprovementBeAdded(plot, improvement, player)
     -- None of the improvements we're concerned with have Goody, PrereqCivic, TraitType, etc.
     local prereqTech = improvement.PrereqTech;
 
+    print("**************************************** ImprovementBuilder.CanHaveImprovement=" .. tostring(ImprovementBuilder.CanHaveImprovement(plot, improvement.Index, player:GetTeam())));
+
+    -- ImprovementBuilder.CanHaveImprovement seems to return false if
+    -- - There's a wonder on the tile
+    -- - There's a district on the tile
     if (
         ImprovementBuilder.CanHaveImprovement(plot, improvement.Index, player:GetTeam()) and
         (
@@ -43,11 +44,20 @@ function CanImprovementBeAdded(plot, improvement, player)
     return false;
 end
 
+function PlaceImprovement(plot, player, improvementType)
+    local improvement = GameInfo.Improvements[improvementType];
+
+    print("**************************************** improvementType=" .. tostring(improvementType));
+
+    if (CanImprovementBeAdded(plot, improvement, player)) then
+        print("**************************************** Adding improvement " .. tostring(improvement.ImprovementType) .. " to plot " .. tostring(plot:GetX()) .. "," .. tostring(plot:GetY()));
+        ImprovementBuilder.SetImprovementType(plot, improvement.Index, plot:GetOwner());
+        return;
+    end
+end
+
 function AddImprovementsToPlot(plot, player)
     if plot ~= nil and not PlotHasImprovement(plot) then
-        local improvementType = nil;
-        local mustRemoveFeature = false;
-
         local featureIndex = plot:GetFeatureType();
         local resourceIndex = plot:GetResourceType();
         local terrainIndex = plot:GetTerrainType();
@@ -57,45 +67,45 @@ function AddImprovementsToPlot(plot, player)
         print("**************************************** resourceType=" .. tostring(resourceIndex));
         print("**************************************** terrainType=" .. tostring(terrainIndex));
 
+        -- Since there is no fallback logic, prioritise resource improvements, then
+        -- features, then terrain
         if (resourceIndex ~= NO_RESOURCE) then
             for row in GameInfo.Improvement_ValidResources() do
                 local resource = GameInfo.Resources[row.ResourceType];
                 if (resource.Index == resourceIndex) then
-                    -- TODO: What if a resource requires the terrain feature to be removed? (MustRemoveFeature)
-                    improvementType = row.ImprovementType;
-                    mustRemoveFeature = row.MustRemoveFeature;
-                    break;
+                    print("**************************************** mustRemoveFeature=" .. tostring(row.MustRemoveFeature));
+                    PlaceImprovement(plot, player, row.ImprovementType);
+                    return;
                 end
             end
 
-        elseif (featureIndex == FEATURE_FOREST_INDEX) then
-          -- TODO: Gathering Storm only
-          -- featureType == FEATURE_RAINFOREST_INDEX) then
-            improvementType = "IMPROVEMENT_LUMBER_MILL";
+        elseif (featureIndex ~= NO_FEATURE) then
+            for row in GameInfo.Improvement_ValidFeatures() do
+                local feature = GameInfo.Features[row.FeatureType];
+                if (feature.Index == featureIndex) then
+                    for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
+                        if row.ImprovementType == improvementType then
+                            PlaceImprovement(plot, player, improvementType);
+                            return;
+                        end
+                    end
+                end
+            end
 
-        elseif (terrainIndex == TERRAIN_DESERT_HILLS_INDEX or
-          terrainIndex == TERRAIN_GRASS_HILLS_INDEX or
-          terrainIndex == TERRAIN_PLAINS_HILLS_INDEX or
-          terrainIndex == TERRAIN_SNOW_HILLS_INDEX or
-          terrainIndex == TERRAIN_TUNDRA_HILLS_INDEX) then
-            improvementType = "IMPROVEMENT_MINE";
-
-        elseif (featureIndex == FEATURE_FLOODPLAINS_INDEX or
-          terrainIndex == TERRAIN_GRASS_INDEX or
-          terrainIndex == TERRAIN_PLAINS_INDEX) then
-            improvementType = "IMPROVEMENT_FARM";
-        end
-
-        local improvement = GameInfo.Improvements[improvementType];
-
-        print("**************************************** improvementType=" .. tostring(improvementType));
-        print("**************************************** mustRemoveFeature=" .. tostring(mustRemoveFeature));
-
-        if (CanImprovementBeAdded(plot, improvement, player)) then
-            print("**************************************** CanHaveImprovement=" .. tostring(ImprovementBuilder.CanHaveImprovement(plot, improvement.Index, NO_TEAM)));
-            print("**************************************** Adding improvement " .. tostring(improvement.ImprovementType) .. " to plot " .. tostring(plot:GetX()) .. "," .. tostring(plot:GetY()));
-            ImprovementBuilder.SetImprovementType(plot, improvement.Index, plot:GetOwner());
-            return;
+        elseif (terrainIndex ~= NO_TERRAIN) then
+            for row in GameInfo.Improvement_ValidTerrains() do
+                local terrain = GameInfo.Terrains[row.TerrainType];
+                if (terrain.Index == terrainIndex) then
+                    for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
+                        -- Filtering out PrereqCivic ensures hils on plains/grassland get
+                        -- mines, not farms
+                        if row.PrereqCivic == nil and row.ImprovementType == improvementType then
+                            PlaceImprovement(plot, player, improvementType);
+                            return;
+                        end
+                    end
+                end
+            end
         end
     end
 end
