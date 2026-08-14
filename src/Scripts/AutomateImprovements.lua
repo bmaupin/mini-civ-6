@@ -1,3 +1,6 @@
+-- Automatically repair a pillaged tile after this many turns
+local REPAIR_PILLAGED_TILES_TURNS = 3;
+
 local NO_FEATURE = -1;
 local NO_IMPROVEMENT = -1;
 local NO_RESOURCE = -1;
@@ -174,3 +177,36 @@ Events.ResearchCompleted.Add(OnResearchCompleted);
 --     end
 -- end
 -- LuaEvents.NewGameInitialized.Add(AddImprovements);
+
+
+
+local pillagedImprovements = {};
+
+function OnImprovementPillaged(plotIndex, improvementIndex)
+    print("**************************************** OnImprovementPillaged()");
+    print("**************************************** plotIndex=", plotIndex);
+    print("**************************************** improvementIndex=", improvementIndex);
+    if (improvementIndex ~= NO_IMPROVEMENT and plotIndex ~= nil) then
+        print("**************************************** pillagedImprovements[" .. tostring(plotIndex) .. "] = " .. tostring(Game.GetCurrentGameTurn()));
+        pillagedImprovements[plotIndex] = Game.GetCurrentGameTurn();
+    end
+end
+GameEvents.OnImprovementPillaged.Add(OnImprovementPillaged);
+
+function RepairPillagedTiles(_playerID)
+    print("**************************************** RepairPillagedTiles()");
+    local currentTurn = Game.GetCurrentGameTurn();
+    for plotIndex, turnPillaged in pairs(pillagedImprovements) do
+        print("**************************************** pillagedImprovements[" .. tostring(plotIndex) .. "] = " .. tostring(turnPillaged));
+        if (currentTurn >= turnPillaged + REPAIR_PILLAGED_TILES_TURNS) then
+            local plot = Map.GetPlotByIndex(plotIndex);
+            if plot ~= nil and PlotHasImprovement(plot) then
+                print("**************************************** repairing pillaged plot");
+                ImprovementBuilder.SetImprovementPillaged(plot, false);
+            end
+            pillagedImprovements[plotIndex] = nil;
+        end
+    end
+end
+-- Only run once per game turn, not once for every player turn
+GameEvents.OnGameTurnStarted.Add(RepairPillagedTiles);
