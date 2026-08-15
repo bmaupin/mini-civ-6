@@ -1,5 +1,5 @@
 -- Automatically repair a pillaged tile after this many turns
-local REPAIR_PILLAGED_TILES_TURNS = 3;
+local REPAIR_PILLAGED_TILES_TURNS = 20;
 
 local NO_FEATURE = -1;
 local NO_IMPROVEMENT = -1;
@@ -192,6 +192,29 @@ function OnImprovementPillaged(plotIndex, improvementIndex)
     end
 end
 GameEvents.OnImprovementPillaged.Add(OnImprovementPillaged);
+
+-- When a game is first loaded, get any pillaged tiles so that they can be automatically
+-- repaired since the OnImprovementPillaged event won't fire for already pillaged tiles
+function GetPillagedTiles()
+    print("**************************************** GetPillagedTiles()")
+    local players = PlayerManager.GetAliveMajors()
+    for _, player in ipairs(players) do
+        local playerCities = player:GetCities();
+        for _, city in playerCities:Members() do
+            for _, plot in pairs(GetCityPlots(city)) do
+                if plot ~= nil and PlotHasImprovement(plot) and plot:IsImprovementPillaged() then
+                    print("**************************************** pillagedImprovements[" .. tostring(plot:GetIndex()) .. "] = " .. tostring(Game.GetCurrentGameTurn()));
+                    -- Since we don't know how long the tile has been pillaged for, it
+                    -- could have been pillaged anywhere from 0 to REPAIR_PILLAGED_TILES_TURNS
+                    -- turns, so divide by two to simulate an average
+                    pillagedImprovements[plot:GetIndex()] = Game.GetCurrentGameTurn() - (REPAIR_PILLAGED_TILES_TURNS / 2);
+                end
+            end
+        end
+    end
+end
+-- Run this any time a game is loaded, not just for newly started games
+Events.LoadGameViewStateDone.Add(GetPillagedTiles);
 
 function RepairPillagedTiles(_playerID)
     print("**************************************** RepairPillagedTiles()");
