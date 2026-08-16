@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <GameData>
     <EnglishText>
+        <Row Tag="LOC_MC6_AUTO_IMPROVEMENTS">
+            <Text>Automate Improvements</Text>
+        </Row>
+        <Row Tag="LOC_MC6_AUTO_IMPROVEMENTS_DESCRIPTION">
+            <Text>Enabling this option will automatically add farms, lumber huts, mines, and improvements for resources and remove these improvements from builders. Pillaged tiles will automatically be repaired after 20 turns.</Text>
+        </Row>
         <Row Tag="LOC_MC6_NO_AMENITIES">
             <Text>No Amenities</Text>
         </Row>

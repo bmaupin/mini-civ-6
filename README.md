@@ -41,6 +41,8 @@ Some new game options have been added to better facilitate quicker games:
 
 👉 Note that there hasn't been much work to balance these
 
+- Automated Improvments
+  - Farms, lumber huts, mines, and improvements for resources will be automatically added as they become available, and these improvments are removed from builders. Pillaged tiles will automatically be repaired after 20 turns.
 - No Amenities
   - Sets the required number of amenities to 0 for all cities
 - No Great People

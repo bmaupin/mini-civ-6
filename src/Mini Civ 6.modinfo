@@ -13,6 +13,13 @@
         <Criteria id="MiniCivVI_Standard_Ruleset">
             <RuleSetInUse>RULESET_STANDARD,RULESET_EXPANSION_1,RULESET_EXPANSION_2</RuleSetInUse>
         </Criteria>
+        <Criteria id="MiniCivVI_Automate_Improvements">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>MC6_AUTO_IMPROVEMENTS</ConfigurationId>
+                <Value>1</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
         <Criteria id="MiniCivVI_No_Amenities">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
@@ -83,6 +90,10 @@
         <!-- <AddGameplayScripts id="MiniCivVIAutoplay">
             <File>Scripts/Autoplay.lua</File>
         </AddGameplayScripts> -->
+        <AddGameplayScripts id="MiniCivVIAutomateImprovementsScripts">
+            <Criteria>MiniCivVI_Automate_Improvements</Criteria>
+            <File>Scripts/AutomateImprovements.lua</File>
+        </AddGameplayScripts>
         <ReplaceUIScript id="MiniCivVIDisableBoostPopups">
             <Properties>
                 <Context>InGame</Context>
@@ -109,9 +120,16 @@
             </Properties>
             <Criteria>MiniCivVI_No_Policies</Criteria>
         </ReplaceUIScript>
+        <UpdateDatabase id="MiniCivVIAutomateImprovementsDatabase">
+            <Properties>
+                <!-- This is needed so that this file will be loaded after DLC, otherwise DLC that make changes to removed systems will break -->
+                <LoadOrder>1000000</LoadOrder>
+            </Properties>
+            <Criteria>MiniCivVI_Automate_Improvements</Criteria>
+            <File>Data/MiniCivVI_AutomateImprovements.sql</File>
+        </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoMilitary">
             <Properties>
-            <!-- This is needed so that this file will be loaded after DLC, otherwise DLC that make changes to religion will break after religion has been removed -->
                 <LoadOrder>1000000</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_Military</Criteria>
@@ -188,6 +206,7 @@
     </InGameActions>
     <Files>
         <File>Data/CVI_BarbDiff_LOW.SQL</File>
+        <File>Data/MiniCivVI_AutomateImprovements.sql</File>
         <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
         <File>Data/MiniCivVI_ConfigFrontendHacks.sql</File>
@@ -200,6 +219,7 @@
         <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
         <File>Data/MiniCivVI_RemoveReligion.sql</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
+        <File>Scripts/AutomateImprovements.lua</File>
         <File>Scripts/Autoplay.lua</File>
         <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
         <File>UI/Replacements/BoostUnlockedPopup_Disabled.lua</File>
