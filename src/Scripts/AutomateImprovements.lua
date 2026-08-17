@@ -47,69 +47,73 @@ function CanImprovementBeAdded(plot, improvement, player)
     return false;
 end
 
-function PlaceImprovement(plot, player, improvementType)
+function GetImprovementForPlot(plot)
+    if plot == nil or PlotHasImprovement(plot) then
+        return;
+    end
+
+    local featureIndex = plot:GetFeatureType();
+    local resourceIndex = plot:GetResourceType();
+    local terrainIndex = plot:GetTerrainType();
+
+    print("**************************************** plot x,y=" .. tostring(plot:GetX()) .. "," .. tostring(plot:GetY()));
+    print("**************************************** featureType=" .. tostring(featureIndex));
+    print("**************************************** resourceType=" .. tostring(resourceIndex));
+    print("**************************************** terrainType=" .. tostring(terrainIndex));
+
+    -- Since there is no fallback logic, prioritise resource improvements, then
+    -- features, then terrain
+    if (resourceIndex ~= NO_RESOURCE) then
+        for row in GameInfo.Improvement_ValidResources() do
+            local resource = GameInfo.Resources[row.ResourceType];
+            if (resource.Index == resourceIndex) then
+                print("**************************************** mustRemoveFeature=" .. tostring(row.MustRemoveFeature));
+                return row.ImprovementType;
+            end
+        end
+
+    elseif (featureIndex ~= NO_FEATURE) then
+        for row in GameInfo.Improvement_ValidFeatures() do
+            local feature = GameInfo.Features[row.FeatureType];
+            if (feature.Index == featureIndex) then
+                for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
+                    if row.ImprovementType == improvementType then
+                        return improvementType;
+                    end
+                end
+            end
+        end
+
+    elseif (terrainIndex ~= NO_TERRAIN) then
+        for row in GameInfo.Improvement_ValidTerrains() do
+            local terrain = GameInfo.Terrains[row.TerrainType];
+            if (terrain.Index == terrainIndex) then
+                for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
+                    -- Filtering out PrereqCivic ensures hils on plains/grassland get
+                    -- mines, not farms
+                    if row.PrereqCivic == nil and row.ImprovementType == improvementType then
+                        return improvementType;
+                    end
+                end
+            end
+        end
+    end
+end
+
+function AddImprovementToPlot(plot, player)
+    local improvementType = GetImprovementForPlot(plot)
+    if (improvementType == nil) then
+        return;
+    end
+
     local improvement = GameInfo.Improvements[improvementType];
 
     print("**************************************** improvementType=" .. tostring(improvementType));
 
     if (CanImprovementBeAdded(plot, improvement, player)) then
-        print("**************************************** Adding improvement " .. tostring(improvement.ImprovementType) .. " to plot " .. tostring(plot:GetX()) .. "," .. tostring(plot:GetY()));
+        print("**************************************** Adding improvement " .. tostring(improvementType) .. " to plot " .. tostring(plot:GetX()) .. "," .. tostring(plot:GetY()));
         ImprovementBuilder.SetImprovementType(plot, improvement.Index, plot:GetOwner());
         return;
-    end
-end
-
-function AddImprovementsToPlot(plot, player)
-    if plot ~= nil and not PlotHasImprovement(plot) then
-        local featureIndex = plot:GetFeatureType();
-        local resourceIndex = plot:GetResourceType();
-        local terrainIndex = plot:GetTerrainType();
-
-        print("**************************************** plot x,y=" .. tostring(plot:GetX()) .. "," .. tostring(plot:GetY()));
-        print("**************************************** featureType=" .. tostring(featureIndex));
-        print("**************************************** resourceType=" .. tostring(resourceIndex));
-        print("**************************************** terrainType=" .. tostring(terrainIndex));
-
-        -- Since there is no fallback logic, prioritise resource improvements, then
-        -- features, then terrain
-        if (resourceIndex ~= NO_RESOURCE) then
-            for row in GameInfo.Improvement_ValidResources() do
-                local resource = GameInfo.Resources[row.ResourceType];
-                if (resource.Index == resourceIndex) then
-                    print("**************************************** mustRemoveFeature=" .. tostring(row.MustRemoveFeature));
-                    PlaceImprovement(plot, player, row.ImprovementType);
-                    return;
-                end
-            end
-
-        elseif (featureIndex ~= NO_FEATURE) then
-            for row in GameInfo.Improvement_ValidFeatures() do
-                local feature = GameInfo.Features[row.FeatureType];
-                if (feature.Index == featureIndex) then
-                    for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
-                        if row.ImprovementType == improvementType then
-                            PlaceImprovement(plot, player, improvementType);
-                            return;
-                        end
-                    end
-                end
-            end
-
-        elseif (terrainIndex ~= NO_TERRAIN) then
-            for row in GameInfo.Improvement_ValidTerrains() do
-                local terrain = GameInfo.Terrains[row.TerrainType];
-                if (terrain.Index == terrainIndex) then
-                    for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
-                        -- Filtering out PrereqCivic ensures hils on plains/grassland get
-                        -- mines, not farms
-                        if row.PrereqCivic == nil and row.ImprovementType == improvementType then
-                            PlaceImprovement(plot, player, improvementType);
-                            return;
-                        end
-                    end
-                end
-            end
-        end
     end
 end
 
@@ -120,7 +124,7 @@ function OnCityTileOwnershipChanged(ownerID, _cityID, plotX, plotY)
     end
 
     local plot = Map.GetPlot(plotX, plotY);
-    AddImprovementsToPlot(plot, player);
+    AddImprovementToPlot(plot, player);
 end
 Events.CityTileOwnershipChanged.Add(OnCityTileOwnershipChanged);
 
@@ -159,7 +163,7 @@ function OnResearchCompleted(playerID, _techID)
     local playerCities = player:GetCities();
     for _, city in playerCities:Members() do
         for _, plot in pairs(GetCityPlots(city)) do
-            AddImprovementsToPlot(plot, player);
+            AddImprovementToPlot(plot, player);
         end
     end
 end
