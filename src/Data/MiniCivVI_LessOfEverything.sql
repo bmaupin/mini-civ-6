@@ -38,3 +38,7 @@ SET MaxPerPlayer = 0,
 WHERE DistrictType IN (SELECT DistrictType FROM DistrictsToDisable);
 
 DROP TABLE IF EXISTS DistrictsToDisable;
+
+
+-- Remove hidden agendas; can only be discovered with espionage and they're annoyingly random
+DELETE FROM RandomAgendas;
