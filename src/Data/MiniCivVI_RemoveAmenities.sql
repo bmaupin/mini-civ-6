@@ -14,7 +14,14 @@ DELETE FROM Types WHERE Type = 'CIVIC_GAMES_RECREATION';
 -- are deleted, district prerequisites get removed. So instead we should delete anything
 -- that has those districts as a prerequisite.
 DELETE FROM Buildings
-WHERE PrereqDistrict IN (
+-- Colosseum, Estádio do Maracanã
+WHERE AdjacentDistrict IN (
+  'DISTRICT_ENTERTAINMENT_COMPLEX',
+  'DISTRICT_HIPPODROME',
+  'DISTRICT_STREET_CARNIVAL',
+  'DISTRICT_WATER_ENTERTAINMENT_COMPLEX',
+  'DISTRICT_WATER_STREET_CARNIVAL'
+) OR PrereqDistrict IN (
   'DISTRICT_ENTERTAINMENT_COMPLEX',
   'DISTRICT_HIPPODROME',
   'DISTRICT_STREET_CARNIVAL',
