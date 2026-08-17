@@ -47,6 +47,11 @@ function CanImprovementBeAdded(plot, improvement, player)
     return false;
 end
 
+-- Cache feature/resource/terrain to improvement lookups; inspired by warmachinescenario.lua
+local FeatureToImprovements = {};
+local ResourceToImprovements = {};
+local TerrainToImprovements = {};
+
 function GetImprovementForPlot(plot)
     if plot == nil or PlotHasImprovement(plot) then
         return;
@@ -64,35 +69,50 @@ function GetImprovementForPlot(plot)
     -- Since there is no fallback logic, prioritise resource improvements, then
     -- features, then terrain
     if (resourceIndex ~= NO_RESOURCE) then
-        for row in GameInfo.Improvement_ValidResources() do
-            local resource = GameInfo.Resources[row.ResourceType];
-            if (resource.Index == resourceIndex) then
-                print("**************************************** mustRemoveFeature=" .. tostring(row.MustRemoveFeature));
-                return row.ImprovementType;
+		if (ResourceToImprovements[resourceIndex] ~= nil) then
+			return ResourceToImprovements[resourceIndex];
+		else
+            for row in GameInfo.Improvement_ValidResources() do
+                local resource = GameInfo.Resources[row.ResourceType];
+                if (resource.Index == resourceIndex) then
+                    print("**************************************** mustRemoveFeature=" .. tostring(row.MustRemoveFeature));
+                    ResourceToImprovements[resourceIndex] = row.ImprovementType;
+                    return row.ImprovementType;
+                end
             end
         end
 
     elseif (featureIndex ~= NO_FEATURE) then
-        for row in GameInfo.Improvement_ValidFeatures() do
-            local feature = GameInfo.Features[row.FeatureType];
-            if (feature.Index == featureIndex) then
-                for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
-                    if row.ImprovementType == improvementType then
-                        return improvementType;
+		if (FeatureToImprovements[featureIndex] ~= nil) then
+			return FeatureToImprovements[featureIndex];
+		else
+            for row in GameInfo.Improvement_ValidFeatures() do
+                local feature = GameInfo.Features[row.FeatureType];
+                if (feature.Index == featureIndex) then
+                    for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
+                        if row.ImprovementType == improvementType then
+                            FeatureToImprovements[featureIndex] = improvementType;
+                            return improvementType;
+                        end
                     end
                 end
             end
         end
 
     elseif (terrainIndex ~= NO_TERRAIN) then
-        for row in GameInfo.Improvement_ValidTerrains() do
-            local terrain = GameInfo.Terrains[row.TerrainType];
-            if (terrain.Index == terrainIndex) then
-                for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
-                    -- Filtering out PrereqCivic ensures hils on plains/grassland get
-                    -- mines, not farms
-                    if row.PrereqCivic == nil and row.ImprovementType == improvementType then
-                        return improvementType;
+		if (TerrainToImprovements[terrainIndex] ~= nil) then
+			return TerrainToImprovements[terrainIndex];
+		else
+            for row in GameInfo.Improvement_ValidTerrains() do
+                local terrain = GameInfo.Terrains[row.TerrainType];
+                if (terrain.Index == terrainIndex) then
+                    for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
+                        -- Filtering out PrereqCivic ensures hils on plains/grassland get
+                        -- mines, not farms
+                        if row.PrereqCivic == nil and row.ImprovementType == improvementType then
+                            TerrainToImprovements[terrainIndex] = improvementType;
+                            return improvementType;
+                        end
                     end
                 end
             end
@@ -101,7 +121,7 @@ function GetImprovementForPlot(plot)
 end
 
 function AddImprovementToPlot(plot, player)
-    local improvementType = GetImprovementForPlot(plot)
+    local improvementType = GetImprovementForPlot(plot);
     if (improvementType == nil) then
         return;
     end
