@@ -1,0 +1,2 @@
+DELETE FROM Types
+WHERE Type = 'UNIT_BUILDER';
