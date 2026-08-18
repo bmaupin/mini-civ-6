@@ -174,12 +174,7 @@ function GetCityPlots(pCity)
 	return tTempTable;
 end
 
-function OnResearchCompleted(playerID, _techID)
-    local player = Players[playerID];
-    if (not player:IsAlive() or not player:IsMajor()) then
-        return;
-    end
-
+function AddImprovementsToPlayerCities(player)
     local playerCities = player:GetCities();
     for _, city in playerCities:Members() do
         for _, plot in pairs(GetCityPlots(city)) do
@@ -187,22 +182,25 @@ function OnResearchCompleted(playerID, _techID)
         end
     end
 end
+
+function OnResearchCompleted(playerID, _techID)
+    local player = Players[playerID];
+    if (not player:IsAlive() or not player:IsMajor()) then
+        return;
+    end
+
+    AddImprovementsToPlayerCities(player);
+end
 Events.ResearchCompleted.Add(OnResearchCompleted);
 
--- TODO: Add improvements when the game is first started? e.g. for scenarios
--- function AddImprovements()
---     print("**************************************** AddImprovements")
---     local players = PlayerManager.GetAliveMajors()
---     for _, player in ipairs(players) do
---         local playerCities = player:GetCities();
---         for _, city in playerCities:Members() do
---             AddImprovementsToCity(city, player);
---         end
---     end
--- end
--- LuaEvents.NewGameInitialized.Add(AddImprovements);
-
-
+-- Add improvements when the game is first started, e.g. for scenarios
+function AddImprovementsAtGameStart()
+    local players = PlayerManager.GetAliveMajors();
+    for _, player in ipairs(players) do
+        AddImprovementsToPlayerCities(player);
+    end
+end
+LuaEvents.NewGameInitialized.Add(AddImprovementsAtGameStart);
 
 local pillagedImprovements = {};
 
@@ -221,7 +219,7 @@ GameEvents.OnImprovementPillaged.Add(OnImprovementPillaged);
 -- repaired since the OnImprovementPillaged event won't fire for already pillaged tiles
 function GetPillagedTiles()
     print("**************************************** GetPillagedTiles()")
-    local players = PlayerManager.GetAliveMajors()
+    local players = PlayerManager.GetAliveMajors();
     for _, player in ipairs(players) do
         local playerCities = player:GetCities();
         for _, city in playerCities:Members() do
