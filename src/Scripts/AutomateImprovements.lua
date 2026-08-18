@@ -9,9 +9,9 @@ local NO_TERRAIN = -1;
 -- Aside from resource improvements (which are all automated), only automate these
 -- improvements for features and terrain
 local IMPROVEMENTS_TO_AUTOMATE = {
-    "IMPROVEMENT_LUMBER_MILL",
-    "IMPROVEMENT_MINE",
-    "IMPROVEMENT_FARM",
+    ["IMPROVEMENT_LUMBER_MILL"] = true,
+    ["IMPROVEMENT_MINE"] = true,
+    ["IMPROVEMENT_FARM"] = true,
 };
 
 function PlotHasImprovement(plot)
@@ -48,9 +48,9 @@ function CanImprovementBeAdded(plot, improvement, player)
 end
 
 -- Cache feature/resource/terrain to improvement lookups; inspired by warmachinescenario.lua
-local FeatureToImprovements = {};
-local ResourceToImprovements = {};
-local TerrainToImprovements = {};
+local FeatureToImprovement = {};
+local ResourceToImprovement = {};
+local TerrainToImprovement = {};
 
 function GetImprovementForPlot(plot)
     if plot == nil or PlotHasImprovement(plot) then
@@ -69,50 +69,46 @@ function GetImprovementForPlot(plot)
     -- Since there is no fallback logic, prioritise resource improvements, then
     -- features, then terrain
     if (resourceIndex ~= NO_RESOURCE) then
-		if (ResourceToImprovements[resourceIndex] ~= nil) then
-			return ResourceToImprovements[resourceIndex];
+		if (ResourceToImprovement[resourceIndex] ~= nil) then
+			return ResourceToImprovement[resourceIndex];
 		else
             for row in GameInfo.Improvement_ValidResources() do
                 local resource = GameInfo.Resources[row.ResourceType];
                 if (resource.Index == resourceIndex) then
                     print("**************************************** mustRemoveFeature=" .. tostring(row.MustRemoveFeature));
-                    ResourceToImprovements[resourceIndex] = row.ImprovementType;
+                    ResourceToImprovement[resourceIndex] = row.ImprovementType;
                     return row.ImprovementType;
                 end
             end
         end
 
     elseif (featureIndex ~= NO_FEATURE) then
-		if (FeatureToImprovements[featureIndex] ~= nil) then
-			return FeatureToImprovements[featureIndex];
+		if (FeatureToImprovement[featureIndex] ~= nil) then
+			return FeatureToImprovement[featureIndex];
 		else
             for row in GameInfo.Improvement_ValidFeatures() do
                 local feature = GameInfo.Features[row.FeatureType];
                 if (feature.Index == featureIndex) then
-                    for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
-                        if row.ImprovementType == improvementType then
-                            FeatureToImprovements[featureIndex] = improvementType;
-                            return improvementType;
-                        end
+                    if IMPROVEMENTS_TO_AUTOMATE[row.ImprovementType] then
+                        FeatureToImprovement[featureIndex] = row.ImprovementType;
+                        return row.ImprovementType;
                     end
                 end
             end
         end
 
     elseif (terrainIndex ~= NO_TERRAIN) then
-		if (TerrainToImprovements[terrainIndex] ~= nil) then
-			return TerrainToImprovements[terrainIndex];
+		if (TerrainToImprovement[terrainIndex] ~= nil) then
+			return TerrainToImprovement[terrainIndex];
 		else
             for row in GameInfo.Improvement_ValidTerrains() do
                 local terrain = GameInfo.Terrains[row.TerrainType];
                 if (terrain.Index == terrainIndex) then
-                    for _, improvementType in ipairs(IMPROVEMENTS_TO_AUTOMATE) do
-                        -- Filtering out PrereqCivic ensures hils on plains/grassland get
-                        -- mines, not farms
-                        if row.PrereqCivic == nil and row.ImprovementType == improvementType then
-                            TerrainToImprovements[terrainIndex] = improvementType;
-                            return improvementType;
-                        end
+                    -- Filtering out PrereqCivic ensures hils on plains/grassland get
+                    -- mines, not farms
+                    if IMPROVEMENTS_TO_AUTOMATE[row.ImprovementType] and row.PrereqCivic == nil then
+                        TerrainToImprovement[terrainIndex] = row.ImprovementType;
+                        return row.ImprovementType;
                     end
                 end
             end
