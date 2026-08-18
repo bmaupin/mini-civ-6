@@ -143,9 +143,11 @@ UPDATE Districts
 -- Cities can only build 1 aircraft but aerodrome can have more, so mitigate disabling of
 -- the aerodrome by adding more air slots to city centre
 UPDATE Districts
-SET AirSlots = AirSlots + (
-  SELECT AirSlots FROM Districts
-  WHERE DistrictType = 'DISTRICT_AERODROME'
+SET AirSlots = AirSlots + COALESCE(
+  (
+    SELECT AirSlots FROM Districts
+    WHERE DistrictType = 'DISTRICT_AERODROME'
+  ), 0
 )
 WHERE DistrictType = 'DISTRICT_CITY_CENTER';
 
