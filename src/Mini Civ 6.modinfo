@@ -86,6 +86,9 @@
     <FrontEndActions>
         <UpdateDatabase id="MiniCivVISettings">
             <File>Data/MiniCivVI_Config.xml</File>
+        </UpdateDatabase>
+        <UpdateDatabase id="MiniCivVIConfigFrontendHacks">
+            <Criteria>MiniCivVI_Automate_Improvements</Criteria>
             <File>Data/MiniCivVI_ConfigFrontendHacks.sql</File>
         </UpdateDatabase>
         <UpdateText id="MiniCivVISettingsText">
@@ -151,6 +154,7 @@
             <File>Data/MiniCivVI_Cleanup.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVIConfigDataHacks">
+            <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
             <File>Data/MiniCivVI_ConfigDataHacks.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVIMiscChanges">
@@ -215,6 +219,7 @@
             <File>Data/MiniCivVI_SmallerMaps.sql</File>
         </UpdateDatabase>
         <UpdateIcons id="MiniCivVIConfigIconsHacks">
+            <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
             <File>Data/MiniCivVI_ConfigIconHacks.sql</File>
         </UpdateIcons>
     </InGameActions>

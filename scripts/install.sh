@@ -18,8 +18,9 @@ mod_name=$(yq -p xml -oy ".Mod.Properties.Name" src/*.modinfo)
 pushd src > /dev/null
 
 # ⚠️ This will fail if there are spaces in any of the file names
-action_files=($(yq -p xml -oy '.Mod.FrontEndActions.*.File | .[]? // .' "${mod_name}.modinfo"))
-action_files+=($(yq -p xml -oy ".Mod.InGameActions.ReplaceUIScript[].Properties.LuaReplace" Mini\ Civ\ 6.modinfo))
+action_files+=($(yq -p xml -oy '.Mod.FrontEndActions.UpdateDatabase[].File | select (.) | .[]? // .' "${mod_name}.modinfo"))
+action_files+=($(yq -p xml -oy '.Mod.FrontEndActions.UpdateText.File | select (.) | .[]? // .' "${mod_name}.modinfo"))
+action_files+=($(yq -p xml -oy ".Mod.InGameActions.ReplaceUIScript[].Properties.LuaReplace" "${mod_name}.modinfo"))
 action_files+=($(yq -p xml -oy '.Mod.InGameActions.UpdateDatabase[].File | select (.) | .[]? // .' "${mod_name}.modinfo"))
 action_files+=($(yq -p xml -oy '.Mod.InGameActions.UpdateIcons[].File | select (.) | .[]? // .' "${mod_name}.modinfo"))
 
