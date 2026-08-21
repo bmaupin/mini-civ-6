@@ -1,17 +1,19 @@
 -- Keep these districts
 CREATE TEMP TABLE IF NOT EXISTS DistrictsToKeep AS
   SELECT DistrictType FROM Districts WHERE DistrictType IN (
-    -- GS only, unique placement and benefits
-    'DISTRICT_CANAL',
+    -- Gathering Storm only, unique placement and benefits
+    -- 'DISTRICT_CANAL',
     'DISTRICT_CITY_CENTER',
     -- Unique harbour replacement
-    'DISTRICT_COTHON',
-    -- GS only, unique placement and benefits
+    -- 'DISTRICT_COTHON',
+    -- Gathering Storm only, needed for disaster mitigation
     'DISTRICT_DAM',
     -- Allows inland cities access to build boats, only built on water
-    'DISTRICT_HARBOR',
+    -- 'DISTRICT_HARBOR',
+    -- This is needed for the prophet to found a religion, if religion isn't disabled
+    'DISTRICT_HOLY_SITE',
     -- Unique harbour replacement
-    'DISTRICT_ROYAL_NAVY_DOCKYARD',
+    -- 'DISTRICT_ROYAL_NAVY_DOCKYARD',
     -- Required for science victory, shows victory progress on the map
     'DISTRICT_SPACEPORT',
     -- The only scenario-specific district (Black Death)
