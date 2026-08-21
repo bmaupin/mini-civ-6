@@ -19,6 +19,12 @@
         <Row Tag="LOC_MC6_NO_BUILDERS_DESCRIPTION">
             <Text>Enabling this option removes builders from the game. Military engineers can be used to repair pillaged tiles or remove fallout.</Text>
         </Row>
+        <Row Tag="LOC_MC6_NO_ESPIONAGE">
+            <Text>No Espionage</Text>
+        </Row>
+        <Row Tag="LOC_MC6_NO_ESPIONAGE_DESCRIPTION">
+            <Text>Enabling this option removes spies from the game.</Text>
+        </Row>
         <Row Tag="LOC_MC6_NO_GREAT_PEOPLE">
             <Text>No Great People</Text>
         </Row>

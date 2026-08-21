@@ -48,6 +48,8 @@ Some new game options have been added to better facilitate quicker games:
 - No Builders
   - Removes builders from the game; military engineers can be used to repair pillaged tiles or remove fallout
   - This is a separate option from Automated Improvements because there may be times when it's desirable to have builders for unique improvments but automate all other improvements
+- No Espionage
+  - Removes spies from the game
 - No Great People
   - Removes great people from the game
 - No Military
