@@ -9,9 +9,15 @@
         <CompatibleVersions>2.0</CompatibleVersions>
     </Properties>
     <ActionCriteria>
+        <Criteria id="MiniCivVI_CivRev_Ruleset">
+            <RuleSetInUse>RULESET_MC6_CIVREV</RuleSetInUse>
+        </Criteria>
         <!-- This criteria only matches on standard games (with or without expansions), not scenarios, etc. -->
         <Criteria id="MiniCivVI_Standard_Ruleset">
             <RuleSetInUse>RULESET_STANDARD,RULESET_EXPANSION_1,RULESET_EXPANSION_2</RuleSetInUse>
+        </Criteria>
+        <Criteria id="MiniCivVI_Standard_Or_CivRev_Ruleset">
+            <RuleSetInUse>RULESET_MC6_CIVREV,RULESET_STANDARD,RULESET_EXPANSION_1,RULESET_EXPANSION_2</RuleSetInUse>
         </Criteria>
         <Criteria id="MiniCivVI_Automate_Improvements">
             <ConfigurationValueMatches>
@@ -93,6 +99,7 @@
     <FrontEndActions>
         <UpdateDatabase id="MiniCivVISettings">
             <File>Data/MiniCivVI_Config.xml</File>
+            <File>Data/MiniCivVI_CivRev_Config.xml</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVIConfigFrontendHacks">
             <Criteria>MiniCivVI_Automate_Improvements</Criteria>
@@ -137,6 +144,14 @@
             </Properties>
             <Criteria>MiniCivVI_No_Policies</Criteria>
         </ReplaceUIScript>
+        <UpdateDatabase id="MiniCivVICivRev">
+            <Properties>
+                <LoadOrder>2000000</LoadOrder>
+            </Properties>
+            <Criteria>MiniCivVI_CivRev_Ruleset</Criteria>
+            <File>Data/MiniCivVI_LessOfEverything.sql</File>
+            <File>Data/MiniCivVI_CivRev.sql</File>
+        </UpdateDatabase>
         <UpdateDatabase id="MiniCivVIAutomateImprovementsDatabase">
             <Properties>
                 <!-- This is needed so that this file will be loaded after DLC, otherwise DLC that make changes to removed systems will break -->
@@ -155,9 +170,9 @@
         <UpdateDatabase id="MiniCivVICleanup">
             <!-- Load this after everything else -->
             <Properties>
-                <LoadOrder>1000001</LoadOrder>
+                <LoadOrder>9999999</LoadOrder>
             </Properties>
-            <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
+            <Criteria>MiniCivVI_Standard_Or_CivRev_Ruleset</Criteria>
             <File>Data/MiniCivVI_Cleanup.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVIConfigDataHacks">
@@ -224,7 +239,7 @@
         <UpdateDatabase id="MiniCivVIRemoveDistricts">
             <Properties>
                 <!-- This needs to happen after other changes, otherwise it messes up other options that rely on district prerequisites for changing game data -->
-                <LoadOrder>1000001</LoadOrder>
+                <LoadOrder>3000000</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_Remove_Districts</Criteria>
             <File>Data/MiniCivVI_RemoveDistricts.sql</File>
@@ -240,11 +255,14 @@
     <Files>
         <File>Data/CVI_BarbDiff_LOW.SQL</File>
         <File>Data/MiniCivVI_AutomateImprovements.sql</File>
+        <File>Data/MiniCivVI_CivRev.sql</File>
+        <File>Data/MiniCivVI_CivRev_Config.xml</File>
         <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
         <File>Data/MiniCivVI_ConfigFrontendHacks.sql</File>
         <File>Data/MiniCivVI_ConfigDataHacks.sql</File>
         <File>Data/MiniCivVI_ConfigIconHacks.sql</File>
+        <File>Data/MiniCivVI_LessOfEverything.sql</File>
         <File>Data/MiniCivVI_RemoveAmenities.sql</File>
         <File>Data/MiniCivVI_RemoveBuilders.sql</File>
         <File>Data/MiniCivVI_RemoveCityStates.sql</File>

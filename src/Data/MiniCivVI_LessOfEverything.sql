@@ -1,4 +1,4 @@
--- Keep these districts
+-- Disable these districts
 CREATE TEMP TABLE IF NOT EXISTS DistrictsToDisable AS
   SELECT DistrictType FROM Districts WHERE DistrictType IN (
     -- Theatre Square replacement
