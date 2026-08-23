@@ -194,37 +194,22 @@ WHERE Type IN (
   --
   -- Buildings
   --
-  -- Superfluous
+  'BUILDING_ARMORY',
+  'BUILDING_HANGAR',
+  'BUILDING_MILITARY_ACADEMY',
   'BUILDING_POWER_PLANT',
+  'BUILDING_RESEARCH_LAB',
   'BUILDING_SEAPORT',
+  -- Housing
+  'BUILDING_SEWER',
+  'BUILDING_SHIPYARD',
   --
   -- Civics
   --
   -- One less civic; benefits for city-states, faith, builders, appeal
   'CIVIC_CONSERVATION',
   --
-  -- Wonders
+  -- Techs
   --
-  -- Superfluous
-  'BUILDING_ALHAMBRA',
-  -- One less civic
-  'BUILDING_BOLSHOI_THEATRE',
-  -- One less civic
-  'BUILDING_BROADWAY',
-  -- One less civic
-  'BUILDING_CHICHEN_ITZA',
-  -- Superfluous
-  'BUILDING_ETEMENANKI',
-  -- Superfluous
-  'BUILDING_GREAT_ZIMBABWE',
-  -- One less civic
-  'BUILDING_HALICARNASSUS_MAUSOLEUM',
-  -- One less civic
-  'BUILDING_HERMITAGE',
-  -- Grants spearman, battering ram, anti-cavalry bonuses
-  'BUILDING_STATUE_OF_ZEUS',
-  -- One less civic
-  'BUILDING_TORRE_DE_BELEM',
-  -- Superfluous
-  'BUILDING_VENETIAN_ARSENAL'
+  'TECH_FLIGHT'
 );

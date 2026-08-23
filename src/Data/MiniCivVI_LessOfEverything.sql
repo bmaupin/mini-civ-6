@@ -45,17 +45,38 @@ DELETE FROM RandomAgendas;
 
 
 
--- Removals related to amenities
+-- Misc removals
 DELETE FROM Types
 WHERE Type IN (
-  'BUILDING_HUEY_TEOCALLI'
-);
-
-
-
--- Removals related to policies
-DELETE FROM Types
-WHERE Type IN (
+  --
+  -- Wonders
+  --
+  -- Superfluous
+  'BUILDING_ALHAMBRA',
+  -- One less civic
+  'BUILDING_BOLSHOI_THEATRE',
+  -- One less civic
+  'BUILDING_BROADWAY',
+  -- One less civic
+  'BUILDING_CHICHEN_ITZA',
+  -- Superfluous
+  'BUILDING_ETEMENANKI',
+  -- Policies
   'BUILDING_FORBIDDEN_CITY',
-  'BUILDING_POTALA_PALACE'
+  -- Superfluous
+  'BUILDING_GREAT_ZIMBABWE',
+  -- One less civic
+  'BUILDING_HALICARNASSUS_MAUSOLEUM',
+  -- One less civic
+  'BUILDING_HERMITAGE',
+  -- Amenities
+  'BUILDING_HUEY_TEOCALLI',
+  -- Policies
+  'BUILDING_POTALA_PALACE',
+  -- Grants spearman, battering ram, anti-cavalry bonuses
+  'BUILDING_STATUE_OF_ZEUS',
+  -- One less civic
+  'BUILDING_TORRE_DE_BELEM',
+  -- Superfluous
+  'BUILDING_VENETIAN_ARSENAL'
 );
