@@ -183,6 +183,12 @@ DELETE FROM CivicModifiers
 -- This civic doesn't do anything else in CivRev mode and it shows up empty in the tree
 WHERE CivicType = 'CIVIC_NATURAL_HISTORY';
 
+-- Modifiers have to be deleted directly because deleting the Type doesn't cascade the
+-- delete to the Modifiers table
+-- CivRev doesn't ever allow open borders
+DELETE FROM Modifiers
+WHERE ModifierType = 'MODIFIER_PLAYER_ADJUST_ENFORCE_BORDERS';
+
 DELETE FROM Types
 WHERE Type IN (
   --

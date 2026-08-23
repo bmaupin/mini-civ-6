@@ -11,3 +11,7 @@ DELETE FROM Improvement_ValidBuildUnits
 WHERE ImprovementType IN (
   SELECT DISTINCT ImprovementType FROM Improvement_ValidResources
 );
+
+-- Allows farms to be built on grass/plains hills, but we're not automating this
+DELETE FROM Improvement_ValidTerrains
+WHERE PrereqCivic = 'CIVIC_CIVIL_ENGINEERING';

@@ -58,6 +58,11 @@ DELETE FROM GovernmentModifiers
 WHERE GovernmentType = 'GOVERNMENT_THEOCRACY'
   AND ModifierId = 'THEOCRACY_RELIGIOUS';
 
+-- Modifiers have to be deleted directly because deleting the Type doesn't cascade the
+-- delete to the Modifiers table
+DELETE FROM Modifiers
+WHERE ModifierType = 'MODIFIER_PLAYER_ADJUST_RELIGIOUS_TOURISM_REDUCTION';
+
 DELETE FROM RandomAgendas
 WHERE AgendaType = 'TRAIT_AGENDA_PREFER_FAITH';
 
