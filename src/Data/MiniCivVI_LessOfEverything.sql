@@ -42,3 +42,20 @@ DROP TABLE IF EXISTS DistrictsToDisable;
 
 -- Remove hidden agendas; can only be discovered with espionage and they're annoyingly random
 DELETE FROM RandomAgendas;
+
+
+
+-- Removals related to amenities
+DELETE FROM Types
+WHERE Type IN (
+  'BUILDING_HUEY_TEOCALLI'
+);
+
+
+
+-- Removals related to policies
+DELETE FROM Types
+WHERE Type IN (
+  'BUILDING_FORBIDDEN_CITY',
+  'BUILDING_POTALA_PALACE'
+);

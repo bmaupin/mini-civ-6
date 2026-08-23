@@ -192,6 +192,12 @@ WHERE ModifierType = 'MODIFIER_PLAYER_ADJUST_ENFORCE_BORDERS';
 DELETE FROM Types
 WHERE Type IN (
   --
+  -- Buildings
+  --
+  -- Superfluous
+  'BUILDING_POWER_PLANT',
+  'BUILDING_SEAPORT',
+  --
   -- Civics
   --
   -- One less civic; benefits for city-states, faith, builders, appeal
