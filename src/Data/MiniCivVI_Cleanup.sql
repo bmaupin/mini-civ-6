@@ -77,6 +77,11 @@ WHERE ImprovementType IN ('IMPROVEMENT_SPHINX', 'IMPROVEMENT_CHEMAMULL')
     SELECT 1 FROM Unlocks WHERE UnlockType = 'IMPROVEMENT_SPHINX'
   );
 
+-- Store all tech prerequisites before deleting technologies. We will use this later to
+-- set new prerequisites.
+CREATE TEMP TABLE IF NOT EXISTS OriginalCivicPrereqs AS
+  SELECT Civic, PrereqCivic FROM CivicPrereqs;
+
 -- Delete civics that no longer grant any unlocks due to the unlocks having been deleted,
 -- for example policies, governments (religious, military, etc), units, etc.
 DELETE FROM Civics WHERE
@@ -141,6 +146,100 @@ AND EXISTS (
 AND NOT EXISTS (
   SELECT 1 FROM CivicPrereqs WHERE Civic = 'CIVIC_COLONIALISM'
 );
+
+-- NOTE: This was copied from the similar query below for technologies and modified for
+--       civics
+WITH PrereqCounts AS (
+  WITH RECURSIVE AllPrereqs(Civic, PrereqCivic) AS (
+    -- Base case: direct prerequisites
+    SELECT
+      Civic,
+      PrereqCivic
+    FROM CivicPrereqs
+
+    UNION
+
+    -- Recursive step: find prerequisites of prerequisites
+    SELECT
+      cp.Civic,
+      p.PrereqCivic
+    FROM CivicPrereqs AS cp
+    JOIN AllPrereqs AS p
+      ON cp.PrereqCivic = p.Civic
+  ) SELECT
+    Civic,
+    COUNT(DISTINCT PrereqCivic) AS TotalPrereqCount
+  FROM AllPrereqs
+  GROUP BY Civic
+  ORDER BY Civic
+),
+-- Identify all dead-end civics
+DeadEndCivics AS (
+  SELECT CivicType
+  FROM Civics
+  WHERE CivicType NOT IN (
+    SELECT PrereqCivic
+    FROM CivicPrereqs
+  )
+  AND CivicType IN (
+    SELECT PrereqCivic
+    FROM OriginalCivicPrereqs
+  )
+),
+ResolvedPrereqs AS (
+  -- Start by getting deleted civics for which the dead-end civics were a
+  -- prerequisite
+  SELECT otp.PrereqCivic, otp.Civic
+  FROM OriginalCivicPrereqs otp
+  WHERE otp.PrereqCivic IN (SELECT CivicType FROM DeadEndCivics)
+    AND otp.Civic NOT IN (SELECT CivicType FROM Civics)
+
+  UNION ALL
+
+  -- For each of those civics, figure out what they were a prerequisite of. This
+  -- query will run recursively until we get to a civic that hasn't been deleted.
+  SELECT rp.PrereqCivic, otp.Civic
+  FROM ResolvedPrereqs rp
+  JOIN OriginalCivicPrereqs otp ON rp.Civic = otp.PrereqCivic
+  WHERE otp.PrereqCivic NOT IN (SELECT CivicType FROM Civics)
+)
+INSERT INTO CivicPrereqs (Civic, PrereqCivic)
+SELECT
+  Civic,
+  PrereqCivic
+FROM (
+  SELECT
+    rp.Civic AS Civic,
+    rp.PrereqCivic AS PrereqCivic,
+    -- When setting the dead-end civic as a prereq for another civic, get the civic with the
+    -- minimum prereq count. So for example, if this was the prereqs:
+    -- civic1 < civic2 < civic3 < civic4
+    -- And civic2 gets deleted, then civic1 will be made a prereq of civic3, not civic4
+    MIN(TotalPrereqCount)
+  FROM ResolvedPrereqs rp
+  LEFT JOIN PrereqCounts pc
+    ON pc.Civic = rp.Civic
+  -- Sanity checks to make sure civic and prereq haven't been deleted
+  WHERE rp.PrereqCivic IN (SELECT CivicType FROM Civics)
+    AND rp.Civic IN (SELECT CivicType FROM Civics)
+    -- Sanity check to make sure we don't insert a duplicate prereq
+    -- NOTE: This isn't strictly necessary as the previous queries will filter out prereqs
+    --       that don't exist but it's left in as defensive programming
+    AND NOT EXISTS (
+      SELECT 1
+      FROM CivicPrereqs cp
+      WHERE cp.Civic = rp.Civic
+        AND cp.PrereqCivic = rp.PrereqCivic
+    )
+  -- This makes is so that only one prereq for each PrereqCivic is returned, otherwise the
+  -- prereqs can be a bit aggressive
+  GROUP BY PrereqCivic
+);
+
+DROP TABLE IF EXISTS OriginalCivicPrereqs;
+
+
+
 
 -- Store all tech prerequisites before deleting technologies. We will use this later to
 -- set new prerequisites.
