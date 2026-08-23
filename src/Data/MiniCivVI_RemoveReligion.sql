@@ -6,7 +6,7 @@ WHERE AdvisorType = 'ADVISOR_RELIGIOUS'
 
 -- Replace Madrasa's prereq (theology) with the prereq of the building it replaces
 UPDATE Buildings
-SET PrereqCivic = NONE,
+SET PrereqCivic = NULL,
   PrereqTech = (
     SELECT PrereqTech FROM Buildings WHERE BuildingType = 'BUILDING_UNIVERSITY'
   )
