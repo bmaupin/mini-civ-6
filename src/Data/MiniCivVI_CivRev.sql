@@ -1,3 +1,26 @@
+-- TODO: Blocked for now; we can't remove the civics tree because governments
+--       can't have PrereqTechs, only PrereqCivics
+--
+-- -- Remove dependencies on the civics tree so we can delete it
+-- UPDATE Buildings
+-- SET PrereqCivic = NULL,
+--   PrereqTech = 'TECH_WRITING'
+-- WHERE BuildingType = 'BUILDING_ORACLE';
+
+-- UPDATE DiplomaticActions
+-- SET InitiatorPrereqTech = NULL
+-- WHERE DiplomaticActionType = 'DIPLOACTION_JOINT_WAR';
+
+-- UPDATE Governments
+-- SET PrereqCivic = NULL
+-- WHERE GovernmentType = 'GOVERNMENT_AUTOCRACY';
+
+-- UPDATE Units
+-- SET PrereqCivic = NULL,
+--   PrereqTech = 'TECH_CURRENCY'
+-- WHERE UnitType = 'UNIT_TRADER';
+
+
 -- Use a whitelist for deletions to prevent DLC from adding additional items to the game
 DELETE FROM Types
 WHERE Type IN (
