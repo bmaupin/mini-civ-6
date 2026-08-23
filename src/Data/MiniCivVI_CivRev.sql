@@ -175,6 +175,14 @@ DROP TABLE IF EXISTS UnitsToKeep;
 
 
 -- Misc removals
+DELETE FROM Adjacency_YieldChanges
+-- This civic doesn't do anything else in CivRev mode and it shows up empty in the tree
+WHERE PrereqCivic = 'CIVIC_EXPLORATION';
+
+DELETE FROM CivicModifiers
+-- This civic doesn't do anything else in CivRev mode and it shows up empty in the tree
+WHERE CivicType = 'CIVIC_NATURAL_HISTORY';
+
 DELETE FROM Types
 WHERE Type IN (
   --
