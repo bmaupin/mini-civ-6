@@ -171,3 +171,27 @@ WHERE Type IN (
 );
 
 DROP TABLE IF EXISTS UnitsToKeep;
+
+
+
+-- Misc removals
+DELETE FROM Types
+WHERE Type IN (
+  --
+  -- Wonders
+  --
+  -- One less civic
+  'BUILDING_BOLSHOI_THEATRE',
+  -- One less civic
+  'BUILDING_BROADWAY',
+  -- One less civic
+  'BUILDING_CHICHEN_ITZA',
+  -- One less civic
+  'BUILDING_HALICARNASSUS_MAUSOLEUM',
+  -- One less civic
+  'BUILDING_HERMITAGE',
+  -- Grants spearman, battering ram, anti-cavalry bonuses
+  'BUILDING_STATUE_OF_ZEUS',
+  -- One less civic
+  'BUILDING_TORRE_DE_BELEM'
+);
