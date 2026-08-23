@@ -208,8 +208,19 @@ WHERE Type IN (
   --
   -- One less civic; benefits for city-states, faith, builders, appeal
   'CIVIC_CONSERVATION',
+  -- We removed the corps prereq, so all it does is grant an additional spy
+  'CIVIC_NATIONALISM',
   --
   -- Techs
   --
   'TECH_FLIGHT'
 );
+
+
+-- Make corps/armies available right away to match CivRev mechanics
+-- NOTE: Corps cannot be removed; unlike CivRev two units must first be combined before
+--       they can be combined with a third
+UPDATE UnitCommands
+SET PrereqCivic = NULL
+WHERE CommandType = 'UNITCOMMAND_FORM_ARMY'
+  OR CommandType = 'UNITCOMMAND_FORM_CORPS';
