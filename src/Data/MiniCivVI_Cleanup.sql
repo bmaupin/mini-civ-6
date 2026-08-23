@@ -34,7 +34,10 @@ WITH Unlocks AS (
   SELECT ID FROM Adjacency_YieldChanges WHERE PrereqCivic = 'CIVIC_MERCENARIES'
 )
 UPDATE Units
-SET PrereqCivic = 'CIVIC_NAVAL_TRADITION'
+SET PrereqCivic = NULL,
+  PrereqTech = (
+    SELECT PrereqTech FROM Units WHERE UnitType = 'UNIT_FRIGATE'
+  )
 WHERE UnitType = 'UNIT_INDONESIAN_JONG'
   AND (SELECT COUNT(*) FROM Unlocks) = 1
   AND (SELECT UnlockType FROM Unlocks LIMIT 1) = 'UNIT_INDONESIAN_JONG';

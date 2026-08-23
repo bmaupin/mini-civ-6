@@ -4,10 +4,12 @@ WHERE AdvisorType = 'ADVISOR_RELIGIOUS'
   -- Removes religious buildings
   OR PrereqDistrict = 'DISTRICT_HOLY_SITE';
 
---Replace Madrasa's prereq (theology) with that civic's prereq since theology is deleted
--- below
+-- Replace Madrasa's prereq (theology) with the prereq of the building it replaces
 UPDATE Buildings
-SET PrereqCivic = 'CIVIC_DRAMA_POETRY'
+SET PrereqCivic = NONE,
+  PrereqTech = (
+    SELECT PrereqTech FROM Buildings WHERE BuildingType = 'BUILDING_UNIVERSITY'
+  )
 WHERE BuildingType = 'BUILDING_MADRASA';
 
 DELETE FROM Policies
