@@ -13,6 +13,22 @@ WHERE Type IN (
     )
 );
 
+DELETE FROM Types
+WHERE Type IN (
+  SELECT Type FROM Types
+  WHERE Kind = 'KIND_GOVERNMENT'
+    AND Type NOT IN (
+      -- Replacement for fundamentalism (maybe theocracy a better fit?)
+      'GOVERNMENT_AUTOCRACY',
+      -- Equivalent of despotism (starting government)
+      'GOVERNMENT_CHIEFDOM',
+      'GOVERNMENT_CLASSICAL_REPUBLIC',
+      'GOVERNMENT_COMMUNISM',
+      'GOVERNMENT_DEMOCRACY',
+      'GOVERNMENT_MONARCHY'
+    )
+);
+
 -- https://civilization.fandom.com/wiki/Terrain_(CivRev)
 DELETE FROM Types
 WHERE Type IN (
