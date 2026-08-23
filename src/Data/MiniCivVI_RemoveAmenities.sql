@@ -13,6 +13,15 @@ DELETE FROM Types WHERE Type = 'CIVIC_GAMES_RECREATION';
 -- made inaccessible when the Games and Recreation civic is deleted. However, if districts
 -- are deleted, district prerequisites get removed. So instead we should delete anything
 -- that has those districts as a prerequisite.
+DELETE FROM Adjacency_YieldChanges
+WHERE AdjacentDistrict IN (
+  'DISTRICT_ENTERTAINMENT_COMPLEX',
+  'DISTRICT_HIPPODROME',
+  'DISTRICT_STREET_CARNIVAL',
+  'DISTRICT_WATER_ENTERTAINMENT_COMPLEX',
+  'DISTRICT_WATER_STREET_CARNIVAL'
+);
+
 DELETE FROM Buildings
 -- Colosseum, Estádio do Maracanã
 WHERE AdjacentDistrict IN (
