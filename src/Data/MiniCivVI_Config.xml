@@ -102,6 +102,9 @@
         <Row SourceGroup="Game" SourceId="MC6_NO_MILITARY" SourceValue="1" TargetGroup="Game" TargetId="GAME_NO_BARBARIANS" TargetValue="1" Hash="0" />
         <Row SourceGroup="Game" SourceId="MC6_NO_MILITARY" SourceValue="0" TargetGroup="Game" TargetId="VICTORY_CONQUEST" TargetValue="1" Hash="0" />
         <Row SourceGroup="Game" SourceId="MC6_NO_MILITARY" SourceValue="1" TargetGroup="Game" TargetId="VICTORY_CONQUEST" TargetValue="0" Hash="0" />
+        <Row SourceGroup="Game" SourceId="RULESET" SourceValue="RULESET_STANDARD" TargetGroup="Game" TargetId="MC6_NO_ESPIONAGE" TargetValue="1" Hash="0" />
+        <Row SourceGroup="Game" SourceId="RULESET" SourceValue="RULESET_EXPANSION_1" TargetGroup="Game" TargetId="MC6_NO_ESPIONAGE" TargetValue="1" Hash="0" />
+        <Row SourceGroup="Game" SourceId="RULESET" SourceValue="RULESET_EXPANSION_2" TargetGroup="Game" TargetId="MC6_NO_ESPIONAGE" TargetValue="1" Hash="0" />
     </ConfigurationUpdates>
     <ParameterCriteria>
         <Row ParameterId="GameMode_BarbarianClans" ConfigurationGroup="Game" ConfigurationId="MC6_NO_MILITARY" Operator="NotEquals" ConfigurationValue="1" />
