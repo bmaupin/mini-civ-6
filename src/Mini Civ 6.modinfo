@@ -121,7 +121,7 @@
         <ReplaceUIScript id="MiniCivVIDisableBoostPopups">
             <Properties>
                 <Context>InGame</Context>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
                 <LuaContext>BoostUnlockedPopup</LuaContext>
                 <LuaReplace>UI/Replacements/BoostUnlockedPopup_Disabled.lua</LuaReplace>
             </Properties>
@@ -129,7 +129,7 @@
         <ReplaceUIScript id="MiniCivVIDisableGovernmentPolicyButton">
             <Properties>
                 <Context>InGame</Context>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
                 <LuaContext>GovernmentScreen</LuaContext>
                 <LuaReplace>UI/Replacements/GovernmentScreen_MiniCivVI.lua</LuaReplace>
             </Properties>
@@ -144,6 +144,14 @@
             </Properties>
             <Criteria>MiniCivVI_No_Policies</Criteria>
         </ReplaceUIScript>
+        <UpdateDatabase id="MiniCivVICleanupPrep">
+            <!-- Load this before everything else -->
+            <Properties>
+                <LoadOrder>1000000</LoadOrder>
+            </Properties>
+            <Criteria>MiniCivVI_Standard_Or_CivRev_Ruleset</Criteria>
+            <File>Data/MiniCivVI_CleanupPrep.sql</File>
+        </UpdateDatabase>
         <UpdateDatabase id="MiniCivVICivRev">
             <Properties>
                 <LoadOrder>2000000</LoadOrder>
@@ -155,14 +163,14 @@
         <UpdateDatabase id="MiniCivVIAutomateImprovementsDatabase">
             <Properties>
                 <!-- This is needed so that this file will be loaded after DLC, otherwise DLC that make changes to removed systems will break -->
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_Automate_Improvements</Criteria>
             <File>Data/MiniCivVI_AutomateImprovements.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoMilitary">
             <Properties>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_Military</Criteria>
             <File>Data/MiniCivVI_RemoveMilitary.sql</File>
@@ -181,49 +189,49 @@
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVIMiscChanges">
             <Properties>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
             <File>Data/CVI_BarbDiff_LOW.SQL</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoAmenities">
             <Properties>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_Amenities</Criteria>
             <File>Data/MiniCivVI_RemoveAmenities.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoBuilders">
             <Properties>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_Builders</Criteria>
             <File>Data/MiniCivVI_RemoveBuilders.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoCityStates">
             <Properties>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_City_States</Criteria>
             <File>Data/MiniCivVI_RemoveCityStates.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoEspionage">
             <Properties>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_Espionage</Criteria>
             <File>Data/MiniCivVI_RemoveEspionage.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoGreatPeople">
             <Properties>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_Great_People</Criteria>
             <File>Data/MiniCivVI_RemoveGreatPeople.sql</File>
         </UpdateDatabase>
         <UpdateDatabase id="MiniCivVINoPolicies">
             <Properties>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_Policies</Criteria>
             <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
@@ -231,7 +239,7 @@
         <UpdateDatabase id="MiniCivVINoReligion">
             <!-- This is needed so that this file will be loaded after DLC, otherwise DLC that make changes to religion will break after religion has been removed -->
             <Properties>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
             </Properties>
             <Criteria>MiniCivVI_No_Religion</Criteria>
             <File>Data/MiniCivVI_RemoveReligion.sql</File>
