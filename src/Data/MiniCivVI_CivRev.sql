@@ -197,6 +197,10 @@ SET PrereqCivic = NULL
 WHERE CommandType = 'UNITCOMMAND_FORM_ARMY'
   OR CommandType = 'UNITCOMMAND_FORM_CORPS';
 
+-- CivRev doesn't have strategic resource requirements for units
+UPDATE Units
+SET StrategicResource = NULL;
+
 DELETE FROM Types
 WHERE Type IN (
   --
