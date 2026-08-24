@@ -192,19 +192,19 @@ DeadEndCivics AS (
 ResolvedPrereqs AS (
   -- Start by getting deleted civics for which the dead-end civics were a
   -- prerequisite
-  SELECT otp.PrereqCivic, otp.Civic
-  FROM OriginalCivicPrereqs otp
-  WHERE otp.PrereqCivic IN (SELECT CivicType FROM DeadEndCivics)
-    AND otp.Civic NOT IN (SELECT CivicType FROM Civics)
+  SELECT ocp.PrereqCivic, ocp.Civic
+  FROM OriginalCivicPrereqs ocp
+  WHERE ocp.PrereqCivic IN (SELECT CivicType FROM DeadEndCivics)
+    AND ocp.Civic NOT IN (SELECT CivicType FROM Civics)
 
   UNION ALL
 
   -- For each of those civics, figure out what they were a prerequisite of. This
   -- query will run recursively until we get to a civic that hasn't been deleted.
-  SELECT rp.PrereqCivic, otp.Civic
+  SELECT rp.PrereqCivic, ocp.Civic
   FROM ResolvedPrereqs rp
-  JOIN OriginalCivicPrereqs otp ON rp.Civic = otp.PrereqCivic
-  WHERE otp.PrereqCivic NOT IN (SELECT CivicType FROM Civics)
+  JOIN OriginalCivicPrereqs ocp ON rp.Civic = ocp.PrereqCivic
+  WHERE ocp.PrereqCivic NOT IN (SELECT CivicType FROM Civics)
 )
 INSERT INTO CivicPrereqs (Civic, PrereqCivic)
 SELECT
@@ -239,8 +239,95 @@ FROM (
   GROUP BY PrereqCivic
 );
 
-DROP TABLE IF EXISTS OriginalCivicPrereqs;
 
+
+WITH PrereqCounts AS (
+  WITH RECURSIVE AllPrereqs(Civic, PrereqCivic) AS (
+    -- Base case: direct prerequisites
+    SELECT
+      Civic,
+      PrereqCivic
+    FROM CivicPrereqs
+
+    UNION
+
+    -- Recursive step: find prerequisites of prerequisites
+    SELECT
+      cp.Civic,
+      p.PrereqCivic
+    FROM CivicPrereqs AS cp
+    JOIN AllPrereqs AS p
+      ON cp.PrereqCivic = p.Civic
+  ) SELECT
+    Civic,
+    COUNT(DISTINCT PrereqCivic) AS TotalPrereqCount
+  FROM AllPrereqs
+  GROUP BY Civic
+  ORDER BY Civic
+),
+-- Identify all orphaned civics
+OrphanedCivics AS (
+  SELECT CivicType
+  FROM Civics
+  WHERE CivicType NOT IN (
+    SELECT Civic
+    FROM CivicPrereqs
+  )
+  AND CivicType IN (
+    SELECT Civic
+    FROM OriginalCivicPrereqs
+  )
+),
+ResolvedPrereqs AS (
+  -- Start by getting deleted civics which were prerequisites for orphaned civics
+  SELECT ocp.PrereqCivic, ocp.Civic
+  FROM OriginalCivicPrereqs ocp
+  WHERE ocp.Civic IN (SELECT CivicType FROM OrphanedCivics)
+    AND ocp.PrereqCivic NOT IN (SELECT CivicType FROM Civics)
+
+  UNION ALL
+
+  -- For each of those civics, figure out what was its prerequisite. This
+  -- query will run recursively until we get to a civic that hasn't been deleted.
+  SELECT ocp.PrereqCivic, rp.Civic
+  FROM ResolvedPrereqs rp
+  JOIN OriginalCivicPrereqs ocp ON rp.PrereqCivic = ocp.Civic
+  WHERE ocp.Civic NOT IN (SELECT CivicType FROM Civics)
+)
+INSERT INTO CivicPrereqs (Civic, PrereqCivic)
+SELECT
+  Civic,
+  PrereqCivic
+FROM (
+  SELECT
+    rp.Civic AS Civic,
+    rp.PrereqCivic AS PrereqCivic,
+    -- When setting the prerequisite for an orphaned civic, get the civic with the
+    -- maximum prereq count. So for example, if this was the prereqs:
+    -- civic1 < civic2 < civic3 < civic4
+    -- And civic3 gets deleted, then civic2, not civic1 will be made a prereq of civic4
+    MAX(TotalPrereqCount)
+  FROM ResolvedPrereqs rp
+  LEFT JOIN PrereqCounts pc
+    ON pc.Civic = rp.PrereqCivic
+  -- Sanity checks to make sure civic and prereq haven't been deleted
+  WHERE rp.PrereqCivic IN (SELECT CivicType FROM Civics)
+    AND rp.Civic IN (SELECT CivicType FROM Civics)
+    -- Sanity check to make sure we don't insert a duplicate prereq
+    -- NOTE: This isn't strictly necessary as the previous queries will filter out prereqs
+    --       that don't exist but it's left in as defensive programming
+    AND NOT EXISTS (
+      SELECT 1
+      FROM CivicPrereqs cp
+      WHERE cp.Civic = rp.Civic
+        AND cp.PrereqCivic = rp.PrereqCivic
+    )
+  -- This makes is so that only one prereq for each Civic is returned, otherwise the
+  -- prereqs can be a bit aggressive
+  GROUP BY rp.Civic
+);
+
+DROP TABLE IF EXISTS OriginalCivicPrereqs;
 
 
 
@@ -366,7 +453,7 @@ AND NOT EXISTS (
 -- For orphaned techs, we manually added prereqs to make sure that they didn't cross more
 -- than one era. But for dead-end techs we can do this in a more automated fashion, by
 -- re-creating the tech dependencies minus the deleted techs. In many cases the prereqs
--- will cross multiple eras but in this case it's not an issues as the techs with the new
+-- will cross multiple eras but in this case it's not an issue as the techs with the new
 -- prereqs will always have at least one prereq that doesn't cross more than one era. This
 -- should also serve as a best effort to fix both orphaned and dead-end techs in case this
 -- mod is used with other mods that add new techs.
