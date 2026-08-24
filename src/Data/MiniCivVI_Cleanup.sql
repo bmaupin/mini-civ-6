@@ -416,6 +416,18 @@ AND NOT EXISTS (
 );
 
 INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
+SELECT 'TECH_BALLISTICS', 'TECH_GUNPOWDER'
+WHERE EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_BALLISTICS'
+)
+AND EXISTS (
+  SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_GUNPOWDER'
+)
+AND NOT EXISTS (
+  SELECT 1 FROM TechnologyPrereqs WHERE Technology = 'TECH_BALLISTICS'
+);
+
+INSERT INTO TechnologyPrereqs (Technology, PrereqTech)
 SELECT 'TECH_STEEL', 'TECH_INDUSTRIALIZATION'
 WHERE EXISTS (
   SELECT 1 FROM Technologies WHERE TechnologyType = 'TECH_STEEL'
