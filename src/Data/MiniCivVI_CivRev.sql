@@ -203,6 +203,21 @@ SET StrategicResource = NULL;
 
 DELETE FROM Types
 WHERE Type IN (
+  -- TODO: Remove if we change the functionality of great artists
+	-- 'CAPABILITY_GREAT_WORKS',
+  -- TODO: Remove if we automate great people acquisition
+	-- 'CAPABILITY_GREAT_PEOPLE_CAN_RECRUIT',
+  -- Prevent buying great people
+	'CAPABILITY_GREAT_PEOPLE_RECRUIT_WITH_GOLD',
+	'CAPABILITY_GREAT_PEOPLE_RECRUIT_WITH_FAITH',
+  -- Disable reject button in the Great People UI
+	'CAPABILITY_GREAT_PEOPLE_CAN_REJECT'
+  -- TODO: Remove if we automate great people acquisition
+	-- 'CAPABILITY_GREAT_PEOPLE_VIEW'
+);
+
+DELETE FROM Types
+WHERE Type IN (
   --
   -- Buildings
   --
