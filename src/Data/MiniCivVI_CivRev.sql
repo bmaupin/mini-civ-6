@@ -189,6 +189,14 @@ WHERE CivicType = 'CIVIC_NATURAL_HISTORY';
 DELETE FROM Modifiers
 WHERE ModifierType = 'MODIFIER_PLAYER_ADJUST_ENFORCE_BORDERS';
 
+-- Make corps/armies available right away to match CivRev mechanics
+-- NOTE: Corps cannot be removed; unlike CivRev two units must first be combined before
+--       they can be combined with a third
+UPDATE UnitCommands
+SET PrereqCivic = NULL
+WHERE CommandType = 'UNITCOMMAND_FORM_ARMY'
+  OR CommandType = 'UNITCOMMAND_FORM_CORPS';
+
 DELETE FROM Types
 WHERE Type IN (
   --
@@ -215,12 +223,3 @@ WHERE Type IN (
   --
   'TECH_FLIGHT'
 );
-
-
--- Make corps/armies available right away to match CivRev mechanics
--- NOTE: Corps cannot be removed; unlike CivRev two units must first be combined before
---       they can be combined with a third
-UPDATE UnitCommands
-SET PrereqCivic = NULL
-WHERE CommandType = 'UNITCOMMAND_FORM_ARMY'
-  OR CommandType = 'UNITCOMMAND_FORM_CORPS';
