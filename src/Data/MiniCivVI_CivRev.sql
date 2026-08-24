@@ -183,11 +183,11 @@ DELETE FROM CivicModifiers
 -- This civic doesn't do anything else in CivRev mode and it shows up empty in the tree
 WHERE CivicType = 'CIVIC_NATURAL_HISTORY';
 
--- Modifiers have to be deleted directly because deleting the Type doesn't cascade the
--- delete to the Modifiers table
--- CivRev doesn't ever allow open borders
-DELETE FROM Modifiers
-WHERE ModifierType = 'MODIFIER_PLAYER_ADJUST_ENFORCE_BORDERS';
+-- CivRev doesn't ever allow open borders so set this as early as possible; simply
+-- removing the modifier makes it so that borders are never enforced
+UPDATE CivicModifiers
+SET CivicType = 'CIVIC_CODE_OF_LAWS'
+WHERE ModifierId = 'CIVIC_ENFORCE_BORDERS';
 
 -- Make corps/armies available right away to match CivRev mechanics
 -- NOTE: Corps cannot be removed; unlike CivRev two units must first be combined before
