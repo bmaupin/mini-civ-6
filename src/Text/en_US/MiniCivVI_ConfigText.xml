@@ -11,13 +11,13 @@
             <Text>No Amenities</Text>
         </Row>
         <Row Tag="LOC_MC6_NO_AMENITIES_DESCRIPTION">
-            <Text>Enabling this option removes sets the required number of amenities to 0 for all cities.</Text>
+            <Text>Enabling this option removes amenity bonuses, maluses, and requirements.</Text>
         </Row>
         <Row Tag="LOC_MC6_NO_BUILDERS">
             <Text>No Builders</Text>
         </Row>
         <Row Tag="LOC_MC6_NO_BUILDERS_DESCRIPTION">
-            <Text>Enabling this option removes builders from the game. Military engineers can be used to repair pillaged tiles or remove fallout.</Text>
+            <Text>Enabling this option removes builders, improvement adjacencies, and improvements that are not automated. Military engineers can be used to repair pillaged tiles or remove fallout.</Text>
         </Row>
         <Row Tag="LOC_MC6_NO_ESPIONAGE">
             <Text>No Espionage</Text>
