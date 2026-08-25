@@ -1,5 +1,38 @@
 # CivRev mode
 
+## Barracks
+
+### Problem
+
+Barracks in CivRev makes all newly created military units veterans. Barracks in Civ 6 only improves ground units and excludes siege and cavalry units, which is handled by Stable, which is mutually exclusive with Barracks.
+
+Naval units are improved by Lighthouse, Shipyard, Seaport.
+
+Air units are improved by Hangar and Airport.
+
+### Solutions
+
+First, make sure we have at least one of each building for improving unit types
+
+- Air: airport (hangar removed)
+- Naval: lighthouse (shipyard and seaport removed)
+- Ground: remove armory, military academy
+
+Now, we need to decide:
+
+- Keep Barracks and Stable
+  - We need to make them not mutually exclusive
+    - Very simple database operation
+- Or allow Barracks to improve all ground units
+  - Relatively simple database operation
+  - Tech tree description won't match, but neither would it if we make it not mutually exclusive with Stable
+
+Let's go with the simplest approach:
+
+- Allow Barracks to improve all ground units
+  - More consistent with naval and air units
+  - One less building to deal with
+
 ## Governments
 
 ### Problem
