@@ -21,6 +21,23 @@
 -- WHERE UnitType = 'UNIT_TRADER';
 
 
+UPDATE BarbarianAttackForces
+SET SupportTag = 'CLASS_SIEGE'
+WHERE SupportTag = 'CLASS_BATTERING_RAM';
+
+UPDATE BarbarianTribes
+SET DefenderTag = 'CLASS_MELEE'
+WHERE DefenderTag = 'CLASS_ANTI_CAVALRY';
+
+UPDATE BarbarianTribes
+SET ScoutTag = 'CLASS_MELEE'
+WHERE ScoutTag = 'CLASS_RECON';
+
+UPDATE BarbarianTribes
+SET SupportTag = 'CLASS_SIEGE'
+WHERE SupportTag = 'CLASS_BATTERING_RAM';
+
+
 -- Use a whitelist for deletions to prevent DLC from adding additional items to the game
 DELETE FROM Types
 WHERE Type IN (
