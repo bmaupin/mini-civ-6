@@ -118,6 +118,13 @@
             <Criteria>MiniCivVI_Automate_Improvements</Criteria>
             <File>Scripts/AutomateImprovements.lua</File>
         </AddGameplayScripts>
+        <AddUserInterfaces id="MiniCivVICivRevUILogic">
+            <Properties>
+                <Context>InGame</Context>
+            </Properties>
+            <Criteria>MiniCivVI_CivRev_Ruleset</Criteria>
+            <File>UI/MiniCivVI_CivRev_UILogic.xml</File>
+        </AddUserInterfaces>
         <ReplaceUIScript id="MiniCivVIDisableBoostPopups">
             <Properties>
                 <Context>InGame</Context>
@@ -289,6 +296,8 @@
         <File>Scripts/AutomateImprovements.lua</File>
         <File>Scripts/Autoplay.lua</File>
         <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
+        <File>UI/MiniCivVI_CivRev_UILogic.lua</File>
+        <File>UI/MiniCivVI_CivRev_UILogic.xml</File>
         <File>UI/Replacements/BoostUnlockedPopup_Disabled.lua</File>
         <File>UI/Replacements/GovernmentScreen_MiniCivVI.lua</File>
         <File>UI/Replacements/TechCivicCompletedPopup_MiniCivVI.lua</File>
