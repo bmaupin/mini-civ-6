@@ -144,6 +144,9 @@
             </Properties>
             <Criteria>MiniCivVI_No_Policies</Criteria>
         </ReplaceUIScript>
+        <UpdateArt id="MiniCivVIUpdateArt">
+            <File>MiniCivVI.dep</File>
+        </UpdateArt>
         <UpdateDatabase id="MiniCivVICleanupPrep">
             <!-- Load this before everything else -->
             <Properties>
@@ -261,6 +264,7 @@
         </UpdateIcons>
     </InGameActions>
     <Files>
+        <File>ArtDefs/Camera.artdef</File>
         <File>Data/CVI_BarbDiff_LOW.SQL</File>
         <File>Data/MiniCivVI_AutomateImprovements.sql</File>
         <File>Data/MiniCivVI_CivRev.sql</File>
@@ -281,6 +285,7 @@
         <File>Data/MiniCivVI_RemovePolicyCards.sql</File>
         <File>Data/MiniCivVI_RemoveReligion.sql</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
+        <File>MiniCivVI.dep</File>
         <File>Scripts/AutomateImprovements.lua</File>
         <File>Scripts/Autoplay.lua</File>
         <File>Text/en_US/MiniCivVI_ConfigText.xml</File>

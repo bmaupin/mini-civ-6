@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<AssetObjects::GameDependencyData>
+    <ID>
+        <!-- A Unique Name and GUID for your mod-->
+        <name text="MiniCivVI"/>
+        <id text="f109d132-c630-450b-94dc-6a63d06f28d3-6560-4617-9689-913a5d134f73"/>
+    </ID>
+    <SystemDependencies>
+        <Element>
+            <!-- The type of thing you are adding -->
+            <ConsumerName text="Camera"/>
+            <ArtDefDependencyPaths>
+                <!-- The name of the file you are adding,
+                     seems to have to be the same as a base
+                     file name -->
+                <Element text="Camera.artdef"/>
+            </ArtDefDependencyPaths>
+        </Element>
+    </SystemDependencies>
+</AssetObjects::GameDependencyData>

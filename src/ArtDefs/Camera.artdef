@@ -140,7 +140,8 @@
 										<m_ParamName text="Time"/>
 									</Element>
 									<Element class="AssetObjects..FloatValue">
-										<m_fValue>120.000000</m_fValue>
+										<!-- <m_fValue>120.000000</m_fValue> -->
+										<m_fValue>30.000000</m_fValue>
 										<m_ParamName text="Height"/>
 									</Element>
 								</m_Values>
