@@ -68,6 +68,10 @@ Some new game options have been added to better facilitate quicker games:
    - Mac: /Users/[user]/Library/Application Support/Sid Meier's Civilization VI/Mods
    - Windows: Documents/My Games/Sid Meier's Civilization VI/Mods
 
+## Motivation
+
+See [Motivation](docs/motivation.md)
+
 ## Credits
 
 #### Civic/tech boosted popups disabled
