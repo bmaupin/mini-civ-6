@@ -145,7 +145,7 @@
         <ReplaceUIScript id="MiniCivVIDisablePopupPolicyButton">
             <Properties>
                 <Context>InGame</Context>
-                <LoadOrder>1000000</LoadOrder>
+                <LoadOrder>1000001</LoadOrder>
                 <LuaContext>TechCivicCompletedPopup</LuaContext>
                 <LuaReplace>UI/Replacements/TechCivicCompletedPopup_MiniCivVI.lua</LuaReplace>
             </Properties>
@@ -276,6 +276,7 @@
         <File>Data/MiniCivVI_AutomateImprovements.sql</File>
         <File>Data/MiniCivVI_CivRev.sql</File>
         <File>Data/MiniCivVI_CivRev_Config.xml</File>
+        <File>Data/MiniCivVI_CleanupPrep.sql</File>
         <File>Data/MiniCivVI_Cleanup.sql</File>
         <File>Data/MiniCivVI_Config.xml</File>
         <File>Data/MiniCivVI_ConfigFrontendHacks.sql</File>
