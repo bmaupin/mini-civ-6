@@ -31,3 +31,10 @@ Buildings, civics, diplomatic actions, governments, improvements, resources, tec
 ### UI
 
 Game starts zoomed in to better match CivRev zoom and allows for a much closer zoom in level.
+
+## Wishlist
+
+- [ ] CivRev-style cultural and economic victories
+- [ ] Automatically give great people without UI interaction
+- [ ] Add map feature labels like CivRev
+- [ ] Add city flipping mechanic
