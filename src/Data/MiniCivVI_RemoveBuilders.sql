@@ -35,3 +35,14 @@ WHERE ImprovementType NOT IN (
 
 DELETE FROM Types
 WHERE Type = 'UNIT_BUILDER';
+
+-- Delete tech descriptions that are no longer inaccurate. Techs don't need a description
+-- and many techs don't have one; without it they just show what they unlock
+UPDATE Technologies
+SET Description = NULL
+WHERE TechnologyType IN (
+  -- Farms get adjacency bonus ("mechanised agriculture")
+  'TECH_REPLACEABLE_PARTS',
+  -- "Allows Builders to embark."
+  'TECH_SAILING'
+);
