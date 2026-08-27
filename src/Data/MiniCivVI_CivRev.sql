@@ -37,11 +37,21 @@ UPDATE BarbarianTribes
 SET SupportTag = 'CLASS_SIEGE'
 WHERE SupportTag = 'CLASS_BATTERING_RAM';
 
+
+
 -- Give barracks the same combat experience bonus for cavalry and siege units as Stable;
 -- this more closely matches naval and air buildings as well as other ground unit
 -- buildings and allows us to remove Stable
 INSERT INTO BuildingModifiers (BuildingType, ModifierId)
 VALUES ('BUILDING_BARRACKS', 'STABLE_TRAINED_UNIT_XP_MODIFIER');
+
+-- When a cavalry/siege unit is trained in a city with a barracks, show the barracks
+-- bonus, not stable
+UPDATE UnitAbilities
+SET Description = 'LOC_ABILITY_BARRACKS_TRAINED_UNIT_XP_DESCRIPTION'
+WHERE UnitAbilityType = 'ABILITY_STABLE_TRAINED_UNIT_XP';
+
+
 
 -- Use a whitelist for deletions to prevent DLC from adding additional items to the game
 DELETE FROM Types

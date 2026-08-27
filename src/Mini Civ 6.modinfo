@@ -269,6 +269,10 @@
             <Criteria>MiniCivVI_Standard_Ruleset</Criteria>
             <File>Data/MiniCivVI_ConfigIconHacks.sql</File>
         </UpdateIcons>
+        <UpdateText id="MiniCivVI_CivRev_Text">
+            <Criteria>MiniCivVI_CivRev_Ruleset</Criteria>
+            <File>Text/MiniCivVI_CivRev_Text.sql</File>
+        </UpdateText>
     </InGameActions>
     <Files>
         <File>ArtDefs/Camera.artdef</File>
@@ -297,6 +301,7 @@
         <File>Scripts/AutomateImprovements.lua</File>
         <File>Scripts/Autoplay.lua</File>
         <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
+        <File>Text/MiniCivVI_CivRev_Text.sql</File>
         <File>UI/MiniCivVI_CivRev_UILogic.lua</File>
         <File>UI/MiniCivVI_CivRev_UILogic.xml</File>
         <File>UI/Replacements/BoostUnlockedPopup_Disabled.lua</File>
