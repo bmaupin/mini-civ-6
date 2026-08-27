@@ -1,3 +1,7 @@
+-- Uncomment to debug Gathering Storm, which randomises and hides the future era techs/civics by default
+-- UPDATE Civics_XP2 set HiddenUntilPrereqComplete = 0;
+-- UPDATE Technologies_XP2 SET HiddenUntilPrereqComplete = 0;
+
 -- The mercenaries civic only unlocks policy cards and the unique Jong unit.
 -- If the Jong is the only unlock for the mercenaries civic, set its prerequisite to a
 -- different civic so the mercenaries civic can be deleted, otherwise it will show up for
