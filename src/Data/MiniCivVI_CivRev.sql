@@ -53,6 +53,26 @@ WHERE UnitAbilityType = 'ABILITY_STABLE_TRAINED_UNIT_XP';
 
 
 
+UPDATE Eras
+SET Unit = 'UNIT_WARRIOR'
+WHERE Unit = 'UNIT_SCOUT'
+  OR Unit = 'UNIT_RANGER';
+
+UPDATE Eras
+SET Unit = 'UNIT_WARRIOR'
+WHERE Unit = 'UNIT_SPEARMAN'
+  AND AiOnly = 1;
+
+UPDATE Eras
+SET Unit = 'UNIT_ARCHER'
+WHERE Unit = 'UNIT_CROSSBOWMAN';
+
+UPDATE Eras
+SET Unit = 'UNIT_TANK'
+WHERE Unit = 'UNIT_MACHINE_GUN';
+
+
+
 -- Use a whitelist for deletions to prevent DLC from adding additional items to the game
 DELETE FROM Types
 WHERE Type IN (
