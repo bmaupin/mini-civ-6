@@ -301,3 +301,24 @@ WHERE Type IN (
   --
   'TECH_FLIGHT'
 );
+
+
+INSERT INTO Types (Type, Kind)
+VALUES ('VICTORY_CIVREV_ECONOMIC', 'KIND_VICTORY');
+
+INSERT INTO Victories (VictoryType, Name, Blurb, Description, RequirementSetId)
+VALUES (
+  'VICTORY_CIVREV_ECONOMIC',
+  'LOC_VICTORY_CIVREV_ECONOMIC_NAME',
+  'LOC_VICTORY_CIVREV_ECONOMIC_TEXT',
+  -- Todo: remove description?
+  'LOC_VICTORY_CIVREV_ECONOMIC_DESCRIPTION',
+  'REQUIREMENTS_CIVREV_ECONOMIC_VICTORY'
+);
+
+-- This doesn't do anything but is required; actual victory logic will be handled in Lua
+INSERT INTO RequirementSets (RequirementSetId, RequirementSetType)
+VALUES (
+  'REQUIREMENTS_CIVREV_ECONOMIC_VICTORY',
+  'REQUIREMENTSET_TEST_ALL'
+);

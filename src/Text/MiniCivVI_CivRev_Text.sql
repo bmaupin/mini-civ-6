@@ -18,3 +18,21 @@ SET Text =
       AND stable.Language = Language
   )
 WHERE Tag = 'LOC_BUILDING_BARRACKS_DESCRIPTION';
+
+INSERT INTO LocalizedText (Language, Tag, Text)
+VALUES (
+  'en_US',
+  'LOC_WORLD_RANKINGS_VICTORY_CIVREV_ECONOMIC',
+  '{1_GoldInTreasury}/{2_GoldForVictory} Gold in treasury'
+  -- '{1_CompletedCivics}/{2_TotalCivics} Civics, {3_CompletedTechs}/{4_TotalTechs} Technologies'
+),
+(
+  'en_US',
+  'LOC_VICTORY_CIVREV_ECONOMIC_NAME',
+  'Economic Victory'
+),
+(
+  'en_US',
+  'LOC_VICTORY_CIVREV_ECONOMIC_DESCRIPTION',
+  'TODO: Should contain full stylised description that shows in world rankings dialogue'
+);

@@ -151,6 +151,13 @@
             </Properties>
             <Criteria>MiniCivVI_No_Policies</Criteria>
         </ReplaceUIScript>
+        <ReplaceUIScript id="MiniCivVICivRevWorldRankings">
+            <Properties>
+                <LuaContext>WorldRankings</LuaContext>
+                <LuaReplace>UI/Replacements/WorldRankings_CivRev.lua</LuaReplace>
+            </Properties>
+            <Criteria>MiniCivVI_CivRev_Ruleset</Criteria>
+        </ReplaceUIScript>
         <UpdateArt id="MiniCivVIUpdateArt">
             <File>MiniCivVI.dep</File>
         </UpdateArt>
@@ -307,5 +314,6 @@
         <File>UI/Replacements/BoostUnlockedPopup_Disabled.lua</File>
         <File>UI/Replacements/GovernmentScreen_MiniCivVI.lua</File>
         <File>UI/Replacements/TechCivicCompletedPopup_MiniCivVI.lua</File>
+        <File>UI/Replacements/WorldRankings_CivRev.lua</File>
     </Files>
 </Mod>
