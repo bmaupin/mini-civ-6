@@ -23,7 +23,7 @@ INSERT INTO LocalizedText (Language, Tag, Text)
 VALUES (
   'en_US',
   'LOC_WORLD_RANKINGS_VICTORY_CIVREV_ECONOMIC',
-  '{1_GoldInTreasury}/{2_GoldForVictory} Gold in treasury'
+  'Gold: {1_GoldInTreasury}/{2_GoldForVictory}'
   -- '{1_CompletedCivics}/{2_TotalCivics} Civics, {3_CompletedTechs}/{4_TotalTechs} Technologies'
 ),
 (
@@ -35,4 +35,9 @@ VALUES (
   'en_US',
   'LOC_VICTORY_CIVREV_ECONOMIC_DESCRIPTION',
   'TODO: Should contain full stylised description that shows in world rankings dialogue'
+),
+(
+  'en_US',
+  'LOC_VICTORY_CIVREV_ECONOMIC_TAB_NAME',
+  'Economic'
 );

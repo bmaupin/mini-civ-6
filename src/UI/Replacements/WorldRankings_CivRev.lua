@@ -90,3 +90,15 @@ function PopulateGenericInstance(instance, playerData, victoryType, showTeamDeta
     instance.Details:SetText(playerData.PlayerText)
     instance.ButtonBG:SetSizeY(SIZE_SCORE_ITEM_DEFAULT)
 end
+
+-- Copy the original function from the game
+local BASE_AddTab = AddTab;
+
+-- Override the AddTab function to make the economic victory tab label match other victories
+function AddTab(label, onClickCallback)
+	if (label == Locale.Lookup("LOC_VICTORY_CIVREV_ECONOMIC_NAME")) then
+		label = Locale.Lookup("LOC_VICTORY_CIVREV_ECONOMIC_TAB_NAME");
+	end
+
+  return BASE_AddTab(label, onClickCallback);
+end
