@@ -1,5 +1,6 @@
 include("WorldRankings");
 
+-- NOTE: If this is changed it also needs to be changed in src/Scripts/MiniCiv6_CivRev_Victories.lua
 local ECONOMIC_VICTORY_GOLD_IN_TREASURY = 20000;
 
 local m_GenericIM:table = InstanceManager:new("GenericInstance", "ButtonBG", Controls.GenericViewStack);

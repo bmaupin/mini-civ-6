@@ -17,32 +17,31 @@ end
 
 -- Functionality adapted from CiVI Reformation Victories (https://forums.civfanatics.com/resources/civi-reformation-victories.25796/)
 function ProcessVictoryConditions(localPlayerOnly)
-	print("**************************************** ProcessVictoryConditions()");
 	local victoryType = "";
 	local localPlayer = Players[Game.GetLocalPlayer()];
 
 	victoryType = GetCustomVictoryCompleted(localPlayer);
-
-	if (victoryType ~= "") then
+	if (victoryType ~= "" and victoryType ~= nil) then
 		-- LuaEvents.CustomVictoryTriggered(localPlayer, victoryType, nil, nil);
 		Game.SetWinningTeam(localPlayer:GetTeam());
 	end
 
-	if (not localPlayerOnly) then
-		-- check if any other player or ai have achieved any custom victory type
-		for i, player in ipairs(PlayerManager:GetAliveMajors()) do
-			if (player:GetID() ~= player:GetID()) then
-				victoryType = GetCustomVictoryCompleted(player);
+  -- TODO: Do we need to handle defeat screen if another player wins?
+	-- if (not localPlayerOnly) then
+	-- 	-- check if any other player or ai have achieved any custom victory type
+	-- 	for i, player in ipairs(PlayerManager:GetAliveMajors()) do
+	-- 		if (player:GetID() ~= player:GetID()) then
+	-- 			victoryType = GetCustomVictoryCompleted(player);
 
-				if (victoryType ~= "") then
-					print("ProcessVictoryConditions: player=" .. player:GetID() .. ", reason=" .. victoryType);
-          -- TODO: show player defeat if another player wins?
-					-- LuaEvents.CustomVictoryTriggered(localPlayer, "DEFEAT_DEFAULT", player, victoryType);
-					break;
-				end
-			end
-		end
-	end
+	-- 			if (victoryType ~= "") then
+	-- 				print("ProcessVictoryConditions: player=" .. player:GetID() .. ", reason=" .. victoryType);
+  --         -- TODO: show player defeat if another player wins?
+	-- 				-- LuaEvents.CustomVictoryTriggered(localPlayer, "DEFEAT_DEFAULT", player, victoryType);
+	-- 				break;
+	-- 			end
+	-- 		end
+	-- 	end
+	-- end
 end
 
 function OnLocalPlayerTurnBegin()

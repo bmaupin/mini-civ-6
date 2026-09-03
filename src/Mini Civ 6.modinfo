@@ -26,6 +26,13 @@
                 <Value>1</Value>
             </ConfigurationValueMatches>
         </Criteria>
+        <Criteria id="MiniCiv6_Economic_Victory">
+            <ConfigurationValueMatches>
+                <Group>Game</Group>
+                <ConfigurationId>VICTORY_CIVREV_ECONOMIC</ConfigurationId>
+                <Value>1</Value>
+            </ConfigurationValueMatches>
+        </Criteria>
         <Criteria id="MiniCivVI_No_Amenities">
             <ConfigurationValueMatches>
                 <Group>Game</Group>
@@ -118,8 +125,8 @@
             <Criteria>MiniCivVI_Automate_Improvements</Criteria>
             <File>Scripts/AutomateImprovements.lua</File>
         </AddGameplayScripts>
-        <AddGameplayScripts id="MiniCivVIAutomateImprovementsScripts">
-            <Criteria>MiniCivVI_CivRev_Ruleset</Criteria>
+        <AddGameplayScripts id="MiniCiv6_Economic_Victory_Scripts">
+            <Criteria>MiniCiv6_Economic_Victory</Criteria>
             <File>Scripts/MiniCiv6_CivRev_Victories.lua</File>
         </AddGameplayScripts>
         <AddUserInterfaces id="MiniCivVICivRevUILogic">
