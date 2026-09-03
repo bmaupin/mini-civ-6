@@ -61,3 +61,19 @@ function AddGreatArtistPointsEveryTurn(playerID)
     print("**************************************** Added great artist points to player 0");
 end
 Events.PlayerTurnActivated.Add(AddGreatArtistPointsEveryTurn);
+
+
+
+
+function TriggerEconomicVictory(playerID)
+    if playerID ~= 0 then
+        return;
+    end
+
+    if Game.GetCurrentGameTurn() < 2 then
+        return;
+    end
+
+    Players[playerID]:GetTreasury():SetGoldBalance(20001);
+end
+Events.PlayerTurnActivated.Add(TriggerEconomicVictory);
