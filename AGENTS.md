@@ -1,7 +1,6 @@
 - Communicate concisely
 - Only provide guidance and do not write to any files unless requested
 - Use British English spelling
-- Don't use rg, use grep
 - Civ 6 uses Havok Script Lua which adds types that must be stripped for compatibility with the vscode Lua language server
 - Civ 6 uses SQLite
 - Prefer simpler, clearer solutions even if they're less concise; code should be prioritised for readability

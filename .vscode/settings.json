@@ -1,11 +1,19 @@
 {
   "Lua.diagnostics.globals": [
+    "Cities",
+    "CityManager",
     "Controls",
+    "GameEvents",
+    "Events",
+    "Game",
     "GameInfo",
     "ImprovementBuilder",
     "LuaEvents",
+    "Map",
+    "Players",
     "PlayerManager",
-    "UI"
+    "UI",
+    "UnitManager"
   ],
   "Lua.runtime.special": {
     "include": "require"

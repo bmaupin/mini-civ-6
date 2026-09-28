@@ -20,6 +20,9 @@
       "name": "289070",
       "path": "../../../../../.local/share/Steam/steamapps/workshop/content/289070",
     },
+    {
+      "path": "../../../../../.local/share/aspyr-media/Sid Meier's Civilization VI",
+    },
   ],
   "extensions": {
     "recommendations": ["sumneko.lua"],
