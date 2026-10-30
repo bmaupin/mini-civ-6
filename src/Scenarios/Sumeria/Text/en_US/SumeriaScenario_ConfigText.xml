@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GameData>
+    <EnglishText>
+        <Row Tag="LOC_CIVILIZATION_BABYLON_STK_NAME">
+            <Text>Akkad</Text>
+        </Row>
+        <Row Tag="LOC_CIVILIZATION_PHOENICIA_NAME">
+            <Text>Amurru</Text>
+        </Row>
+        <Row Tag="LOC_CIVILIZATION_PERSIA_NAME">
+            <Text>Elam</Text>
+        </Row>
+        <Row Tag="LOC_CIVILIZATION_GEORGIA_NAME">
+            <Text>Gutium</Text>
+        </Row>
+        <Row Tag="LOC_MOD_SUMERIASCENARIO_MAP_NAME">
+            <Text>Sumeria</Text>
+        </Row>
+    </EnglishText>
+</GameData>

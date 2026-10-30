@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameInfo>
+	<RuleSets>
+		<Row>
+			<RuleSetType>RULESET_SCENARIO_SUMERIA</RuleSetType>
+			<Name>LOC_SUMERIA_SCENARIO_NAME</Name>
+			<Description>LOC_SUMERIA_SCENARIO_TOOLTIP</Description>
+			<LongDescription>LOC_SUMERIA_SCENARIO_DESCRIPTION</LongDescription>
+			<!-- <VictoryDomain>SumeriaScenario_Victories</VictoryDomain>
+			<ScenarioSetupPortrait>SumeriaScenario_Browser_FG</ScenarioSetupPortrait>
+			<ScenarioSetupPortraitBackground>LEADER_SUMERIA_BACKGROUND</ScenarioSetupPortraitBackground> -->
+			<IsScenario>1</IsScenario>
+			<SupportsMultiPlayer>0</SupportsMultiPlayer>
+			<SupportsHotSeat>1</SupportsHotSeat>
+			<SupportsPlayByCloud>0</SupportsPlayByCloud>
+			<RequiresNoTeams>1</RequiresNoTeams>
+			<RequiresUniqueCivilizations>1</RequiresUniqueCivilizations>
+			<RequiresUniqueLeaders>1</RequiresUniqueLeaders>
+		</Row>
+	</RuleSets>
+	<Players>
+		<Row>
+			<Domain>SumeriaScenario_Players</Domain>
+			<CivilizationType>CIVILIZATION_SUMERIA</CivilizationType>
+			<LeaderType>LEADER_GILGAMESH</LeaderType>
+			<CivilizationName>LOC_CIVILIZATION_SUMERIA_NAME</CivilizationName>
+			<CivilizationIcon>ICON_CIVILIZATION_SUMERIA</CivilizationIcon>
+			<LeaderName>LOC_LEADER_GILGAMESH_NAME</LeaderName>
+			<LeaderIcon>ICON_LEADER_GILGAMESH</LeaderIcon>
+			<CivilizationAbilityName>LOC_TRAIT_CIVILIZATION_FIRST_CIVILIZATION_NAME</CivilizationAbilityName>
+			<CivilizationAbilityDescription>LOC_TRAIT_CIVILIZATION_FIRST_CIVILIZATION_DESCRIPTION</CivilizationAbilityDescription>
+			<CivilizationAbilityIcon>ICON_CIVILIZATION_SUMERIA</CivilizationAbilityIcon>
+			<LeaderAbilityName>LOC_TRAIT_LEADER_ADVENTURES_ENKIDU_NAME</LeaderAbilityName>
+			<LeaderAbilityDescription>LOC_TRAIT_LEADER_ADVENTURES_ENKIDU_DESCRIPTION</LeaderAbilityDescription>
+			<LeaderAbilityIcon>ICON_LEADER_GILGAMESH</LeaderAbilityIcon>
+			<Portrait>LEADER_GILGAMESH_NEUTRAL</Portrait>
+			<PortraitBackground>LEADER_GILGAMESH_BACKGROUND</PortraitBackground>
+		</Row>
+		<Row>
+			<Domain>SumeriaScenario_Players</Domain>
+			<CivilizationType>CIVILIZATION_BABYLON_STK</CivilizationType>
+			<LeaderType>LEADER_HAMMURABI</LeaderType>
+			<CivilizationName>LOC_CIVILIZATION_BABYLON_STK_NAME</CivilizationName>
+			<CivilizationIcon>ICON_CIVILIZATION_BABYLON_STK</CivilizationIcon>
+			<LeaderName>LOC_LEADER_HAMMURABI_NAME</LeaderName>
+			<LeaderIcon>ICON_LEADER_HAMMURABI</LeaderIcon>
+			<CivilizationAbilityName>LOC_TRAIT_CIVILIZATION_BABYLON_NAME</CivilizationAbilityName>
+			<CivilizationAbilityDescription>LOC_TRAIT_CIVILIZATION_BABYLON_DESCRIPTION</CivilizationAbilityDescription>
+			<CivilizationAbilityIcon>ICON_CIVILIZATION_BABYLON_STK</CivilizationAbilityIcon>
+			<LeaderAbilityName>LOC_TRAIT_LEADER_HAMMURABI_NAME</LeaderAbilityName>
+			<LeaderAbilityDescription>LOC_TRAIT_LEADER_HAMMURABI_DESCRIPTION</LeaderAbilityDescription>
+			<LeaderAbilityIcon>ICON_LEADER_HAMMURABI</LeaderAbilityIcon>
+			<Portrait>LEADER_HAMMURABI_NEUTRAL</Portrait>
+			<PortraitBackground>LEADER_HAMMURABI_BACKGROUND</PortraitBackground>
+		</Row>
+		<Row>
+			<Domain>SumeriaScenario_Players</Domain>
+			<CivilizationType>CIVILIZATION_PHOENICIA</CivilizationType>
+			<LeaderType>LEADER_DIDO</LeaderType>
+			<CivilizationName>LOC_CIVILIZATION_PHOENICIA_NAME</CivilizationName>
+			<CivilizationIcon>ICON_CIVILIZATION_PHOENICIA</CivilizationIcon>
+			<LeaderName>LOC_LEADER_DIDO_NAME</LeaderName>
+			<LeaderIcon>ICON_LEADER_DIDO</LeaderIcon>
+			<CivilizationAbilityName>LOC_TRAIT_CIVILIZATION_MEDITERRANEAN_COLONIES_NAME</CivilizationAbilityName>
+			<CivilizationAbilityDescription>LOC_TRAIT_CIVILIZATION_MEDITERRANEAN_COLONIES_DESCRIPTION</CivilizationAbilityDescription>
+			<CivilizationAbilityIcon>ICON_CIVILIZATION_PHOENICIA</CivilizationAbilityIcon>
+			<LeaderAbilityName>LOC_TRAIT_LEADER_FOUNDER_CARTHAGE_NAME</LeaderAbilityName>
+			<LeaderAbilityDescription>LOC_TRAIT_LEADER_FOUNDER_CARTHAGE_DESCRIPTION</LeaderAbilityDescription>
+			<LeaderAbilityIcon>ICON_LEADER_DIDO</LeaderAbilityIcon>
+			<Portrait>LEADER_DIDO_NEUTRAL</Portrait>
+			<PortraitBackground>LEADER_DIDO_BACKGROUND</PortraitBackground>
+		</Row>
+		<Row>
+			<Domain>SumeriaScenario_Players</Domain>
+			<CivilizationType>CIVILIZATION_PERSIA</CivilizationType>
+			<LeaderType>LEADER_CYRUS</LeaderType>
+			<CivilizationName>LOC_CIVILIZATION_PERSIA_NAME</CivilizationName>
+			<CivilizationIcon>ICON_CIVILIZATION_PERSIA</CivilizationIcon>
+			<LeaderName>LOC_LEADER_CYRUS_NAME</LeaderName>
+			<LeaderIcon>ICON_LEADER_CYRUS</LeaderIcon>
+			<CivilizationAbilityName>LOC_TRAIT_CIVILIZATION_SATRAPIES_NAME</CivilizationAbilityName>
+			<CivilizationAbilityDescription>LOC_TRAIT_CIVILIZATION_SATRAPIES_DESCRIPTION</CivilizationAbilityDescription>
+			<CivilizationAbilityIcon>ICON_CIVILIZATION_PERSIA</CivilizationAbilityIcon>
+			<LeaderAbilityName>LOC_TRAIT_LEADER_FALL_BABYLON_NAME</LeaderAbilityName>
+			<LeaderAbilityDescription>LOC_TRAIT_LEADER_FALL_BABYLON_DESCRIPTION</LeaderAbilityDescription>
+			<LeaderAbilityIcon>ICON_LEADER_CYRUS</LeaderAbilityIcon>
+			<Portrait>LEADER_CYRUS_NEUTRAL</Portrait>
+			<PortraitBackground>LEADER_CYRUS_BACKGROUND</PortraitBackground>
+		</Row>
+		<Row>
+			<Domain>SumeriaScenario_Players</Domain>
+			<CivilizationType>CIVILIZATION_GEORGIA</CivilizationType>
+			<LeaderType>LEADER_TAMAR</LeaderType>
+			<CivilizationName>LOC_CIVILIZATION_GEORGIA_NAME</CivilizationName>
+			<CivilizationIcon>ICON_CIVILIZATION_GEORGIA</CivilizationIcon>
+			<LeaderName>LOC_LEADER_TAMAR_NAME</LeaderName>
+			<LeaderIcon>ICON_LEADER_TAMAR</LeaderIcon>
+			<CivilizationAbilityName>LOC_TRAIT_CIVILIZATION_GOLDEN_AGE_QUESTS_NAME</CivilizationAbilityName>
+			<CivilizationAbilityDescription>LOC_TRAIT_CIVILIZATION_GOLDEN_AGE_QUESTS_DESCRIPTION</CivilizationAbilityDescription>
+			<CivilizationAbilityIcon>ICON_CIVILIZATION_BRAZIL</CivilizationAbilityIcon>
+			<LeaderAbilityName>LOC_TRAIT_LEADER_RELIGION_CITY_STATES_NAME</LeaderAbilityName>
+			<LeaderAbilityDescription>LOC_TRAIT_LEADER_RELIGION_CITY_STATES_DESCRIPTION</LeaderAbilityDescription>
+			<LeaderAbilityIcon>ICON_LEADER_PEDRO</LeaderAbilityIcon>
+			<Portrait>LEADER_TAMAR_NEUTRAL</Portrait>
+			<PortraitBackground>LEADER_TAMAR_BACKGROUND</PortraitBackground>
+		</Row>
+	</Players>
+	<RulesetDomainOverrides>
+		<Row Ruleset="RULESET_SCENARIO_SUMERIA" ParameterId="PlayerLeader" Domain="SumeriaScenario_Players"/>
+		<Row Ruleset="RULESET_SCENARIO_SUMERIA" ParameterId="Map" Domain="SumeriaScenario_Maps"/>
+	</RulesetDomainOverrides>
+	<RulesetSupportedValues>
+		<Row Ruleset="RULESET_SCENARIO_SUMERIA" Domain="StandardEras" Value="ERA_ANCIENT"/>
+    <Row Ruleset="RULESET_SCENARIO_SUMERIA" Domain="StandardGameSpeeds" Value="GAMESPEED_QUICK"/>
+    <Row Ruleset="RULESET_SCENARIO_SUMERIA" Domain="StandardGameSpeeds" Value="GAMESPEED_ONLINE"/>
+    <Row Ruleset="RULESET_SCENARIO_SUMERIA" Domain="StandardMapSizes" Value="MAPSIZE_TINY"/>
+		<Row Ruleset="RULESET_SCENARIO_SUMERIA" PlayerId="0" Domain="SumeriaScenario_Players" Value="LEADER_GILGAMESH"/>
+		<Row Ruleset="RULESET_SCENARIO_SUMERIA" PlayerId="1" Domain="SumeriaScenario_Players" Value="LEADER_HAMMURABI"/>
+    <Row Ruleset="RULESET_SCENARIO_SUMERIA" PlayerId="2" Domain="SumeriaScenario_Players" Value="LEADER_DIDO"/>
+    <Row Ruleset="RULESET_SCENARIO_SUMERIA" PlayerId="3" Domain="SumeriaScenario_Players" Value="LEADER_CYRUS"/>
+    <Row Ruleset="RULESET_SCENARIO_SUMERIA" PlayerId="4" Domain="SumeriaScenario_Players" Value="LEADER_TAMAR"/>
+	</RulesetSupportedValues>
+	<MapDomainOverrides>
+		<Row Map="{92ea96c4-bbdd-4926-af62-a688aa5b9e1a}Scenarios/Sumeria/Map/Sumeria.Civ6Map" ParameterId="MapSize" Domain="{92ea96c4-bbdd-4926-af62-a688aa5b9e1a}Scenarios/Sumeria/Map/Sumeria.Civ6Map"/>
+	</MapDomainOverrides>
+	<MapSizes>
+		<Row Domain="{92ea96c4-bbdd-4926-af62-a688aa5b9e1a}Scenarios/Sumeria/Map/Sumeria.Civ6Map" MapSizeType="MAPSIZE_TINY" Name="LOC_MAPSIZE_TINY_NAME" Description="LOC_MAPSIZE_TINY_DESCRIPTION" MinPlayers="5" MaxPlayers="5" DefaultPlayers="5" MinCityStates="0" MaxCityStates="3" DefaultCityStates="0" SortIndex="10"/>
+	</MapSizes>
+</GameInfo>

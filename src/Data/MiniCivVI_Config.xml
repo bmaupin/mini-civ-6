@@ -121,6 +121,7 @@
         <Row ParameterID="MiniCivVI_AutomateImprovements" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVI_NoAmenities" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVI_NoBuilders" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
+        <Row ParameterID="MiniCivVI_NoEspionage" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVI_NoGreatPeople" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVI_NoPolicies" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
         <Row ParameterID="MiniCivVi_NoMilitary" ConfigurationGroup="Game" ConfigurationId="WORLD_BUILDER" Operator="NotEquals" ConfigurationValue="1" />
