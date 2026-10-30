@@ -16,5 +16,8 @@
         <Row Tag="LOC_MOD_SUMERIASCENARIO_MAP_NAME">
             <Text>Sumeria</Text>
         </Row>
+        <Row Tag="LOC_SUMERIA_SCENARIO_NAME">
+            <Text>Sumeria</Text>
+        </Row>
     </EnglishText>
 </GameData>

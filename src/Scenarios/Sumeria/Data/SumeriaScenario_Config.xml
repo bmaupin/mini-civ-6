@@ -6,6 +6,7 @@
 			<Name>LOC_SUMERIA_SCENARIO_NAME</Name>
 			<Description>LOC_SUMERIA_SCENARIO_TOOLTIP</Description>
 			<LongDescription>LOC_SUMERIA_SCENARIO_DESCRIPTION</LongDescription>
+			<GameCore>Expansion2</GameCore>
 			<!-- <VictoryDomain>SumeriaScenario_Victories</VictoryDomain>
 			<ScenarioSetupPortrait>SumeriaScenario_Browser_FG</ScenarioSetupPortrait>
 			<ScenarioSetupPortraitBackground>LEADER_SUMERIA_BACKGROUND</ScenarioSetupPortraitBackground> -->
@@ -111,15 +112,27 @@
 	</RulesetDomainOverrides>
 	<RulesetSupportedValues>
 		<Row Ruleset="RULESET_SCENARIO_SUMERIA" Domain="StandardEras" Value="ERA_ANCIENT"/>
-    <Row Ruleset="RULESET_SCENARIO_SUMERIA" Domain="StandardGameSpeeds" Value="GAMESPEED_QUICK"/>
-    <Row Ruleset="RULESET_SCENARIO_SUMERIA" Domain="StandardGameSpeeds" Value="GAMESPEED_ONLINE"/>
-    <Row Ruleset="RULESET_SCENARIO_SUMERIA" Domain="StandardMapSizes" Value="MAPSIZE_TINY"/>
-		<Row Ruleset="RULESET_SCENARIO_SUMERIA" PlayerId="0" Domain="SumeriaScenario_Players" Value="LEADER_GILGAMESH"/>
-		<Row Ruleset="RULESET_SCENARIO_SUMERIA" PlayerId="1" Domain="SumeriaScenario_Players" Value="LEADER_HAMMURABI"/>
-    <Row Ruleset="RULESET_SCENARIO_SUMERIA" PlayerId="2" Domain="SumeriaScenario_Players" Value="LEADER_DIDO"/>
-    <Row Ruleset="RULESET_SCENARIO_SUMERIA" PlayerId="3" Domain="SumeriaScenario_Players" Value="LEADER_CYRUS"/>
-    <Row Ruleset="RULESET_SCENARIO_SUMERIA" PlayerId="4" Domain="SumeriaScenario_Players" Value="LEADER_TAMAR"/>
+		<Row Ruleset="RULESET_SCENARIO_SUMERIA" Domain="StandardGameSpeeds" Value="GAMESPEED_QUICK"/>
+		<Row Ruleset="RULESET_SCENARIO_SUMERIA" Domain="StandardGameSpeeds" Value="GAMESPEED_ONLINE"/>
+		<Row Ruleset="RULESET_SCENARIO_SUMERIA" Domain="StandardMapSizes" Value="MAPSIZE_TINY"/>
 	</RulesetSupportedValues>
+	<DomainValues>
+		<Row Domain="SumeriaScenario_Players" Value="RANDOM" Name="LOC_RANDOM_LEADER" Description="LOC_RANDOM_LEADER" SortIndex="1"/>
+	</DomainValues>
+	<Parameters>
+		<Row Key1="Ruleset" Key2="RULESET_SCENARIO_SUMERIA" ParameterId="MiniCivVI_AutomateImprovements" Name="LOC_MC6_AUTO_IMPROVEMENTS" Description="LOC_MC6_AUTO_IMPROVEMENTS_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_AUTO_IMPROVEMENTS" GroupId="AdvancedOptions" SortIndex="9210" />
+		<Row Key1="Ruleset" Key2="RULESET_SCENARIO_SUMERIA" ParameterId="MiniCivVI_NoAmenities" Name="LOC_MC6_NO_AMENITIES" Description="LOC_MC6_NO_AMENITIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_AMENITIES" GroupId="AdvancedOptions" SortIndex="9210" />
+		<Row Key1="Ruleset" Key2="RULESET_SCENARIO_SUMERIA" ParameterId="MiniCivVI_NoBuilders" Name="LOC_MC6_NO_BUILDERS" Description="LOC_MC6_NO_BUILDERS_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_BUILDERS" GroupId="AdvancedOptions" SortIndex="9210" />
+		<Row Key1="Ruleset" Key2="RULESET_SCENARIO_SUMERIA" ParameterId="MiniCivVI_NoEspionage" Name="LOC_MC6_NO_ESPIONAGE" Description="LOC_MC6_NO_ESPIONAGE_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_ESPIONAGE" GroupId="AdvancedOptions" SortIndex="9210" />
+		<Row Key1="Ruleset" Key2="RULESET_SCENARIO_SUMERIA" ParameterId="MiniCivVI_NoGreatPeople" Name="LOC_MC6_NO_GREAT_PEOPLE" Description="LOC_MC6_NO_GREAT_PEOPLE_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_GREAT_PEOPLE" GroupId="AdvancedOptions" SortIndex="9210" />
+		<Row Key1="Ruleset" Key2="RULESET_SCENARIO_SUMERIA" ParameterId="MiniCivVI_NoPolicies" Name="LOC_MC6_NO_POLICIES" Description="LOC_MC6_NO_POLICIES_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_POLICIES" GroupId="AdvancedOptions" SortIndex="9210" />
+		<Row Key1="Ruleset" Key2="RULESET_SCENARIO_SUMERIA" ParameterId="MiniCivVI_NoReligion" Name="LOC_MC6_NO_RELIGION" Description="LOC_MC6_NO_RELIGION_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_NO_RELIGION" GroupId="AdvancedOptions" SortIndex="9210" />
+		<Row Key1="Ruleset" Key2="RULESET_SCENARIO_SUMERIA" ParameterId="MiniCivVI_RemoveDistricts" Name="LOC_MC6_REMOVE_DISTRICTS" Description="LOC_MC6_REMOVE_DISTRICTS_DESCRIPTION" Domain="bool" DefaultValue="1" ConfigurationGroup="Game" ConfigurationId="MC6_REMOVE_DISTRICTS" GroupId="AdvancedOptions" SortIndex="9210" />
+		<Row Key1="Ruleset" Key2="RULESET_SCENARIO_SUMERIA" ParameterId="MiniCivVi_NoMilitary" Name="LOC_MC6_NO_MILITARY" Description="LOC_MC6_NO_MILITARY_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="MC6_NO_MILITARY" GroupId="AdvancedOptions" SortIndex="9310" />
+	</Parameters>
+	<ParameterDependencies>
+		<Row ParameterId="StartPosition" ConfigurationGroup="Game" ConfigurationId="RULESET" Operator="NotEquals" ConfigurationValue="RULESET_SCENARIO_SUMERIA"/>
+	</ParameterDependencies>
 	<MapDomainOverrides>
 		<Row Map="{92ea96c4-bbdd-4926-af62-a688aa5b9e1a}Scenarios/Sumeria/Map/Sumeria.Civ6Map" ParameterId="MapSize" Domain="{92ea96c4-bbdd-4926-af62-a688aa5b9e1a}Scenarios/Sumeria/Map/Sumeria.Civ6Map"/>
 	</MapDomainOverrides>

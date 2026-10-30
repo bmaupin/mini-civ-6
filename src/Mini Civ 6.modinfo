@@ -115,9 +115,51 @@
         <UpdateText id="MiniCivVISettingsText">
             <File>Text/en_US/MiniCivVI_ConfigText.xml</File>
         </UpdateText>
+        <UpdateText id="SumeriaScenarioText">
+            <File>Scenarios/Sumeria/Text/en_US/SumeriaScenario_ConfigText.xml</File>
+        </UpdateText>
+        <AddMap id="SumeriaScenarioMap">
+            <Properties>
+                <Group>SumeriaScenario_Maps</Group>
+                <Name>LOC_MOD_SUMERIASCENARIO_MAP_NAME</Name>
+            </Properties>
+            <File>Scenarios/Sumeria/Map/Sumeria.Civ6Map</File>
+        </AddMap>
+        <UpdateDatabase id="SumeriaScenarioSettings">
+            <File>Scenarios/Sumeria/Data/SumeriaScenario_Config.xml</File>
+        </UpdateDatabase>
     </FrontEndActions>
     <!-- This is where anything modifying data under Assets/Gameplay/ goes -->
     <InGameActions>
+        <!-- Custom player domains do not activate the stock DLC leader criteria. -->
+        <None id="SumeriaScenarioIncludes" criteria="MiniCivVI_Sumeria_Ruleset">
+            <!-- Babylon and its Gathering Storm compatibility data -->
+            <Include mod_id="8424840C-92EF-4426-A9B4-B4E0CB818049" action_id="BabylonGameplay" required="1" />
+            <Include mod_id="8424840C-92EF-4426-A9B4-B4E0CB818049" action_id="BabylonGameplay_XP2" required="1" />
+            <Include mod_id="8424840C-92EF-4426-A9B4-B4E0CB818049" action_id="BabylonArt" required="1" />
+            <Include mod_id="8424840C-92EF-4426-A9B4-B4E0CB818049" action_id="BabylonAudio" required="1" />
+            <Include mod_id="8424840C-92EF-4426-A9B4-B4E0CB818049" action_id="BabylonARX" required="1" />
+            <Include mod_id="8424840C-92EF-4426-A9B4-B4E0CB818049" action_id="BabylonColors" required="1" />
+            <Include mod_id="8424840C-92EF-4426-A9B4-B4E0CB818049" action_id="BabylonIcons" required="1" />
+            <Include mod_id="8424840C-92EF-4426-A9B4-B4E0CB818049" action_id="BabylonText" required="1" />
+            <!-- Persia is bundled with Macedonia. -->
+            <Include mod_id="E2749E9A-8056-45CD-901B-C368C8E83DEB" action_id="MacedoniaGameplay_XP2" required="1" />
+            <Include mod_id="E2749E9A-8056-45CD-901B-C368C8E83DEB" action_id="MacedoniaArt" required="1" />
+            <Include mod_id="E2749E9A-8056-45CD-901B-C368C8E83DEB" action_id="MacedoniaAudio" required="1" />
+            <Include mod_id="E2749E9A-8056-45CD-901B-C368C8E83DEB" action_id="MacedoniaARX" required="1" />
+            <Include mod_id="E2749E9A-8056-45CD-901B-C368C8E83DEB" action_id="MacedoniaColors" required="1" />
+            <Include mod_id="E2749E9A-8056-45CD-901B-C368C8E83DEB" action_id="MacedoniaGameplayIcons" required="1" />
+            <Include mod_id="E2749E9A-8056-45CD-901B-C368C8E83DEB" action_id="MacedoniaText" required="1" />
+            <!-- Georgia is bundled with the Rise and Fall major civilisations. -->
+            <Include mod_id="1B28771A-C749-434B-9053-D1380C553DE9" action_id="Expansion1_MajorContent" required="1" />
+            <Include mod_id="1B28771A-C749-434B-9053-D1380C553DE9" action_id="Expansion1_XP2" required="1" />
+            <Include mod_id="1B28771A-C749-434B-9053-D1380C553DE9" action_id="Expansion1_MajorArt" required="1" />
+            <Include mod_id="1B28771A-C749-434B-9053-D1380C553DE9" action_id="Expansion1_MajorAudio" required="1" />
+            <Include mod_id="1B28771A-C749-434B-9053-D1380C553DE9" action_id="Expansion1_MajorARX" required="1" />
+            <Include mod_id="1B28771A-C749-434B-9053-D1380C553DE9" action_id="Expansion1_PlayerColors" required="1" />
+            <Include mod_id="1B28771A-C749-434B-9053-D1380C553DE9" action_id="Expansion1_MajorIcons" required="1" />
+            <Include mod_id="1B28771A-C749-434B-9053-D1380C553DE9" action_id="Expansion1_MajorText" required="1" />
+        </None>
         <!-- <AddGameplayScripts id="MiniCivVIAutoplay">
             <File>Scripts/Autoplay.lua</File>
         </AddGameplayScripts> -->
@@ -316,6 +358,9 @@
         <File>Data/MiniCivVI_RemoveReligion.sql</File>
         <File>Data/MiniCivVI_SmallerMaps.sql</File>
         <File>MiniCivVI.dep</File>
+        <File>Scenarios/Sumeria/Data/SumeriaScenario_Config.xml</File>
+        <File>Scenarios/Sumeria/Map/Sumeria.Civ6Map</File>
+        <File>Scenarios/Sumeria/Text/en_US/SumeriaScenario_ConfigText.xml</File>
         <File>Scripts/AutomateImprovements.lua</File>
         <File>Scripts/Autoplay.lua</File>
         <File>Scripts/MiniCiv6_CivRev_Victories.lua</File>
