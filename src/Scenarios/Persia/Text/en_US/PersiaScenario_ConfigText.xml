@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GameData>
+    <EnglishText>
+        <Row Tag="LOC_MC6_CIVILIZATION_MEDES_NAME">
+            <Text>Median</Text>
+        </Row>
+        </Row>
+        <Row Tag="LOC_MC6_PERSIASCENARIO_MAP_NAME">
+            <Text>Sumeria</Text>
+        </Row>
+        <Row Tag="LOC_MC6_PERSIA_SCENARIO_NAME">
+            <Text>Sumeria</Text>
+        </Row>
+    </EnglishText>
+</GameData>

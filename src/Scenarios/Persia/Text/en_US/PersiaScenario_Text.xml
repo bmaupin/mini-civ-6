@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GameData>
+    <EnglishText>
+        <Row Tag="LOC_MC6_CITY_NAME_ECBATANA"/><Text>Ecbatana</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_RHAGAE"/><Text>Rhagae</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_RAGA"/><Text>Raga</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_GANZAK"/><Text>Ganzak</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_BAGASTANA"/><Text>Bagastana</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_NISA"/><Text>Nisa</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_ARBELA"/><Text>Arbela</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_ARRAPHA"/><Text>Arrapha</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_SIALK"/><Text>Sialk</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_ZIKIRTU"/><Text>Zikirtu</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_SAQQEZ"/><Text>Saqqez</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_KERMANSHAH"/><Text>Kermanshah</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_BUKAN"/><Text>Bukan</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_QAZVIN"/><Text>Qazvin</Text></Row>
+        <Row Tag="LOC_MC6_CITY_NAME_ZANJAN"/><Text>Zanjan</Text></Row>
+        <Row Tag="LOC_MC6_LEADER_AMASIS_NAME"/><Text>Amasis II</Text></Row>
+        <Row Tag="LOC_MC6_LEADER_AMYTIS_NAME"/><Text>Amytis</Text></Row>
+    </EnglishText>
+</GameData>

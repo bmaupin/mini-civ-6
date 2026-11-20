@@ -98,6 +98,65 @@ Map
   - Close; stops at the mountains on the east
   - Very big
 
+#### Prompts
+
+> I have created an empty 36x24 map here: test-ai-luna-from-alexander.Civ6Map
+>
+> I want you to take this map: ~/.local/share/Steam/steamapps/common/Sid Meier's Civilization VI/steamassets/dlc/alexanderscenario/map/alexander.civ6map
+>
+> I want you to cut it from these map coordinates:
+>
+> 9,30
+> 9,12
+> 36,30
+> 36,12
+>
+> I want you to then enlargen them to fit into the 36x24 map
+>
+> Copy all of the appropriate values as needed into the new map, including
+>
+> - plot terrains, rivers, features, cliffs, etc
+>
+> Do not copy changes from these tables:
+>
+> - Buildings
+> - Cities
+> - CityAttributes
+> - Districts
+> - MapAttributes
+> - MetaData
+> - PlayerAttributes
+> - Players
+> - PlotImprovements
+> - PlotOwners
+> - PlotRoutes
+> - Units
+
+> This map will be for a new scenario I'm creating for Sumeria.
+>
+> I want these civilisations:
+>
+> - Sumeria
+> - Kingdom of Akkad (Akkadians)
+> - Amurru (Amorites)
+> - Elam (Elamites)
+> - Gutium (Gutians)
+>
+> For Sumeria, I will use the civ that comes with the game. For the others I will use the civilisation that's the closest geographic match:
+>
+> - Akkad: Babylon
+> - Amurru: Phoenicians
+> - Elam: Persians
+> - Gutians: Georgia
+>
+> I want to add starting locations to the map for each of these civilisations (Sumeria, Akkad, Amurru, Elam, Gutians)
+>
+> I won't change the Civilisation name in the game (e.g. CIVILIZATION_BABYLON_STK, CIVILIZATION_PHOENICIA) I will simply change the string used for the name.
+>
+> set the starting locations in the map
+
+> fix the rivers so they connect
+
 ### Persia
 
 #### Prompts

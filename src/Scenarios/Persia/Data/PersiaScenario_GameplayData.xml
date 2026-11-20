@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameInfo>
+    <CityNames>
+        <Delete CivilizationType="CIVILIZATION_GEORGIA"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_ECBATANA"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_RHAGAE"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_RAGA"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_GANZAK"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_BAGASTANA"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_NISA"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_ARBELA"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_ARRAPHA"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_SIALK"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_ZIKIRTU"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_SAQQEZ"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_KERMANSHAH"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_BUKAN"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_QAZVIN"/>
+        <Row CivilizationType="CIVILIZATION_GEORGIA" CityName="LOC_MC6_CITY_NAME_ZANJAN"/>
+    </CityNames>
+    <CivilizationLeaders>
+        <Update>
+            <Where CivilizationType="CIVILIZATION_GEORGIA"/>
+            <Set CapitalName="LOC_MC6_CITY_NAME_ECBATANA"/>
+        </Update>
+    </CivilizationLeaders>
+</GameInfo>
+
+
+
